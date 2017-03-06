@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="baidu-site-verification" content="sN4ehoVl1k" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="午休随笔,午休服务站,薛山山博客,web前端开发,技术博客">
+	<meta name="description" content="薛山山在 Github 上的个人博客，主要从事web前端开发，移动端为主。此博客持续更新，欢迎大家关注。">
+	<link rel="shortcut icon" href="/images/favicon.ico">
+
+	<title>
+		
+		webpack 多页面支持｜午休随笔
+		
+	</title>
+
+	<link rel="canonical" href="http://xueshanshan.com/2017/03/06/webpack-多页面支持/">
+
+	<!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="/css/blog-style.css">
+
+	<!-- Pygments Github CSS -->
+	<link rel="stylesheet" href="/css/syntax.css">
+
+	<!-- Custom Fonts -->
+	<link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+
+	<!-- ga & ba script hoook -->
+	<script></script>
+</head>
+<style>
+    .intro-header{
+        background-image:url(
+        'null'
+        )
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <span class="brand-logo">
+                    午休随笔
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!--only post-->
+<img class="wechat-title-img" src="/images/pc-bg.jpg">
+
+<!-- Post Header -->
+<!-- only post bg-->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/images/pc-bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>webpack 多页面支持</h1>
+                    
+                    <span class="meta">
+                         作者 xuess
+                         <span>
+                          日期 2017-03-06
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            webpack 多页面支持
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+                <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+
+                <h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><h5 id="安装webpack包"><a href="#安装webpack包" class="headerlink" title="安装webpack包"></a>安装webpack包</h5><blockquote>
+<p>npm install webpack -g</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//进入项目目录</div><div class="line">//确定已有package.json，没有就npm init 创建</div><div class="line">$ npm install webpack --save-dev</div><div class="line">//查看webpack 版本信息</div><div class="line">$ npm info webpack</div><div class="line">//安装指定版本</div><div class="line">$ npm install webpack@1.31.x --save-dev</div></pre></td></tr></table></figure>
+<h5 id="安装webpack服务器"><a href="#安装webpack服务器" class="headerlink" title="安装webpack服务器"></a>安装webpack服务器</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm install webpack-dev-server --save-dev</div></pre></td></tr></table></figure>
+<h6 id="webpack常用命令"><a href="#webpack常用命令" class="headerlink" title="webpack常用命令"></a>webpack常用命令</h6><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ webpack --config webpack.min.js //另一份配置文件</div><div class="line"></div><div class="line">$ webpack --display-error-details //显示异常信息</div><div class="line"></div><div class="line">$ webpack --watch   //监听变动并自动打包</div><div class="line"> </div><div class="line">$ webpack -p    //压缩混淆脚本，这个非常非常重要！</div><div class="line"> </div><div class="line">$ webpack -d    //生成map映射文件，告知哪些模块被最终打包到哪里了</div></pre></td></tr></table></figure>
+<h6 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h6><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">webpack-dev-server是一个小型的node.js Express服务器,它使用webpack-dev-middleware中间件来为通过webpack打包生成的资源文件提供Web服务。它还有一个通过Socket.IO连接着webpack-dev-server服务器的小型运行时程序。webpack-dev-server发送关于编译状态的消息到客户端，客户端根据消息作出响应。</div></pre></td></tr></table></figure>
+<p>webpack-dev-server有两种模式支持自动刷新——iframe模式和inline模式</p>
+<p>在iframe模式下：页面是嵌套在一个iframe下的，在代码发生改动的时候，这个iframe会重新加载<br>在inline模式下：一个小型的webpack-dev-server客户端会作为入口文件打包，这个客户端会在后端代码改变的时候刷新页面<br>使用iframe模式，无需额外配置，只需在浏览器输入</p>
+<p><a href="http://localhost:8080/webpack-dev-server/index.html" target="_blank" rel="external">http://localhost:8080/webpack-dev-server/index.html</a><br>使用inline模式有两种方式：命令行和nodejs API</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">命令行： 在运行时，加上 --inline 选项</div><div class="line"></div><div class="line">$ webpack-dev-server --inline</div><div class="line">访问，通过http://localhost:8080 就可以访问</div></pre></td></tr></table></figure>
+<p>nodejs API 方式 ，需要手动把 webpack-dev-server/client?<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a> 加到配置文件的入口文件处</p>
+<p>webpac-dev-server支持Hot Module Replacement，即模块热替换，在前端代码变动的时候无需整个刷新页面，只把变化的部分替换掉</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">依赖的包文件，复制安装</div><div class="line"></div><div class="line">npm install webpack@1.x.x webpack-dev-server autoprefixer babel babel-core babel-loader babel-preset-es2015 extract-text-webpack-plugin file file-loader fs html-webpack-plugin node-sass css-loader html-loader image-webpack-loader path sass-loader less  less-loader style-loader url-loader postcss-loader jquery@2.x.x --save-dev</div><div class="line"></div><div class="line"></div><div class="line">npm install glob html-loader image-webpack-loader --save-dev</div><div class="line"></div><div class="line">npm install node-sass sass-loader --save-dev</div></pre></td></tr></table></figure>
+<h1 id="配置文件配置"><a href="#配置文件配置" class="headerlink" title="配置文件配置"></a>配置文件配置</h1><blockquote>
+<p>目录结构</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">/**</div><div class="line"> * xuess</div><div class="line"> * webpack配置</div><div class="line"> */</div><div class="line">var path = require(&apos;path&apos;),</div><div class="line">	webpack = require(&apos;webpack&apos;),</div><div class="line">	//打包html</div><div class="line">	HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;),</div><div class="line">	//独立打包样式文件</div><div class="line">	ExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;),</div><div class="line">	//公共模块单独打包</div><div class="line">	CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin,</div><div class="line">	ROOT_PATH = path.resolve(__dirname),//根目录</div><div class="line">	OUT_PATH = &quot;./dist/&quot;,//输出目录</div><div class="line">	ALIAS_IGNORE_DIRS = [&quot;&quot;],//忽略目录</div><div class="line">	ENTRY_IGNORE_DIRS = [&quot;commons&quot;], //忽略目录</div><div class="line">	alias = require(&apos;./config/alias&apos;),</div><div class="line">	entry = require(&apos;./config/entry&apos;);</div><div class="line"></div><div class="line">alias.init(ROOT_PATH, [&quot;/src/js/commons&quot;], ALIAS_IGNORE_DIRS);</div><div class="line">entry.init(ROOT_PATH, [&quot;/src/js&quot;], ENTRY_IGNORE_DIRS);</div><div class="line"></div><div class="line">var extractCSS = new ExtractTextPlugin(&apos;css/[name].css?[contenthash]&apos;)</div><div class="line">var cssLoader = extractCSS.extract([&apos;css&apos;])</div><div class="line">var sassLoader = extractCSS.extract([&apos;css&apos;, &apos;sass&apos;])</div><div class="line">var lessLoader = extractCSS.extract([&apos;css&apos;, &apos;less&apos;])</div><div class="line">//插件配置</div><div class="line">var plugins = [];</div><div class="line">plugins.push(extractCSS);</div><div class="line">///webpack.ProvidePlugin插件作用是jquery变成全局，所以不需要引用就能在js文件中运用</div><div class="line">plugins.push(new webpack.ProvidePlugin(&#123;</div><div class="line">	&quot;jQuery&quot;: &quot;jquery&quot;,</div><div class="line">	&quot;$&quot;: &quot;jquery&quot;</div><div class="line">&#125;));</div><div class="line">plugins.push(new CommonsChunkPlugin(&#123;</div><div class="line">	name: &apos;libs&apos;,</div><div class="line">	minChunks: Infinity</div><div class="line">&#125;));</div><div class="line">plugins.push(new webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">	mangle: &#123;</div><div class="line">		except: [&apos;$&apos;, &apos;jQuery&apos;]</div><div class="line">	&#125;,</div><div class="line">	// sourceMap: false,</div><div class="line">	compress: &#123;</div><div class="line">		warnings: false</div><div class="line">	&#125;</div><div class="line">&#125;));</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">	//devtool: &quot;source-map&quot;,</div><div class="line">	resolve: &#123;</div><div class="line">		//参数名的自动补全，现在可以写 require(&apos;file&apos;) 代替 require(&apos;file.js&apos;)</div><div class="line">		extensions: [&apos;&apos;, &apos;.js&apos;, &apos;.json&apos;, &apos;.coffee&apos;, &apos;.css&apos;, &apos;.jsx&apos;, &apos;.vue&apos;],</div><div class="line">		//解析目录名的一个数组到当前目录以及先前的目录，并且是查找模块。</div><div class="line">		modulesDirectories: [&apos;node_modules&apos;],</div><div class="line">		//设置别名，便于在开发中模块的使用</div><div class="line">		alias: alias.getAlias(&#123;</div><div class="line">			jquery: path.resolve(ROOT_PATH, &quot;./node_modules/jquery/dist/jquery.min.js&quot;),</div><div class="line">			md5: path.resolve(ROOT_PATH, &quot;./node_modules/md5/md5.js&quot;)</div><div class="line">		&#125;),</div><div class="line">		//绝对路径</div><div class="line">		publicPath: &apos;/&apos;</div><div class="line">	&#125;,</div><div class="line">	entry: entry.getEntrys(&#123; &apos;libs&apos;: [&apos;jquery&apos;] &#125;),</div><div class="line">	output: &#123;</div><div class="line">		path: OUT_PATH, //文件输出目录</div><div class="line">		publicPath: OUT_PATH, //用于配置文件发布路径，如CDN或本地服务器</div><div class="line">		filename: &apos;js/[name].js&apos; //根据入口文件输出的对应多个文件名</div><div class="line">	&#125;,</div><div class="line">	module: &#123;</div><div class="line">		loaders: [</div><div class="line">			&#123; test: /\.css$/, loader: cssLoader &#125;,</div><div class="line">			&#123; test: /\.scss$/, loader: sassLoader &#125;,</div><div class="line">			&#123; test: /\.less$/, loader: lessLoader &#125;,</div><div class="line">			&#123; test: /\.(png|jpg)$/, loader: &apos;url-loader&apos; &#125;,</div><div class="line">			&#123; test: /\.vue$/, loader: &apos;vue-loader&apos; &#125;,</div><div class="line">			&#123; test: /\.html$/, loader: &apos;html&apos; &#125;</div><div class="line">		]</div><div class="line">	&#125;,</div><div class="line">	plugins: plugins</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/02/23/blogs/" data-toggle="tooltip" data-placement="top" title="blogs">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col" >
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#环境安装"><span class="toc-text">环境安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#安装webpack包"><span class="toc-text">安装webpack包</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#安装webpack服务器"><span class="toc-text">安装webpack服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#webpack常用命令"><span class="toc-text">webpack常用命令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#webpack-dev-server"><span class="toc-text">webpack-dev-server</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置文件配置"><span class="toc-text">配置文件配置</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                <h5 class="text-center">
+                    <a href="/tags/">FEATURED TAGS</a>
+                </h5>
+                    <div class="tags">
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="2017/03/06/webpack-多页面支持/" data-title="webpack 多页面支持" data-url="http://xueshanshan.com/2017/03/06/webpack-多页面支持/"></div>
+<!-- 多说评论框 end -->
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+	var duoshuoQuery = { short_name: "xuess" };
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';
+		ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] ||
+			document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/test5433">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/xuess">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 午休随笔 2017 
+                    <br>
+                    <!--Theme by <a href="https://github.com/Kaijun/">Kaijun</a>-->
+                    <!--<span style="display: inline-block; margin: 0 5px;">-->
+                        <!--<i class="fa fa-heart"></i>-->
+                    <!--</span> -->
+                    <!--Theme by <a href="http://ehazon.github.io/">Haojen Ma</a>-->
+                    <!--<iframe-->
+                        <!--style="margin-left: 2px; margin-bottom:-5px;"-->
+                        <!--frameborder="0" scrolling="0" width="91px" height="20px"-->
+                        <!--src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >-->
+                    <!--</iframe>-->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://xueshanshan.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+    <!--wechat title img-->
+    <img class="wechat-title-img" src="/images/head.jpeg">
+</body>
+
+</html>
