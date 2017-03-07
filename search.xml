@@ -1,200 +1,12 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-  <head>
-    
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-  <meta name="description" content="薛山山在 Github 上的个人博客，主要从事web前端开发，移动端为主。此博客持续更新，欢迎大家关注。"/>
-
-
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="午休随笔">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.2.x" />
-
-
-
-<link rel="canonical" href="http://xueshanshan.com/"/>
-
-
-<meta name="description" content="薛山山在 Github 上的个人博客，主要从事web前端开发，移动端为主。此博客持续更新，欢迎大家关注。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="午休随笔">
-<meta property="og:url" content="http://xueshanshan.com/index.html">
-<meta property="og:site_name" content="午休随笔">
-<meta property="og:description" content="薛山山在 Github 上的个人博客，主要从事web前端开发，移动端为主。此博客持续更新，欢迎大家关注。">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="午休随笔">
-<meta name="twitter:description" content="薛山山在 Github 上的个人博客，主要从事web前端开发，移动端为主。此博客持续更新，欢迎大家关注。">
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.2.x" />
-
-
-
-  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
-
-
-
-
-
-<script type="text/javascript">
-  var themeConfig = {
-    search: {
-      enable: true,
-      path: "/search.xml",
-    },
-    navbar: {
-      enable: true
-    },
-    fancybox: {
-      enable: true
-    },
-    toc: {
-      enable: true
-    },
-  };
-</script>
-
-<script>
-	var _hmt = _hmt || [];
-	(function() {
-		var hm = document.createElement("script");
-		hm.src = "//hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
-		var s = document.getElementsByTagName("script")[0];
-		s.parentNode.insertBefore(hm, s);
-	})();
-</script>
-
-
-
+<?xml version="1.0" encoding="utf-8"?>
+<search>
   
-
-
-
-    <title> 午休随笔 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">午休随笔</a>
-</div>
-
-<nav class="site-nav">
   
-    <ul id="menu" class="menu">
-      
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            
-            
-              Home
-            
-          </a>
-        </li>
-      
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            
-            
-              Archives
-            
-          </a>
-        </li>
-      
-      
-        <li class="menu-search">
-          <form>
-            <i class="iconfont icon-search" id="open-search"></i>
-            <input type="text" class="search-input" id="search-input" />
-            <i class="iconfont icon-close" id="close-search"></i>
-          </form>
-        </li>
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">午休随笔</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
     
-      <a class="mobile-menu-item" href="/">
-        
-        
-          Home
-        
-      </a>
-    
-      <a class="mobile-menu-item" href="/archives/">
-        
-        
-          Archives
-        
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts">
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/03/06/webpack-多页面支持/">webpack 多页面支持</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017年3月6日
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><h5 id="安装webpack包"><a href="#安装webpack包" class="headerlink" title="安装webpack包"></a>安装webpack包</h5><blockquote>
+    <entry>
+      <title><![CDATA[webpack 多页面支持]]></title>
+      <url>http://xueshanshan.com/2017/03/06/webpack-%E5%A4%9A%E9%A1%B5%E9%9D%A2%E6%94%AF%E6%8C%81/</url>
+      <content type="html"><![CDATA[<h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><h5 id="安装webpack包"><a href="#安装webpack包" class="headerlink" title="安装webpack包"></a>安装webpack包</h5><blockquote>
 <p>npm install webpack -g</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//进入项目目录</div><div class="line">//确定已有package.json，没有就npm init 创建</div><div class="line">$ npm install webpack --save-dev</div><div class="line">//查看webpack 版本信息</div><div class="line">$ npm info webpack</div><div class="line">//安装指定版本</div><div class="line">$ npm install webpack@1.31.x --save-dev</div></pre></td></tr></table></figure>
@@ -212,118 +24,34 @@
 <p>目录结构</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">/**</div><div class="line"> * xuess</div><div class="line"> * webpack配置</div><div class="line"> */</div><div class="line">var path = require(&apos;path&apos;),</div><div class="line">	webpack = require(&apos;webpack&apos;),</div><div class="line">	//打包html</div><div class="line">	HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;),</div><div class="line">	//独立打包样式文件</div><div class="line">	ExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;),</div><div class="line">	//公共模块单独打包</div><div class="line">	CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin,</div><div class="line">	ROOT_PATH = path.resolve(__dirname),//根目录</div><div class="line">	OUT_PATH = &quot;./dist/&quot;,//输出目录</div><div class="line">	ALIAS_IGNORE_DIRS = [&quot;&quot;],//忽略目录</div><div class="line">	ENTRY_IGNORE_DIRS = [&quot;commons&quot;], //忽略目录</div><div class="line">	alias = require(&apos;./config/alias&apos;),</div><div class="line">	entry = require(&apos;./config/entry&apos;);</div><div class="line"></div><div class="line">alias.init(ROOT_PATH, [&quot;/src/js/commons&quot;], ALIAS_IGNORE_DIRS);</div><div class="line">entry.init(ROOT_PATH, [&quot;/src/js&quot;], ENTRY_IGNORE_DIRS);</div><div class="line"></div><div class="line">var extractCSS = new ExtractTextPlugin(&apos;css/[name].css?[contenthash]&apos;)</div><div class="line">var cssLoader = extractCSS.extract([&apos;css&apos;])</div><div class="line">var sassLoader = extractCSS.extract([&apos;css&apos;, &apos;sass&apos;])</div><div class="line">var lessLoader = extractCSS.extract([&apos;css&apos;, &apos;less&apos;])</div><div class="line">//插件配置</div><div class="line">var plugins = [];</div><div class="line">plugins.push(extractCSS);</div><div class="line">///webpack.ProvidePlugin插件作用是jquery变成全局，所以不需要引用就能在js文件中运用</div><div class="line">plugins.push(new webpack.ProvidePlugin(&#123;</div><div class="line">	&quot;jQuery&quot;: &quot;jquery&quot;,</div><div class="line">	&quot;$&quot;: &quot;jquery&quot;</div><div class="line">&#125;));</div><div class="line">plugins.push(new CommonsChunkPlugin(&#123;</div><div class="line">	name: &apos;libs&apos;,</div><div class="line">	minChunks: Infinity</div><div class="line">&#125;));</div><div class="line">plugins.push(new webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">	mangle: &#123;</div><div class="line">		except: [&apos;$&apos;, &apos;jQuery&apos;]</div><div class="line">	&#125;,</div><div class="line">	// sourceMap: false,</div><div class="line">	compress: &#123;</div><div class="line">		warnings: false</div><div class="line">	&#125;</div><div class="line">&#125;));</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">	//devtool: &quot;source-map&quot;,</div><div class="line">	resolve: &#123;</div><div class="line">		//参数名的自动补全，现在可以写 require(&apos;file&apos;) 代替 require(&apos;file.js&apos;)</div><div class="line">		extensions: [&apos;&apos;, &apos;.js&apos;, &apos;.json&apos;, &apos;.coffee&apos;, &apos;.css&apos;, &apos;.jsx&apos;, &apos;.vue&apos;],</div><div class="line">		//解析目录名的一个数组到当前目录以及先前的目录，并且是查找模块。</div><div class="line">		modulesDirectories: [&apos;node_modules&apos;],</div><div class="line">		//设置别名，便于在开发中模块的使用</div><div class="line">		alias: alias.getAlias(&#123;</div><div class="line">			jquery: path.resolve(ROOT_PATH, &quot;./node_modules/jquery/dist/jquery.min.js&quot;),</div><div class="line">			md5: path.resolve(ROOT_PATH, &quot;./node_modules/md5/md5.js&quot;)</div><div class="line">		&#125;),</div><div class="line">		//绝对路径</div><div class="line">		publicPath: &apos;/&apos;</div><div class="line">	&#125;,</div><div class="line">	entry: entry.getEntrys(&#123; &apos;libs&apos;: [&apos;jquery&apos;] &#125;),</div><div class="line">	output: &#123;</div><div class="line">		path: OUT_PATH, //文件输出目录</div><div class="line">		publicPath: OUT_PATH, //用于配置文件发布路径，如CDN或本地服务器</div><div class="line">		filename: &apos;js/[name].js&apos; //根据入口文件输出的对应多个文件名</div><div class="line">	&#125;,</div><div class="line">	module: &#123;</div><div class="line">		loaders: [</div><div class="line">			&#123; test: /\.css$/, loader: cssLoader &#125;,</div><div class="line">			&#123; test: /\.scss$/, loader: sassLoader &#125;,</div><div class="line">			&#123; test: /\.less$/, loader: lessLoader &#125;,</div><div class="line">			&#123; test: /\.(png|jpg)$/, loader: &apos;url-loader&apos; &#125;,</div><div class="line">			&#123; test: /\.vue$/, loader: &apos;vue-loader&apos; &#125;,</div><div class="line">			&#123; test: /\.html$/, loader: &apos;html&apos; &#125;</div><div class="line">		]</div><div class="line">	&#125;,</div><div class="line">	plugins: plugins</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-
-        
-      
-    </div>
-
-    
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/02/23/blogs/">blogs</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017年2月23日
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
+]]></content>
       
         
-        
-
-        
-          <h2 id="你好"><a href="#你好" class="headerlink" title="你好"></a>你好</h2><ul>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[blogs]]></title>
+      <url>http://xueshanshan.com/2017/02/23/blogs/</url>
+      <content type="html"><![CDATA[<h2 id="你好"><a href="#你好" class="headerlink" title="你好"></a>你好</h2><ul>
 <li>你好。</li>
 </ul>
-
-        
-      
-    </div>
-
-    
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/02/23/vue/">vue</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017年2月23日
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
+]]></content>
       
         
-        
-
-        
-          <h2 id="你好"><a href="#你好" class="headerlink" title="你好"></a>你好</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">这个是测试语句块！！！</div></pre></td></tr></table></figure>
-        
-      
-    </div>
-
+    </entry>
     
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/06/03/hello-world/">Hello World</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2016年6月3日
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
+    <entry>
+      <title><![CDATA[vue]]></title>
+      <url>http://xueshanshan.com/2017/02/23/vue/</url>
+      <content type="html"><![CDATA[<h2 id="你好"><a href="#你好" class="headerlink" title="你好"></a>你好</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">这个是测试语句块！！！</div></pre></td></tr></table></figure>]]></content>
       
         
-        
-
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>http://xueshanshan.com/2016/06/03/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
@@ -332,136 +60,11 @@
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-      
-    </div>
-
-    
-
-    
-  </article>
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    
-    
-  </nav>
-
-
-          </div>
-          
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-
-  <div class="social-links">
-    
+]]></content>
       
         
-          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        
-          <a href="/xuess" class="iconfont icon-github" title="github"></a>
-        
-      
-    
-      
-        
-          <a href="/test5433" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 提供
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2017
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">xuess</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
+    </entry>
     
   
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"xuess"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-
-
-    
   
-
-
-
-
-
-  
-    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-  
-
-  
-    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.2.x"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.2.x"></script>
-
-  </body>
-</html>
+</search>
