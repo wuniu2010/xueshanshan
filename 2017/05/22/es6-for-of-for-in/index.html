@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="forEach、for-in与for-of的区别"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="午休随笔">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://blog.xueshanshan.com/2017/05/22/es6-for-of-for-in/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> forEach、for-in与for-of的区别 - 午休随笔 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">午休随笔</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">午休随笔</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          forEach、for-in与for-of的区别
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-05-22
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#forEach介绍"><span class="toc-text">forEach介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for-in介绍"><span class="toc-text">for-in介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for-of介绍"><span class="toc-text">for-of介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for-of-遍历-Set"><span class="toc-text">for-of 遍历 Set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-of-遍历-Map"><span class="toc-text">for-of 遍历 Map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-of-遍历原生对象"><span class="toc-text">for-of 遍历原生对象</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="forEach介绍"><a href="#forEach介绍" class="headerlink" title="forEach介绍"></a>forEach介绍</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objArr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>foreach</code> 方法没办法使用 <code>break</code> 语句跳出循环，或者使用<code>return</code>从函数体内返回</p>
+</blockquote>
+<h2 id="for-in介绍"><a href="#for-in介绍" class="headerlink" title="for-in介绍"></a>for-in介绍</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> index <span class="keyword">in</span> objArr)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(objArr[index])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码会出现的问题：<br>1.<code>index</code> 值 会是字符串（<code>String</code>）类型<br>2.循环不仅会遍历数组元素，还会遍历任意其他自定义添加的属性，如，<code>objArr</code>上面包含自定义属性，<code>objArr.name</code>，那这次循环中也会出现此<code>name</code>属性<br>3.某些情况下，上述代码会以随机顺序循环数组</p>
+<blockquote>
+<p><code>for-in</code>循环设计之初，是给普通以字符串的值为key的对象使用的。而非数组。</p>
+</blockquote>
+<h2 id="for-of介绍"><a href="#for-of介绍" class="headerlink" title="for-of介绍"></a>for-of介绍</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> value <span class="keyword">of</span> objArr)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1.可以避免所有 <code>for-in</code> 循环的陷阱<br>2.不同于 <code>forEach()</code>，可以使用 <code>break</code>, <code>continue</code> 和 <code>return</code><br>3.<code>for-of</code> 循环不仅仅支持数组的遍历。同样适用于很多类似数组的对象<br>4.它也支持<code>字符串</code>的遍历<br>5.for-of 并不适用于处理原有的原生对象</p>
+<h3 id="for-of-遍历-Set"><a href="#for-of-遍历-Set" class="headerlink" title="for-of 遍历 Set"></a>for-of 遍历 Set</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uniqueWords = <span class="keyword">new</span> <span class="built_in">Set</span>(words);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> word <span class="keyword">of</span> uniqueWords) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="for-of-遍历-Map"><a href="#for-of-遍历-Map" class="headerlink" title="for-of 遍历 Map"></a>for-of 遍历 Map</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> [key, value] <span class="keyword">of</span> phoneBookMap) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key + <span class="string">"'s phone number is: "</span> + value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>Map</code>是键值对组成，需要用到 Es6新特性<code>解构</code></p>
+</blockquote>
+<h3 id="for-of-遍历原生对象"><a href="#for-of-遍历原生对象" class="headerlink" title="for-of 遍历原生对象"></a>for-of 遍历原生对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出对象自身可以枚举的值</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(someObject)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key + <span class="string">": "</span> + someObject[key]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://blog.xueshanshan.com">xuess</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://blog.xueshanshan.com/2017/05/22/es6-for-of-for-in/">http://blog.xueshanshan.com/2017/05/22/es6-for-of-for-in/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/05/24/react-redux/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">react redux</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/05/21/nodejs-express/">
+        <span class="next-text nav-default">nodejs express笔记</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xuess" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://weibo.com/test5433" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/shan-xue-74/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xuess</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xueshanshan.com/2017/05/22/es6-for-of-for-in/';
+        this.page.identifier = '2017/05/22/es6-for-of-for-in/';
+        this.page.title = 'forEach、for-in与for-of的区别';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//xueshanshan-com.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

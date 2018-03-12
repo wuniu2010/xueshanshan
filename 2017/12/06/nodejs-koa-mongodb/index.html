@@ -17,10 +17,12 @@
 
 
 
-  <meta name="description" content="薛山山在 Github 上的个人博客，主要从事web前端开发，移动端为主。此博客持续更新，欢迎大家关注。"/>
+  <meta name="description" content="node+koa+mongodb导航管理系统项目说明"/>
 
 
 
+
+  <meta name="keywords" content="node, 午休随笔" />
 
 
 
@@ -40,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://blog.xueshanshan.com/archives/2018/"/>
+<link rel="canonical" href="http://blog.xueshanshan.com/2017/12/06/nodejs-koa-mongodb/"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -87,11 +89,7 @@
 
 
 
-    <title>
-  
-    归档 - 午休随笔
-  
-</title>
+    <title> node+koa+mongodb导航管理系统项目说明 - 午休随笔 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -167,95 +165,126 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          node+koa+mongodb导航管理系统项目说明
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-06
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#项目说明"><span class="toc-text">项目说明</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="项目说明"><a href="#项目说明" class="headerlink" title="项目说明"></a>项目说明</h1><p>基于node 实现简单的导航管理系统</p>
+<blockquote>
+<p>server端：使用node， koa + mongodb</p>
+<p>client端：vue + vue-router</p>
+</blockquote>
+<p><strong>安装与启动</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.安装 依赖</span><br><span class="line"></span><br><span class="line">npm i</span><br><span class="line"></span><br><span class="line">2.启动项目</span><br><span class="line">npm run dev_server</span><br><span class="line"></span><br><span class="line">默认端口开启2333</span><br><span class="line">本地访问 http://localhost:2333/</span><br></pre></td></tr></table></figure>
+<p>生产环境可以使用 pm2发布</p>
+<p>全局安装pm2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g pm2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>记得修改 pm2.json 中的pwd属性为当前项目地址</p>
+<p>pm2具体使用方法自行百度</p>
+</blockquote>
+
+      
+    </div>
+
     
       
-        <div class="archive-title">
-          <span class="archive-post-counter">
-            目前共计 35 篇日志
-          </span>
-        </div>
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://blog.xueshanshan.com">xuess</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://blog.xueshanshan.com/2017/12/06/nodejs-koa-mongodb/">http://blog.xueshanshan.com/2017/12/06/nodejs-koa-mongodb/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
       
     
 
     
-      
+      <footer class="post-footer">
         
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year">2018</h2>
+          <div class="post-tags">
+            
+              <a href="/tags/node/">node</a>
+            
           </div>
         
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            03-12
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2018/03/12/node-npm-pm2/" class="archive-post-link">
-            node pm2使用
-          </a>
-        </span>
-      </div>
+        
+        
+  <nav class="post-nav">
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            01-08
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2018/01/08/api-showdoc-php/" class="archive-post-link">
-            linux 安装 showdoc 项目
-          </a>
-        </span>
-      </div>
+      <a class="prev" href="/2017/12/09/linux-vps-net-speeder/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">CENTOS7 安装 NET-SPEEDER 提升 VPS 网络性能</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            01-05
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2018/01/05/linux-vps-ssr/" class="archive-post-link">
-            vps SSR安装教程
-          </a>
-        </span>
-      </div>
     
-  </section>
-
-  
-  <nav class="pagination">
-    
+      <a class="next" href="/2017/11/28/linux-vps-close-firewall/">
+        <span class="next-text nav-default">linux vps关闭防火墙</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
       </main>
@@ -347,6 +376,27 @@
     </div>
 
     
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xueshanshan.com/2017/12/06/nodejs-koa-mongodb/';
+        this.page.identifier = '2017/12/06/nodejs-koa-mongodb/';
+        this.page.title = 'node+koa+mongodb导航管理系统项目说明';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//xueshanshan-com.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
 
 
     

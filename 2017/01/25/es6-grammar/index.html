@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="es6语法简介"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="午休随笔">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://blog.xueshanshan.com/2017/01/25/es6-grammar/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> es6语法简介 - 午休随笔 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">午休随笔</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">午休随笔</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          es6语法简介
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-01-25
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#let与var用法区别"><span class="toc-text">let与var用法区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#class-extends-super"><span class="toc-text">class, extends, super</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#箭头函数-arrow-function"><span class="toc-text">箭头函数 arrow function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板字符串-template-string"><span class="toc-text">模板字符串 template string</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构-destructuring"><span class="toc-text">解构 destructuring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#默认值-default"><span class="toc-text">默认值 default</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#展开操作符-rest-arguments-…"><span class="toc-text">展开操作符 rest arguments (…)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#import-export"><span class="toc-text">import export</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他-特性"><span class="toc-text">其他 特性</span></a>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="let与var用法区别"><a href="#let与var用法区别" class="headerlink" title="let与var用法区别"></a>let与var用法区别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">//var </span><br><span class="line">var a = [];</span><br><span class="line">for (var i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  a[i] = function () &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[6](); // 10</span><br><span class="line"></span><br><span class="line">------------------------------</span><br><span class="line"></span><br><span class="line">//let</span><br><span class="line">var a = [];</span><br><span class="line">for (let i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  a[i] = function () &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[6](); // 6</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">------------------------------</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//如果不用 let 实现类似功能</span><br><span class="line">function iteratorFactory(i)&#123;</span><br><span class="line">    var onclick = function(e)&#123;</span><br><span class="line">        console.log(i)</span><br><span class="line">    &#125;</span><br><span class="line">    return onclick;</span><br><span class="line">&#125;</span><br><span class="line">var clickBoxs = document.querySelectorAll(&apos;.clickBox&apos;)</span><br><span class="line">for (var i = 0; i &lt; clickBoxs.length; i++)&#123;</span><br><span class="line">    clickBoxs[i].onclick = iteratorFactory(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="class-extends-super"><a href="#class-extends-super" class="headerlink" title="class, extends, super"></a>class, extends, super</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Animal &#123;</span><br><span class="line">    constructor()&#123;</span><br><span class="line">        this.type = &apos;animal&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    says(say)&#123;</span><br><span class="line">        console.log(this.type + &apos; says &apos; + say)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let animal = new Animal()</span><br><span class="line">animal.says(&apos;hello&apos;) //animal says hello</span><br><span class="line"></span><br><span class="line">//继承</span><br><span class="line">class Cat extends Animal &#123;</span><br><span class="line">    constructor()&#123;</span><br><span class="line">        super()</span><br><span class="line">        this.type = &apos;cat&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let cat = new Cat()</span><br><span class="line">cat.says(&apos;hello&apos;) //cat says hello</span><br></pre></td></tr></table></figure>
+<p>上面代码首先用<code>class</code>定义了一个“类”，可以看到里面有一个<code>constructor</code>方法，这就是构造方法，而<code>this</code>关键字则代表实例对象。简单地说，<code>constructor</code>内定义的方法和属性是实例对象自己的，而<code>constructor</code>外定义的方法和属性则是所有实例对象可以共享的。</p>
+<p><code>Class</code>之间可以通过<code>extends</code>关键字实现继承，这比<code>ES5</code>的通过修改原型链实现继承，要清晰和方便很多。</p>
+<p><code>super</code>关键字，它指代父类的实例（即父类的<code>this</code>对象）。子类必须在<code>constructor</code>方法中调用<code>super</code>方法，否则新建实例时会报错。<br>这是因为子类没有自己的<code>this</code>对象，而是继承父类的<code>this</code>对象，然后对其进行加工。如果不调用<code>super</code>方法，子类就得不到<code>this</code>对象。</p>
+<p><code>ES6</code>的继承机制，实质是先创造父类的实例对象<code>this</code>（所以必须先调用<code>super</code>方法），然后再用子类的构造函数修改<code>this</code>。</p>
+<h2 id="箭头函数-arrow-function"><a href="#箭头函数-arrow-function" class="headerlink" title="箭头函数 arrow function"></a>箭头函数 arrow function</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function(i)&#123; return i + 1; &#125; //ES5</span><br><span class="line">(i) =&gt; i + 1 //ES6</span><br></pre></td></tr></table></figure>
+<p>如果方程比较复杂，则需要用<code>{}</code>把代码包起来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//es5</span><br><span class="line">function(x, y) &#123; </span><br><span class="line">    x++;</span><br><span class="line">    y--;</span><br><span class="line">    return x + y;</span><br><span class="line">&#125;</span><br><span class="line">//es6</span><br><span class="line">(x, y) =&gt; &#123;x++; y--; return x+y&#125;</span><br></pre></td></tr></table></figure>
+<p>除了看上去更简洁以外，<code>arrow function</code>还有一项超级无敌的功能！<br>长期以来，JavaScript语言的<code>this</code>对象一直是一个令人头痛的问题，在对象方法中使用<code>this</code>，必须非常小心。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//错误代码</span><br><span class="line">class Animal &#123;</span><br><span class="line">    constructor()&#123;</span><br><span class="line">        this.type = &apos;animal&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    says(say)&#123;</span><br><span class="line">        setTimeout(function()&#123;</span><br><span class="line">            console.log(this.type + &apos; says &apos; + say)</span><br><span class="line">        &#125;, 1000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> var animal = new Animal()</span><br><span class="line"> animal.says(&apos;hi&apos;)  //undefined says hi</span><br></pre></td></tr></table></figure>
+<p>运行上面的代码会报错，这是因为<code>setTimeout</code>中的<code>this</code>指向的是全局对象。所以为了让它能够正确的运行，传统的解决方法有两种：</p>
+<p>1.第一种是将<code>this</code>传给<code>self</code>,再用<code>self</code>来指代<code>this</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">says(say)&#123;</span><br><span class="line">   var self = this;</span><br><span class="line">   setTimeout(function()&#123;</span><br><span class="line">       console.log(self.type + &apos; says &apos; + say)</span><br><span class="line">&#125;, 1000)</span><br></pre></td></tr></table></figure>
+<p>2.第二种方法是用<code>bind(this)</code>,即</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">says(say)&#123;</span><br><span class="line">    setTimeout(function()&#123;</span><br><span class="line">        console.log(this.type + &apos; says &apos; + say)</span><br><span class="line">    &#125;.bind(this), 1000)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但现在我们有了箭头函数，就不需要这么麻烦了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">    constructor()&#123;</span><br><span class="line">        this.type = &apos;animal&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    says(say)&#123;</span><br><span class="line">        setTimeout( () =&gt; &#123;</span><br><span class="line">            console.log(this.type + &apos; says &apos; + say)</span><br><span class="line">        &#125;, 1000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> var animal = new Animal()</span><br><span class="line"> animal.says(&apos;hi&apos;)  //animal says hi</span><br></pre></td></tr></table></figure>
+<p>当我们使用箭头函数时，函数体内的<code>this</code>对象，就是<code>定义时</code>所在的对象，而不是使用时所在的对象。<br>并不是因为箭头函数内部有绑定this的机制，实际原因是箭头函数根本<code>没有自己的this</code>，它的this是<code>继承外面的</code>，因此内部的this就是外层代码块的this。</p>
+<h2 id="模板字符串-template-string"><a href="#模板字符串-template-string" class="headerlink" title="模板字符串 template string"></a>模板字符串 template string</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//不用模板字符串 写法</span><br><span class="line">$(&quot;#result&quot;).append(</span><br><span class="line">  &quot;There are &lt;b&gt;&quot; + basket.count + &quot;&lt;/b&gt; &quot; +</span><br><span class="line">  &quot;items in your basket, &quot; +</span><br><span class="line">  &quot;&lt;em&gt;&quot; + basket.onSale +</span><br><span class="line">  &quot;&lt;/em&gt; are on sale!&quot;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//使用模板字符串写法</span><br><span class="line">$(&quot;#result&quot;).append(`</span><br><span class="line">  There are &lt;b&gt;$&#123;basket.count&#125;&lt;/b&gt; items</span><br><span class="line">   in your basket, &lt;em&gt;$&#123;basket.onSale&#125;&lt;/em&gt;</span><br><span class="line">  are on sale!</span><br><span class="line">`);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>用反引号（`）来标识起始，用<code>${}</code>来引用变量，而且所有的<code>空格和缩进</code>都会被保留在输出之中(==这个需要注意==)</p>
+</blockquote>
+<h2 id="解构-destructuring"><a href="#解构-destructuring" class="headerlink" title="解构 destructuring"></a>解构 destructuring</h2><p><code>ES6</code>允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（<code>Destructuring</code>）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">let cat = &apos;ken&apos;</span><br><span class="line">let dog = &apos;lili&apos;</span><br><span class="line">let zoo = &#123;cat: cat, dog: dog&#125;</span><br><span class="line">console.log(zoo)  //Object &#123;cat: &quot;ken&quot;, dog: &quot;lili&quot;&#125;</span><br><span class="line"></span><br><span class="line">//使用es6解构</span><br><span class="line">let cat = &apos;ken&apos;</span><br><span class="line">let dog = &apos;lili&apos;</span><br><span class="line">let zoo = &#123;cat, dog&#125;</span><br><span class="line">console.log(zoo)  //Object &#123;cat: &quot;ken&quot;, dog: &quot;lili&quot;&#125;</span><br><span class="line"></span><br><span class="line">//反过来可以这么写：</span><br><span class="line">let dog = &#123;type: &apos;animal&apos;, many: 2&#125;</span><br><span class="line">let &#123; type, many&#125; = dog</span><br><span class="line">console.log(type, many)   //animal 2</span><br></pre></td></tr></table></figure>
+<h2 id="默认值-default"><a href="#默认值-default" class="headerlink" title="默认值 default"></a>默认值 default</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function animal(type)&#123;</span><br><span class="line">    type = type || &apos;cat&apos;  </span><br><span class="line">    console.log(type)</span><br><span class="line">&#125;</span><br><span class="line">animal()</span><br><span class="line"></span><br><span class="line">//ES6</span><br><span class="line">function animal(type = &apos;cat&apos;)&#123;</span><br><span class="line">    console.log(type)</span><br><span class="line">&#125;</span><br><span class="line">animal()</span><br></pre></td></tr></table></figure>
+<h2 id="展开操作符-rest-arguments-…"><a href="#展开操作符-rest-arguments-…" class="headerlink" title="展开操作符 rest arguments (…)"></a>展开操作符 rest arguments (…)</h2><p><a href="http://blog.csdn.net/qq_30100043/article/details/53391308" target="_blank" rel="noopener">扩展运算符详细介绍</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function animals(...types)&#123;</span><br><span class="line">    console.log(types)</span><br><span class="line">&#125;</span><br><span class="line">animals(&apos;cat&apos;, &apos;dog&apos;, &apos;fish&apos;) //[&quot;cat&quot;, &quot;dog&quot;, &quot;fish&quot;]</span><br></pre></td></tr></table></figure>
+<h2 id="import-export"><a href="#import-export" class="headerlink" title="import export"></a>import export</h2><p><strong>传统的写法</strong>CommonJS(服务器端)和AMD（浏览器端，如require.js）</p>
+<p>AMD写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//content.js</span><br><span class="line">define(&apos;content.js&apos;, function()&#123;</span><br><span class="line">    return &apos;A cat&apos;;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//index.js</span><br><span class="line">require([&apos;./content.js&apos;], function(animal)&#123;</span><br><span class="line">    console.log(animal);   //A cat</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>CommonJS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//index.js</span><br><span class="line">var animal = require(&apos;./content.js&apos;)</span><br><span class="line"></span><br><span class="line">//content.js</span><br><span class="line">module.exports = &apos;A cat&apos;</span><br></pre></td></tr></table></figure>
+<p>ES6的写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//index.js</span><br><span class="line">import animal from &apos;./content&apos;</span><br><span class="line"></span><br><span class="line">//content.js</span><br><span class="line">export default &apos;A cat&apos;</span><br></pre></td></tr></table></figure>
+<p>ES6 module的其他高级用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//content.js</span><br><span class="line">export default &apos;A cat&apos;    </span><br><span class="line">export function say()&#123;</span><br><span class="line">    return &apos;Hello!&apos;</span><br><span class="line">&#125;    </span><br><span class="line">export const type = &apos;dog&apos; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//index.js</span><br><span class="line">import &#123; say, type &#125; from &apos;./content&apos;  </span><br><span class="line">let says = say()</span><br><span class="line">console.log(`The $&#123;type&#125; says $&#123;says&#125;`)  //The dog says Hello</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里输入的时候要注意：<code>大括号</code>里面的<code>变量名</code>，必须与被导入模块（content.js）对外接口的<code>名称相同</code>。<br>如果还希望输入content.js中输出的<code>默认值</code>(default), 可以写在大括号外面。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//index.js</span><br><span class="line">import animal, &#123; say, type &#125; from &apos;./content&apos;  </span><br><span class="line">let says = say()</span><br><span class="line">console.log(`The $&#123;type&#125; says $&#123;says&#125; to $&#123;animal&#125;`)  </span><br><span class="line">//The dog says Hello to A cat</span><br></pre></td></tr></table></figure>
+<p>修改变量名</p>
+<p>此时我们不喜欢type这个变量名，因为它有可能重名，所以我们需要修改一下它的变量名。在es6中可以用<code>as</code>实现一键换名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//index.js</span><br><span class="line">import animal, &#123; say, type as animalType &#125; from &apos;./content&apos;  </span><br><span class="line">let says = say()</span><br><span class="line">console.log(`The $&#123;animalType&#125; says $&#123;says&#125; to $&#123;animal&#125;`)  </span><br><span class="line">//The dog says Hello to A cat</span><br></pre></td></tr></table></figure>
+<p>模块的整体加载</p>
+<p>除了指定加载某个输出值，还可以使用整体加载，即用星号（<code>*</code>）指定一个对象，所有输出值都加载在这个对象上面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//index.js</span><br><span class="line"></span><br><span class="line">import animal, * as content from &apos;./content&apos;  </span><br><span class="line">let says = content.say()</span><br><span class="line">console.log(`The $&#123;content.type&#125; says $&#123;says&#125; to $&#123;animal&#125;`)  </span><br><span class="line">//The dog says Hello to A cat</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通常星号<code>*</code>结合<code>as</code>一起使用比较合适。</p>
+</blockquote>
+<h1 id="其他-特性"><a href="#其他-特性" class="headerlink" title="其他 特性"></a>其他 特性</h1><p><a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">阮一峰老师的es6入门</a></p>
+<hr>
+<p><a href="https://segmentfault.com/a/1190000004368132" target="_blank" rel="noopener">参考1</a></p>
+<p><a href="https://segmentfault.com/a/1190000004365693" target="_blank" rel="noopener">参考2</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://blog.xueshanshan.com">xuess</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://blog.xueshanshan.com/2017/01/25/es6-grammar/">http://blog.xueshanshan.com/2017/01/25/es6-grammar/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/03/22/react-es6/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">react es6</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/11/08/nodejs-document/">
+        <span class="next-text nav-default">nodejs+express开发笔记</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xuess" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://weibo.com/test5433" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/shan-xue-74/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xuess</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xueshanshan.com/2017/01/25/es6-grammar/';
+        this.page.identifier = '2017/01/25/es6-grammar/';
+        this.page.title = 'es6语法简介';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//xueshanshan-com.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

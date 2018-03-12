@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="前端命名与写法规范"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="午休随笔">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://blog.xueshanshan.com/2016/06/04/FE-standardization/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 前端命名与写法规范 - 午休随笔 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">午休随笔</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">午休随笔</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          前端命名与写法规范
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-06-04
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#外部命名规范"><span class="toc-text">外部命名规范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#html-、js-、css文件名称命名规范"><span class="toc-text">html 、js 、css文件名称命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#路径规范-不写http、https"><span class="toc-text">路径规范 不写http、https</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文档格式"><span class="toc-text">文档格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐使用语义化标签"><span class="toc-text">推荐使用语义化标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构、表现、行为三者分离"><span class="toc-text">结构、表现、行为三者分离</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js命名规范"><span class="toc-text">js命名规范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量声明"><span class="toc-text">变量声明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#变量赋值时的逻辑操作"><span class="toc-text">变量赋值时的逻辑操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css权重"><span class="toc-text">css权重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本原则"><span class="toc-text">基本原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命名规范"><span class="toc-text">命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#声明顺序"><span class="toc-text">声明顺序</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="外部命名规范"><a href="#外部命名规范" class="headerlink" title="外部命名规范"></a>外部命名规范</h2><h3 id="html-、js-、css文件名称命名规范"><a href="#html-、js-、css文件名称命名规范" class="headerlink" title="html 、js 、css文件名称命名规范"></a>html 、js 、css文件名称命名规范</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_script.js</span><br><span class="line">my_camel_case_name.css</span><br><span class="line">my_index.html</span><br></pre></td></tr></table></figure>
+<h3 id="路径规范-不写http、https"><a href="#路径规范-不写http、https" class="headerlink" title="路径规范 不写http、https"></a>路径规范 不写http、https</h3><ul>
+<li>js </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;//cdn.com/test.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>css</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.example &#123;</span><br><span class="line">  background: url(//static.example.com/images/bg.jpg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>html,js,css文档上部分 增加作者注释，开发时间，功能，最后一次修改时间（多次）</p>
+</blockquote>
+<p>##html命名规范</p>
+<h3 id="文档格式"><a href="#文档格式" class="headerlink" title="文档格式"></a>文档格式</h3><ul>
+<li>css 文件放在 <code>head</code>标签中，js放到 <code>body</code>尾部 </li>
+<li>使用 <code>utf-8</code> 文字编码</li>
+<li>html 标签一律使用<code>小写</code></li>
+<li>属性使用双引号</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">	作者：xuess</span><br><span class="line">	时间：2017-06-22</span><br><span class="line">	描述：测试页面</span><br><span class="line">--&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;&lt;/title&gt;</span><br><span class="line">		&lt;meta http-equiv=&quot;Access-Control-Allow-Origin&quot; content=&quot;*&quot;&gt;</span><br><span class="line">		&lt;!--rem先关首先加载--&gt;</span><br><span class="line">		&lt;script src=&quot;https://g.alicdn.com/mtb/??lib-flexible/0.3.2/flexible_css.js,lib-flexible/0.3.2/flexible.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">		&lt;!--css在head--&gt;</span><br><span class="line">		&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;xxx.css&quot; /&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;div&gt;</span><br><span class="line">			&lt;div&gt;&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;!--js在文档尾部--&gt;</span><br><span class="line">		&lt;script src=&quot;xxx.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="推荐使用语义化标签"><a href="#推荐使用语义化标签" class="headerlink" title="推荐使用语义化标签"></a>推荐使用语义化标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;header&gt;</span><br><span class="line">	&lt;h1&gt;My page title&lt;/h1&gt;</span><br><span class="line">&lt;/header&gt;</span><br><span class="line"></span><br><span class="line">&lt;nav class=&quot;top-navigation&quot;&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li class=&quot;nav-item&quot;&gt;</span><br><span class="line">			&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;</span><br><span class="line">		&lt;/li&gt;</span><br><span class="line">		&lt;li class=&quot;nav-item&quot;&gt;</span><br><span class="line">			&lt;a href=&quot;#news&quot;&gt;News&lt;/a&gt;</span><br><span class="line">		&lt;/li&gt;</span><br><span class="line">		&lt;li class=&quot;nav-item&quot;&gt;</span><br><span class="line">			&lt;a href=&quot;#about&quot;&gt;About&lt;/a&gt;</span><br><span class="line">		&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">&lt;/nav&gt;</span><br><span class="line">&lt;section class=&quot;page-section news&quot;&gt;</span><br><span class="line">	&lt;header&gt;</span><br><span class="line">		&lt;h2 class=&quot;title&quot;&gt;All news articles&lt;/h2&gt;</span><br><span class="line">	&lt;/header&gt;</span><br><span class="line"></span><br><span class="line">	&lt;article class=&quot;news-article&quot;&gt;</span><br><span class="line">		&lt;header&gt;</span><br><span class="line">			&lt;div class=&quot;article-title&quot;&gt;Good article&lt;/div&gt;</span><br><span class="line">			&lt;small class=&quot;intro&quot;&gt;Introduction sub-title&lt;/small&gt;</span><br><span class="line">		&lt;/header&gt;</span><br><span class="line"></span><br><span class="line">		&lt;div class=&quot;content&quot;&gt;</span><br><span class="line">			&lt;p&gt;This is a good example for HTML semantics&lt;/p&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;aside class=&quot;article-side-notes&quot;&gt;</span><br><span class="line">			&lt;p&gt;I think I&apos;m more on the side and should not receive the main credits&lt;/p&gt;</span><br><span class="line">		&lt;/aside&gt;</span><br><span class="line">		&lt;footer class=&quot;article-foot-notes&quot;&gt;</span><br><span class="line">			&lt;p&gt;This article was created by David &lt;time datetime=&quot;2018-01-01 00:00&quot; class=&quot;time&quot;&gt;1 month ago&lt;/time&gt;&lt;/p&gt;</span><br><span class="line">		&lt;/footer&gt;</span><br><span class="line">	&lt;/article&gt;</span><br><span class="line"></span><br><span class="line">	&lt;footer class=&quot;section-footer&quot;&gt;</span><br><span class="line">		&lt;p&gt;Related sections: Events, Public holidays&lt;/p&gt;</span><br><span class="line">	&lt;/footer&gt;</span><br><span class="line">&lt;/section&gt;</span><br><span class="line"></span><br><span class="line">&lt;footer class=&quot;page-footer&quot;&gt;</span><br><span class="line">	Copyright 2017</span><br><span class="line">&lt;/footer&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="结构、表现、行为三者分离"><a href="#结构、表现、行为三者分离" class="headerlink" title="结构、表现、行为三者分离"></a>结构、表现、行为三者分离</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 不要写行内样式</span><br><span class="line">2. 不使用表象元素（`b`, `u`, `center`, `font`, `i`）</span><br><span class="line">3. 不要在html 中写js代码</span><br><span class="line">4. 元素自定义属性 使用`data-`开头</span><br></pre></td></tr></table></figure>
+<h2 id="js命名规范"><a href="#js命名规范" class="headerlink" title="js命名规范"></a>js命名规范</h2><h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 推荐使用es6语法规范，局部作用域变量用let，常量用const</span><br><span class="line">2. 常量使用全大写命名（const FAIL_STATE = 101）</span><br><span class="line">3. 普通变量名称用小写字母开头，驼峰式（let userInfo = &#123;&#125;）</span><br><span class="line">4. 对象命名以大写字母开头，大驼峰式（function User()&#123;//...&#125;）</span><br><span class="line">5. 声明字符串建议使用单引号（let msg = &apos;This is some HTML &lt;div class=&quot;makes-sense&quot;&gt;&lt;/div&gt;&apos;;）</span><br></pre></td></tr></table></figure>
+<h4 id="变量赋值时的逻辑操作"><a href="#变量赋值时的逻辑操作" class="headerlink" title="变量赋值时的逻辑操作"></a>变量赋值时的逻辑操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//不推荐</span><br><span class="line">if(!x) &#123;</span><br><span class="line">  if(!y) &#123;</span><br><span class="line">    x = 1;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    x = y;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//推荐</span><br><span class="line">let x = x || y || 1;</span><br></pre></td></tr></table></figure>
+<p>##css 命名规范</p>
+<h3 id="css权重"><a href="#css权重" class="headerlink" title="css权重"></a>css权重</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">第一等：代表内联样式，如: style=””，权值为1000</span><br><span class="line"></span><br><span class="line">第二等：代表ID选择器，如：#content，权值为100</span><br><span class="line"></span><br><span class="line">第三等：代表类，伪类和属性选择器，如：.content，权值为10</span><br><span class="line"></span><br><span class="line">第四等：代表类型选择器和伪元素选择器，如：div p，权值为1</span><br></pre></td></tr></table></figure>
+<h3 id="基本原则"><a href="#基本原则" class="headerlink" title="基本原则"></a>基本原则</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 选择器应该避免使用ID，一般情况ID不应该用于样式</span><br><span class="line">2. 选择器中避免直接写标签名，没有语义，而且很容被重叠</span><br><span class="line">3. 选择器应该尽可能的精确，推荐使用 大于号`&gt;`</span><br><span class="line">4. 尽量使用简写，如：padding: 10px 35px;</span><br><span class="line">5. 0px、0rem，不用写单位</span><br><span class="line">6. 颜色尽量使用简写，如：用 #fff 代替 #ffffff;</span><br><span class="line">7. 书写代码前, 考虑并提高样式重复使用率，可以定义一些常用的简写样式</span><br><span class="line">8. 选择器要尽可能短，并且尽量限制组成选择器的个数，建议不要超过3层</span><br><span class="line">9. 多写有效注释，小伙伴看了会比较明了</span><br><span class="line">10. 为避免重叠，单独模块，可以使用命名空间</span><br></pre></td></tr></table></figure>
+<h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. class名称使用`-`中划线链接（短横线命名），不推荐使用大小写的驼峰式。</span><br><span class="line">2. 需要绑定事件的class名称，应该单独写。不要与样式class公用。事件与样式区分开。推荐`J_xxx`开头</span><br><span class="line">3. 语义明确的情况下，class名称尽量言简意赅</span><br></pre></td></tr></table></figure>
+<h3 id="声明顺序"><a href="#声明顺序" class="headerlink" title="声明顺序"></a>声明顺序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. 结构性属性：</span><br><span class="line">display</span><br><span class="line">position, left, top, right etc.</span><br><span class="line">overflow, float, clear etc.</span><br><span class="line">margin, padding</span><br><span class="line">2. 表现性属性：</span><br><span class="line">background, border etc.</span><br><span class="line">font, text</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>转载请注明出处</p>
+<p>作者：xuess<a href="mailto:&#119;&#117;&#110;&#105;&#117;&#50;&#x30;&#x31;&#48;&#64;&#49;&#x32;&#x36;&#46;&#x63;&#x6f;&#109;" target="_blank" rel="noopener">&#119;&#117;&#110;&#105;&#117;&#50;&#x30;&#x31;&#48;&#64;&#49;&#x32;&#x36;&#46;&#x63;&#x6f;&#109;</a></p>
+<p>时间：2017年06月16日</p>
+<p>最后修改时间：2017年06月16日</p>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://blog.xueshanshan.com">xuess</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://blog.xueshanshan.com/2016/06/04/FE-standardization/">http://blog.xueshanshan.com/2016/06/04/FE-standardization/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/06/09/code-block/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">常用代码片段</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/05/11/css3-animation/">
+        <span class="next-text nav-default">css3animation动画</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xuess" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://weibo.com/test5433" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/shan-xue-74/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xuess</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xueshanshan.com/2016/06/04/FE-standardization/';
+        this.page.identifier = '2016/06/04/FE-standardization/';
+        this.page.title = '前端命名与写法规范';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//xueshanshan-com.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

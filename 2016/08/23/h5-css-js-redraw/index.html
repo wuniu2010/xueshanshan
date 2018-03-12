@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="薛山山在 Github 上的个人博客，主要从事web前端开发，移动端为主。此博客持续更新，欢迎大家关注。"/>
+  <meta name="description" content="重排重绘"/>
 
 
 
@@ -40,7 +40,7 @@
 
 
 
-<link rel="canonical" href="http://blog.xueshanshan.com/archives/2018/"/>
+<link rel="canonical" href="http://blog.xueshanshan.com/2016/08/23/h5-css-js-redraw/"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -87,11 +87,7 @@
 
 
 
-    <title>
-  
-    归档 - 午休随笔
-  
-</title>
+    <title> 重排重绘 - 午休随笔 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -167,95 +163,117 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
-    
-      
-        <div class="archive-title">
-          <span class="archive-post-counter">
-            目前共计 35 篇日志
-          </span>
-        </div>
-      
-    
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          重排重绘
+        
+      </h1>
 
-    
-      
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year">2018</h2>
-          </div>
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            03-12
-          
+      <div class="post-meta">
+        <span class="post-time">
+          2016-08-23
         </span>
-        <span class="archive-post-title">
-          <a href="/2018/03/12/node-npm-pm2/" class="archive-post-link">
-            node pm2使用
-          </a>
-        </span>
+        
+        
       </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是重排和重绘"><span class="toc-text">什么是重排和重绘</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h3 id="什么是重排和重绘"><a href="#什么是重排和重绘" class="headerlink" title="什么是重排和重绘"></a>什么是重排和重绘</h3><p>浏览器下载完页面中的所有组件——HTML标记、JavaScript、CSS、图片之后会解析生成两个内部数据结构——<strong>DOM树和渲染树</strong>。</p>
+<p>DOM树表示页面结构，渲染树表示DOM节点如何显示。</p>
+<p>DOM树中的每一个需要显示的节点在渲染树中至少存在一个对应的节点（隐藏的DOM元素disply值为none 在渲染树中没有对应的节点）。</p>
+<p>渲染树中的节点被称为“帧”或“盒”,符合CSS模型的定义，理解页面元素为一个具有填充，边距，边框和位置的盒子。</p>
+<p>一旦DOM和渲染树构建完成，浏览器就开始显示（绘制）页面元素。</p>
+<p><code>document.createDocumentFragment()</code> ： 创建的是一次性的，用完即销毁</p>
+<p>当DOM的变化影响了元素的几何属性(宽和高)，浏览器需要重新计算元素的几何属性，同样其他元素的几何属性和位置也会因此受到影响。</p>
+<p>重排：浏览器会使渲染树中受到影响的部分失效，并重新构造渲染树。</p>
+<p>重绘：完成重排后，浏览器会重新绘制受影响的部分到屏幕中。</p>
+<p>重排何时发生：</p>
+<p>添加或删除可见的DOM元素<br>元素位置的改变<br>元素尺寸改变<br>内容改变<br>页面渲染器初始化<br>浏览器窗口尺寸的改变</p>
+
+      
+    </div>
+
     
       
-        
-        
-
-        
       
 
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            01-08
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2018/01/08/api-showdoc-php/" class="archive-post-link">
-            linux 安装 showdoc 项目
-          </a>
-        </span>
-      </div>
-    
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://blog.xueshanshan.com">xuess</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://blog.xueshanshan.com/2016/08/23/h5-css-js-redraw/">http://blog.xueshanshan.com/2016/08/23/h5-css-js-redraw/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
       
-        
-        
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
 
-        
+
+
       
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            01-05
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2018/01/05/linux-vps-ssr/" class="archive-post-link">
-            vps SSR安装教程
-          </a>
-        </span>
-      </div>
+      
     
-  </section>
 
-  
-  <nav class="pagination">
     
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/09/04/h5-wipe-cache/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">设置清除html5页面缓存</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/06/09/code-block/">
+        <span class="next-text nav-default">常用代码片段</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
       </main>
@@ -347,6 +365,27 @@
     </div>
 
     
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xueshanshan.com/2016/08/23/h5-css-js-redraw/';
+        this.page.identifier = '2016/08/23/h5-css-js-redraw/';
+        this.page.title = '重排重绘';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//xueshanshan-com.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
 
 
     

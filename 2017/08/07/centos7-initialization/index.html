@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="linux centos7 初始化安装软件运行环境"/>
+
+
+
+
+  <meta name="keywords" content="linux, 午休随笔" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="午休随笔">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://blog.xueshanshan.com/2017/08/07/centos7-initialization/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> linux centos7 初始化安装软件运行环境 - 午休随笔 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">午休随笔</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">午休随笔</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          linux centos7 初始化安装软件运行环境
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-08-07
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#centos-7-安装-nginx，配置https-以及注意事项"><span class="toc-text">centos 7 安装 nginx，配置https 以及注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用HTTPS"><span class="toc-text">使用HTTPS</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="centos-7-安装-nginx，配置https-以及注意事项"><a href="#centos-7-安装-nginx，配置https-以及注意事项" class="headerlink" title="centos 7 安装 nginx，配置https 以及注意事项"></a>centos 7 安装 nginx，配置https 以及注意事项</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y nginx</span><br></pre></td></tr></table></figure>
+<p>却发现一直提示<code>No package nginx available</code></p>
+<p>尝试安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y epel-release</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 首先进入/yum.repos.d目录</span></span><br><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后编辑epel.repo文件</span></span><br><span class="line">vi epel.repo</span><br><span class="line"></span><br><span class="line">[epel]</span><br><span class="line">name=Extra Packages <span class="keyword">for</span> Enterprise Linux 7 - <span class="variable">$basearch</span></span><br><span class="line"><span class="comment">#baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch</span></span><br><span class="line">mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-7&amp;arch=<span class="variable">$basearch</span></span><br><span class="line">failovermethod=priority</span><br><span class="line">enabled=0</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7</span><br><span class="line"></span><br><span class="line">[epel-debuginfo]</span><br><span class="line">name=Extra Packages <span class="keyword">for</span> Enterprise Linux 7 - <span class="variable">$basearch</span> - Debug</span><br><span class="line"><span class="comment">#baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch/debug</span></span><br><span class="line">mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-7&amp;arch=<span class="variable">$basearch</span></span><br><span class="line">failovermethod=priority</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7</span><br><span class="line">gpgcheck=1</span><br><span class="line"></span><br><span class="line">[epel-source]</span><br><span class="line">name=Extra Packages <span class="keyword">for</span> Enterprise Linux 7 - <span class="variable">$basearch</span> - Source</span><br><span class="line"><span class="comment">#baseurl=http://download.fedoraproject.org/pub/epel/7/SRPMS</span></span><br><span class="line">mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-source-7&amp;arch=<span class="variable">$basearch</span></span><br><span class="line">failovermethod=priority</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7</span><br><span class="line">gpgcheck=1</span><br></pre></td></tr></table></figure>
+<p>可以看到，<code>[epel]</code>和<code>[epel-source]</code>里面的enabled都是<code>0</code>，解决办法就在这里，只要把<code>0</code>改成<code>1</code>，保存退出后即可。</p>
+<p>现在我们重新运行<code>yum repolist</code>，会发现<code>epel</code>源已经被加上了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">源标识                          源名称                                                                      状态</span><br><span class="line">base/7/x86_64                   CentOS-7 - Base                                                             9,590+1</span><br><span class="line">elrepo-kernel                   ELRepo.org Community Enterprise Linux Kernel Repository - el7                    37</span><br><span class="line">epel/x86_64                     Extra Packages for Enterprise Linux 7 - x86_64                               12,277</span><br><span class="line">epel-source/x86_64              Extra Packages for Enterprise Linux 7 - x86_64 - Source                           0</span><br><span class="line">extras/7/x86_64                 CentOS-7 - Extras                                                               388</span><br><span class="line">nodesource/x86_64               Node.js Packages for Enterprise Linux 7 - x86_64                                 22</span><br><span class="line">updates/7/x86_64                CentOS-7 - Updates                                                          1,922+7</span><br><span class="line">repolist: 24,236</span><br></pre></td></tr></table></figure>
+<p>再执行<code>yum install -y nginx</code>，发现终于能够成功安装了！</p>
+<p>启动nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">service nginx statrt #启动</span><br><span class="line">service nginx stop</span><br><span class="line">service nginx restart</span><br><span class="line">service nginx status</span><br></pre></td></tr></table></figure>
+<h2 id="使用HTTPS"><a href="#使用HTTPS" class="headerlink" title="使用HTTPS"></a>使用HTTPS</h2><p>首先通过yum下载安装certbot：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install certbot</span><br></pre></td></tr></table></figure>
+<p>进入<code>/etc/nginx</code>，然后编辑<code>nginx.conf</code>，在<code>server</code>里面添加下列两个<code>location</code>规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">location ^~ /.well-known/acme-challenge/ &#123;</span><br><span class="line">   default_type &quot;text/plain&quot;;</span><br><span class="line">   root     /usr/share/nginx/html;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location = /.well-known/acme-challenge/ &#123;</span><br><span class="line">   return 404;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，上面的root我是指向了<code>/usr/share/nginx/html</code>，这个目录是可以随便指定的，我这么写完全是为了偷懒。</p>
+<p>nginx配置好了以后，就可以使用<code>certbot</code>生成证书了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># certbot certonly --webroot -w &lt;root url&gt; -d &lt;hostname&gt;</span><br><span class="line"></span><br><span class="line">certbot certonly --webroot -w /usr/share/nginx/html/ -d xueshanshan.com</span><br></pre></td></tr></table></figure>
+<p>如果看到下列的输出，就证明证书已经生成成功了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">IMPORTANT NOTES:</span><br><span class="line"> - Congratulations! Your certificate and chain have been saved at</span><br><span class="line">   /etc/letsencrypt/live/xueshanshan.com/fullchain.pem. Your cert</span><br><span class="line">   will expire on 20XX-09-23. To obtain a new or tweaked version of</span><br><span class="line">   this certificate in the future, simply run certbot again. To</span><br><span class="line">   non-interactively renew *all* of your certificates, run &quot;certbot</span><br><span class="line">   renew&quot;</span><br><span class="line"> - If you like Certbot, please consider supporting our work by:</span><br><span class="line"></span><br><span class="line">   Donating to ISRG / Let&apos;s Encrypt:   https://letsencrypt.org/donate</span><br><span class="line">   Donating to EFF:                    https://eff.org/donate-le</span><br></pre></td></tr></table></figure>
+<p>证书已经准备好了，我们还需要<code>nginx</code>的支持。重新打开<code>/etc/nginx/nginx.conf</code>，然后把注释掉的<code>https server</code>给[注释]回来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       443 ssl http2 default_server;</span><br><span class="line">    listen       [::]:443 ssl http2 default_server;</span><br><span class="line">    server_name  xueshanshan.com;</span><br><span class="line">    root         /home/www;</span><br><span class="line"></span><br><span class="line">    ssl_certificate &quot;/etc/letsencrypt/live/xueshanshan.com/fullchain.pem&quot;;</span><br><span class="line">    ssl_certificate_key &quot;/etc/letsencrypt/live/xueshanshan.com/privkey.pem&quot;;</span><br><span class="line">    ssl_trusted_certificate /etc/letsencrypt/live/xueshanshan.com/chain.pem;</span><br><span class="line"></span><br><span class="line">    # Load configuration files for the default server block.</span><br><span class="line">    include /etc/nginx/default.d/*.conf;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page 404 /404.html;</span><br><span class="line">        location = /40x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page 500 502 503 504 /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ps: 上面的root我给配置了<code>/home/www</code>目录，意味着以后只要是放在该目录下的静态资源文件夹，我都可以通过<code>https://xxx.com/文件夹名</code>直接进行访问，更多关于<code>nginx</code>的配置请参考官方文档。</p>
+<p>最后重启一下<code>nginx</code>，就可以检验我们的页面是否已经打上小绿标了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service nginx restart</span><br></pre></td></tr></table></figure>
+<p>由于<code>certbot</code>所使用的<code>letsencrypt</code>证书只有<code>90天</code>的有效期，所以我们需要对它定期<code>自动更新</code></p>
+<p>首先模拟更新：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo certbot renew --dry-run</span><br><span class="line"></span><br><span class="line"># 看到如下输出证明模拟更新成功</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">Processing /etc/letsencrypt/renewal/your.domain.com.conf</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">** DRY RUN: simulating &apos;certbot renew&apos; close to cert expiry</span><br><span class="line">**          (The test certificates below have not been saved.)</span><br><span class="line"></span><br><span class="line">Congratulations, all renewals succeeded. The following certs have been renewed:</span><br><span class="line">  /etc/letsencrypt/live/xueshanshan.com/fullchain.pem (success)</span><br><span class="line">** DRY RUN: simulating &apos;certbot renew&apos; close to cert expiry</span><br><span class="line">**          (The test certificates above have not been saved.)</span><br></pre></td></tr></table></figure>
+<p>然后就可以使用<code>crontab -e</code>命令来实现自动化了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo crontab -e</span><br><span class="line"></span><br><span class="line">#添加配置，每周一半夜3点00分执行renew：</span><br><span class="line"></span><br><span class="line">00 3 * * 1 /usr/bin/certbot renew  &gt;&gt; /var/log/le-renew.log</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://blog.xueshanshan.com">xuess</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://blog.xueshanshan.com/2017/08/07/centos7-initialization/">http://blog.xueshanshan.com/2017/08/07/centos7-initialization/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/linux/">linux</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/08/08/h5-video/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">html5视频方案</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/07/25/setup-firekylin-blogs/">
+        <span class="next-text nav-default">linux安装node-firekylin博客系统</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xuess" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://weibo.com/test5433" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/shan-xue-74/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xuess</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xueshanshan.com/2017/08/07/centos7-initialization/';
+        this.page.identifier = '2017/08/07/centos7-initialization/';
+        this.page.title = 'linux centos7 初始化安装软件运行环境';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//xueshanshan-com.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

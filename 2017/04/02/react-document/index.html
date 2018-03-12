@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="react学习记录"/>
+
+
+
+
+  <meta name="keywords" content="react, 午休随笔" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="午休随笔">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://blog.xueshanshan.com/2017/04/02/react-document/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> react学习记录 - 午休随笔 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">午休随笔</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">午休随笔</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          react学习记录
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-04-02
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#知识体系"><span class="toc-text">知识体系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件"><span class="toc-text">组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this-props-children"><span class="toc-text">this.props.children</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PropTypes"><span class="toc-text">PropTypes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取真实的DOM节点-ref"><span class="toc-text">获取真实的DOM节点 ref</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h3 id="知识体系"><a href="#知识体系" class="headerlink" title="知识体系"></a>知识体系</h3><h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>上面代码中，变量 <code>HelloMessage</code> 就是一个组件类。模板插入<code>&lt;HelloMessage /&gt;</code> 时，会自动生成 <code>HelloMessage</code> 的一个实例（下文的”组件”都指组件类的实例）。所有组件类都必须有自己的 <code>render</code> 方法，用于输出组件。</p>
+<p>注意，组件类的第一个字母必须大写，否则会报错，比如<code>HelloMessage</code>不能写成<code>helloMessage</code>。<br><br><br>另外，组件类只能包含<code>一个顶层标签</code>，否则也会报错。</p>
+<p>添加组件属性，有一个地方需要注意，就是 <code>class</code> 属性需要写成 <code>className</code> ，<code>for</code> 属性需要写成 <code>htmlFor</code> ，这是因为 <code>class</code> 和 <code>for</code> 是 JavaScript 的<code>保留字</code>。</p>
+<h3 id="this-props-children"><a href="#this-props-children" class="headerlink" title="this.props.children"></a>this.props.children</h3><p><code>this.props</code> 对象的属性与组件的属性一一对应，但是有一个例外，就是 <code>this.props.children</code> 属性。它表示组件的<code>所有子节点</code></p>
+<p>这里需要注意， <code>this.props.children</code> 的值有三种可能：如果当前组件<code>没有子节点</code>，它就是 <code>undefined</code> ;如果有<code>一个子节点</code>，数据类型是 <code>object</code> ；如果有<code>多个子节点</code>，数据类型就是 <code>array</code> 。所以，处理 <code>this.props.children</code> 的时候要小心。</p>
+<p><code>React</code> 提供一个工具方法 <code>React.Children</code> 来处理 <code>this.props.children</code> 。我们可以用 <code>React.Children.map</code> 来遍历子节点，而不用担心 <code>this.props.children</code> 的数据类型是 <code>undefined</code> 还是 <code>object</code>。更多的 <code>React.Children</code> 的方法 <a href="https://reactjs.org/docs/react-api.html#react.children" target="_blank" rel="noopener">参考官网文档</a></p>
+<h3 id="PropTypes"><a href="#PropTypes" class="headerlink" title="PropTypes"></a>PropTypes</h3><p>组件的属性可以接受任意值，字符串、对象、函数等等都可以。有时，我们需要一种机制，验证别人使用组件时，提供的参数是否符合要求。</p>
+<p>组件类的PropTypes属性，就是用来验证组件实例的属性是否符合要求</p>
+<blockquote>
+<p>注意: <code>React.PropTypes</code> 自 React <code>v15.5</code> 起已弃用。请使用 <a href="https://www.npmjs.com/package/prop-types" target="_blank" rel="noopener">prop-types</a> 库代替。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import PropTypes from &apos;prop-types&apos;;</span><br><span class="line"></span><br><span class="line">class Greeting extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;/h1&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Greeting.propTypes = &#123;</span><br><span class="line">  name: PropTypes.string</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>PropTypes</code> 包含一整套验证器，可用于确保你接收的数据是有效的。在这个示例中，我们使用了 <code>PropTypes.string</code>。当你给属性传递了无效值时，<code>JavsScript</code> 控制台将会打印警告。出于性能原因，<code>propTypes</code> 只在开发模式下进行检查。</p>
+<p>下面是使用不同验证器的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">import PropTypes from &apos;prop-types&apos;;</span><br><span class="line"></span><br><span class="line">MyComponent.propTypes = &#123;</span><br><span class="line">  // 你可以将属性声明为以下 JS 原生类型</span><br><span class="line">  optionalArray: PropTypes.array,</span><br><span class="line">  optionalBool: PropTypes.bool,</span><br><span class="line">  optionalFunc: PropTypes.func,</span><br><span class="line">  optionalNumber: PropTypes.number,</span><br><span class="line">  optionalObject: PropTypes.object,</span><br><span class="line">  optionalString: PropTypes.string,</span><br><span class="line">  optionalSymbol: PropTypes.symbol,</span><br><span class="line"></span><br><span class="line">  // 任何可被渲染的元素（包括数字、字符串、子元素或数组）。</span><br><span class="line">  optionalNode: PropTypes.node,</span><br><span class="line"></span><br><span class="line">  // 一个 React 元素</span><br><span class="line">  optionalElement: PropTypes.element,</span><br><span class="line"></span><br><span class="line">  // 你也可以声明属性为某个类的实例，这里使用 JS 的</span><br><span class="line">  // instanceof 操作符实现。</span><br><span class="line">  optionalMessage: PropTypes.instanceOf(Message),</span><br><span class="line"></span><br><span class="line">  // 你也可以限制你的属性值是某个特定值之一</span><br><span class="line">  optionalEnum: PropTypes.oneOf([&apos;News&apos;, &apos;Photos&apos;]),</span><br><span class="line"></span><br><span class="line">  // 限制它为列举类型之一的对象</span><br><span class="line">  optionalUnion: PropTypes.oneOfType([</span><br><span class="line">    PropTypes.string,</span><br><span class="line">    PropTypes.number,</span><br><span class="line">    PropTypes.instanceOf(Message)</span><br><span class="line">  ]),</span><br><span class="line"></span><br><span class="line">  // 一个指定元素类型的数组</span><br><span class="line">  optionalArrayOf: PropTypes.arrayOf(PropTypes.number),</span><br><span class="line"></span><br><span class="line">  // 一个指定类型的对象</span><br><span class="line">  optionalObjectOf: PropTypes.objectOf(PropTypes.number),</span><br><span class="line"></span><br><span class="line">  // 一个指定属性及其类型的对象</span><br><span class="line">  optionalObjectWithShape: PropTypes.shape(&#123;</span><br><span class="line">    color: PropTypes.string,</span><br><span class="line">    fontSize: PropTypes.number</span><br><span class="line">  &#125;),</span><br><span class="line"></span><br><span class="line">  // 你也可以在任何 PropTypes 属性后面加上 `isRequired` </span><br><span class="line">  // 后缀，这样如果这个属性父组件没有提供时，会打印警告信息</span><br><span class="line">  requiredFunc: PropTypes.func.isRequired,</span><br><span class="line"></span><br><span class="line">  // 任意类型的数据</span><br><span class="line">  requiredAny: PropTypes.any.isRequired,</span><br><span class="line"></span><br><span class="line">  // 你也可以指定一个自定义验证器。它应该在验证失败时返回</span><br><span class="line">  // 一个 Error 对象而不是 `console.warn` 或抛出异常。</span><br><span class="line">  // 不过在 `oneOfType` 中它不起作用。</span><br><span class="line">  customProp: function(props, propName, componentName) &#123;</span><br><span class="line">    if (!/matchme/.test(props[propName])) &#123;</span><br><span class="line">      return new Error(</span><br><span class="line">        &apos;Invalid prop `&apos; + propName + &apos;` supplied to&apos; +</span><br><span class="line">        &apos; `&apos; + componentName + &apos;`. Validation failed.&apos;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // 不过你可以提供一个自定义的 `arrayOf` 或 `objectOf` </span><br><span class="line">  // 验证器，它应该在验证失败时返回一个 Error 对象。 它被用</span><br><span class="line">  // 于验证数组或对象的每个值。验证器前两个参数的第一个是数组</span><br><span class="line">  // 或对象本身，第二个是它们对应的键。</span><br><span class="line">  customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, location, propFullName) &#123;</span><br><span class="line">    if (!/matchme/.test(propValue[key])) &#123;</span><br><span class="line">      return new Error(</span><br><span class="line">        &apos;Invalid prop `&apos; + propFullName + &apos;` supplied to&apos; +</span><br><span class="line">        &apos; `&apos; + componentName + &apos;`. Validation failed.&apos;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="获取真实的DOM节点-ref"><a href="#获取真实的DOM节点-ref" class="headerlink" title="获取真实的DOM节点 ref"></a>获取真实的DOM节点 ref</h3><p>有时需要从组件获取真实 DOM 的节点，这时就要用到 <code>ref</code> 属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//es5</span><br><span class="line">var MyComponent = React.createClass(&#123;</span><br><span class="line">  handleClick: function() &#123;</span><br><span class="line">    this.refs.myTextInput.focus();</span><br><span class="line">  &#125;,</span><br><span class="line">  render: function() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; ref=&quot;myTextInput&quot; /&gt;</span><br><span class="line">        &lt;input type=&quot;button&quot; value=&quot;Focus the text input&quot; onClick=&#123;this.handleClick&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;MyComponent /&gt;,</span><br><span class="line">  document.getElementById(&apos;example&apos;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><a href="https://doc.react-china.org/docs/refs-and-the-dom.html" target="_blank" rel="noopener">参考官方文档</a></p>
+<blockquote>
+<p>旧版 API：String 类型的 Refs<br>如果你之前使用过 React ，你可能了解过之前的API中的 string 类型的 ref 属性，比如 “textInput” ，你可以通过 this.refs.textInput 访问DOM节点。我们不建议使用它，因为 String 类型的 refs 存在问题。它已过时并可能会在未来的版本是移除。如果你目前还在使用 this.refs.textInput 这种方式访问 refs ，我们建议用回调函数的方式代替。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://blog.xueshanshan.com">xuess</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://blog.xueshanshan.com/2017/04/02/react-document/">http://blog.xueshanshan.com/2017/04/02/react-document/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/react/">react</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/04/22/react-flux/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">react-flux</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/03/22/react-es6/">
+        <span class="next-text nav-default">react es6</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xuess" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://weibo.com/test5433" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/shan-xue-74/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xuess</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xueshanshan.com/2017/04/02/react-document/';
+        this.page.identifier = '2017/04/02/react-document/';
+        this.page.title = 'react学习记录';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//xueshanshan-com.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
