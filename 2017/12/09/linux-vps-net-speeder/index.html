@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="CENTOS7 安装 NET-SPEEDER 提升 VPS 网络性能"/>
+
+
+
+
+  <meta name="keywords" content="vps, 午休随笔" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="午休随笔">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://blog.xueshanshan.com/2017/12/09/linux-vps-net-speeder/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> CENTOS7 安装 NET-SPEEDER 提升 VPS 网络性能 - 午休随笔 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">午休随笔</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">午休随笔</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          CENTOS7 安装 NET-SPEEDER 提升 VPS 网络性能
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、安装依赖库"><span class="toc-text">1、安装依赖库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、然后即可使用yum安装："><span class="toc-text">2、然后即可使用yum安装：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、然后获取net-speeder"><span class="toc-text">3、然后获取net-speeder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、运行-net-speeder"><span class="toc-text">4、运行 net-speeder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、然后复制到-usr-local-目录并设置开机自启动："><span class="toc-text">5、然后复制到/usr/local/目录并设置开机自启动：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6、其它"><span class="toc-text">6、其它</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="1、安装依赖库"><a href="#1、安装依赖库" class="headerlink" title="1、安装依赖库"></a>1、安装依赖库</h2><p>先安装epel源 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm</span><br><span class="line"></span><br><span class="line">（这里 epel-release-7-8.noarch.rpm 版本可能更新，可以去到 http://dl.fedoraproject.org/pub/epel/7/x86_64/e 搜索查看当前有的版本）</span><br></pre></td></tr></table></figure>
+<h2 id="2、然后即可使用yum安装："><a href="#2、然后即可使用yum安装：" class="headerlink" title="2、然后即可使用yum安装："></a>2、然后即可使用yum安装：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install libnet libpcap libnet-devel libpcap-devel gcc</span><br></pre></td></tr></table></figure>
+<h2 id="3、然后获取net-speeder"><a href="#3、然后获取net-speeder" class="headerlink" title="3、然后获取net-speeder"></a>3、然后获取net-speeder</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/snooda/net-speeder/archive/master.zip</span><br><span class="line">unzip master.zip</span><br><span class="line"><span class="built_in">cd</span> net-speeder-master （这里注意查看下目录名称，可能会变）</span><br><span class="line">chmod +x build.sh</span><br><span class="line">./build.sh</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>编译完成，当前目录下会多出 net_speeder 文件</p>
+</blockquote>
+<h2 id="4、运行-net-speeder"><a href="#4、运行-net-speeder" class="headerlink" title="4、运行 net-speeder"></a>4、运行 net-speeder</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">参数：./net_speeder 网卡名 加速规则（bpf规则） </span><br><span class="line">最简单用法：./net_speeder venet0 <span class="string">"ip"</span>  加速所有ip协议数据</span><br><span class="line"></span><br><span class="line">./net_speeder eth0 <span class="string">"ip"</span> &amp;  网卡一般为 eth0，可以使用 ifconfig 查看。（然而 CentOS7 没有内置 ifconfig 命令，使用 yum install net-tools.x86_64 安装即可）</span><br></pre></td></tr></table></figure>
+<h2 id="5、然后复制到-usr-local-目录并设置开机自启动："><a href="#5、然后复制到-usr-local-目录并设置开机自启动：" class="headerlink" title="5、然后复制到/usr/local/目录并设置开机自启动："></a>5、然后复制到/usr/local/目录并设置开机自启动：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/<span class="built_in">local</span>/net_speeder/    创建 net_speeder 目录</span><br><span class="line"></span><br><span class="line">cp net_speeder</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/net_speeder/net_speeder    复制 net_speeder</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'nohup /usr/local/net_speeder/net_speeder eth0 "ip" &gt;/dev/null 2&gt;&amp;1 &amp;'</span> &gt;&gt; /etc/rc.local    创建开机启动</span><br></pre></td></tr></table></figure>
+<h3 id="6、其它"><a href="#6、其它" class="headerlink" title="6、其它"></a>6、其它</h3><p>可以使用 ps -e 来查看进程中是否有 net_speeder 来确认是否运行。</p>
+<p>控制台偶尔会自动跳出 libnet_write_raw_ipv4(): -1 bytes written (Message too long) 错误提示，目前得到的信息是正常情况。</p>
+<p>基本命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查看net-speeder是否运行：ps aux|grep net_speeder|grep -v grep</span><br><span class="line">停止net-speeder：killall net_speeder</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://blog.xueshanshan.com">xuess</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://blog.xueshanshan.com/2017/12/09/linux-vps-net-speeder/">http://blog.xueshanshan.com/2017/12/09/linux-vps-net-speeder/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/vps/">vps</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/12/19/vps-problem/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">vps问题整理</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/12/06/nodejs-koa-mongodb/">
+        <span class="next-text nav-default">node+koa+mongodb导航管理系统项目说明</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xuess" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://weibo.com/test5433" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/shan-xue-74/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xuess</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xueshanshan.com/2017/12/09/linux-vps-net-speeder/';
+        this.page.identifier = '2017/12/09/linux-vps-net-speeder/';
+        this.page.title = 'CENTOS7 安装 NET-SPEEDER 提升 VPS 网络性能';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//xueshanshan-com.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

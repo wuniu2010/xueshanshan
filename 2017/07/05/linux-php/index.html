@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="linux php环境安装与配置以及eoLinker安装"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="午休随笔">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://blog.xueshanshan.com/2017/07/05/linux-php/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> linux php环境安装与配置以及eoLinker安装 - 午休随笔 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">午休随笔</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">午休随笔</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          linux php环境安装与配置以及eoLinker安装
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-05
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-XAMPP"><span class="toc-text">安装 XAMPP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#start-XAMPP"><span class="toc-text">start XAMPP</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#You-should-now-see-something-like-this-on-your-screen"><span class="toc-text">You should now see something like this on your screen:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#stop-XAMPP"><span class="toc-text">stop XAMPP</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化-密码："><span class="toc-text">初始化 密码：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#修改数据库密码"><span class="toc-text">修改数据库密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#目录说明"><span class="toc-text">目录说明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eoLinker-安装"><span class="toc-text">eoLinker 安装</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="安装-XAMPP"><a href="#安装-XAMPP" class="headerlink" title="安装 XAMPP"></a>安装 XAMPP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">下载包</span><br><span class="line">wget https://www.apachefriends.org/xampp-files/7.2.0/xampp-linux-x64-7.2.0-0-installer.run</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">写权限</span><br><span class="line">chmod 755 xampp-linux-*-installer.run</span><br><span class="line"></span><br><span class="line">安装</span><br><span class="line">sudo ./xampp-linux-*-installer.run</span><br></pre></td></tr></table></figure>
+<h4 id="start-XAMPP"><a href="#start-XAMPP" class="headerlink" title="start XAMPP"></a>start XAMPP</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /opt/lampp/lampp start</span><br></pre></td></tr></table></figure>
+<p>如果如下报错 请安装 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">XAMPP: Starting Apache...already running.</span><br><span class="line">XAMPP: Starting MySQL.../opt/lampp/share/xampp/xampplib:行22: netstat: 未找到命令</span><br><span class="line">ok.</span><br><span class="line">XAMPP: Starting ProFTPD.../opt/lampp/share/xampp/xampplib:行22: netstat: 未找到命令</span><br><span class="line">ok.</span><br></pre></td></tr></table></figure>
+<p>请安装 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install net-tools</span><br></pre></td></tr></table></figure>
+<h3 id="You-should-now-see-something-like-this-on-your-screen"><a href="#You-should-now-see-something-like-this-on-your-screen" class="headerlink" title="You should now see something like this on your screen:"></a>You should now see something like this on your screen:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Starting XAMPP 1.8.2...</span><br><span class="line"></span><br><span class="line">LAMPP: Starting Apache...</span><br><span class="line"></span><br><span class="line">LAMPP: Starting MySQL...</span><br><span class="line"></span><br><span class="line">LAMPP started.</span><br><span class="line"></span><br><span class="line">Ready. Apache and MySQL are running.</span><br></pre></td></tr></table></figure>
+<h4 id="stop-XAMPP"><a href="#stop-XAMPP" class="headerlink" title="stop XAMPP"></a>stop XAMPP</h4><p>To stop XAMPP simply call this command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /opt/lampp/lampp stop</span><br></pre></td></tr></table></figure>
+<p>You should now see something like this on your screen:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Stopping XAMPP 1.8.2...</span><br><span class="line"></span><br><span class="line">LAMPP: Stopping Apache...</span><br><span class="line"></span><br><span class="line">LAMPP: Stopping MySQL...</span><br><span class="line"></span><br><span class="line">LAMPP stopped.</span><br></pre></td></tr></table></figure>
+<h3 id="初始化-密码："><a href="#初始化-密码：" class="headerlink" title="初始化 密码："></a>初始化 密码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/lampp/lampp security</span><br></pre></td></tr></table></figure>
+<p>下面是过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># /opt/lampp/lampp security</span><br><span class="line">XAMPP:  Quick security check...</span><br><span class="line">XAMPP:  MySQL is accessable via network.</span><br><span class="line">XAMPP: Normaly that&apos;s not recommended. Do you want me to turn it off? [yes]</span><br><span class="line">XAMPP:  Turned off.</span><br><span class="line">XAMPP: Stopping MySQL...ok.</span><br><span class="line">XAMPP: Starting MySQL...ok.</span><br><span class="line">XAMPP:  The MySQL/phpMyAdmin user pma has no password set!!!</span><br><span class="line">XAMPP: Do you want to set a password? [yes]</span><br><span class="line">XAMPP: Password:</span><br><span class="line">XAMPP: Password (again):</span><br><span class="line">XAMPP:  Setting new MySQL pma password.</span><br><span class="line">XAMPP:  Setting phpMyAdmin&apos;s pma password to the new one.</span><br><span class="line">XAMPP:  MySQL has no root passwort set!!!</span><br><span class="line">XAMPP: Do you want to set a password? [yes]</span><br><span class="line">XAMPP:  Write the password somewhere down to make sure you won&apos;t forget it!!!</span><br><span class="line">XAMPP: Password:</span><br><span class="line">XAMPP: Password (again):</span><br><span class="line">XAMPP:  Setting new MySQL root password.</span><br><span class="line">XAMPP:  Change phpMyAdmin&apos;s authentication method.</span><br><span class="line">XAMPP:  The FTP password for user &apos;daemon&apos; is still set to &apos;xampp&apos;.</span><br><span class="line">XAMPP: Do you want to change the password? [yes]</span><br><span class="line">XAMPP: Password:</span><br><span class="line">XAMPP: Password (again):</span><br><span class="line">XAMPP: Reload ProFTPD...ok.</span><br><span class="line">XAMPP:  Done.</span><br></pre></td></tr></table></figure>
+<h4 id="修改数据库密码"><a href="#修改数据库密码" class="headerlink" title="修改数据库密码"></a>修改数据库密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/lampp/bin/mysqladmin --user=root password &quot;ECMA(root2018).&quot;</span><br></pre></td></tr></table></figure>
+<p>允许数据库 远程登录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//链接数据库 //新安装的数据库是没有密码的，这里直接按下回车就行 如果有密码则输入密码</span><br><span class="line">mysql -u root -p</span><br><span class="line">//设置密码 设置过了 略过</span><br><span class="line">set password for &apos;root&apos;@&apos;localhost&apos; = password(&apos;xuess&apos;); </span><br><span class="line"></span><br><span class="line">//为其他主机远程连接数据库开放访问权限，重新登入数据库：</span><br><span class="line">//选择mysql数据库进行操作</span><br><span class="line">use mysql; </span><br><span class="line"> </span><br><span class="line">//查看user,password,host这三个字段的权限分配情况</span><br><span class="line">select user,password,host from user;  </span><br><span class="line"></span><br><span class="line">+------+-------------------------------------------+-----------+</span><br><span class="line">| user | password                                  | host      |</span><br><span class="line">+------+-------------------------------------------+-----------+</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | localhost |</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | 127.0.0.1 |</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | ::1       |</span><br><span class="line">|      |                                           | localhost |</span><br><span class="line">| pma  | *7723D1540A6840E272E047B564098468B7DB9BD8 | localhost |</span><br><span class="line">+------+-------------------------------------------+-----------+</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//通过以上输出可以看出数据库默认只允许用户root在本地服务器（localhost）上登录，不允许其他主机远程连接。</span><br><span class="line"></span><br><span class="line">//修改root 链接权限 *xuess* 是设置好的密码</span><br><span class="line">//这条语句将允许用户root使用密码(xuess)在任何主机上连接该数据库，并赋予该用户所有权限。</span><br><span class="line">MariaDB [mysql]&gt; grant all privileges on *.* to root@&quot;%&quot; identified by &quot;xuess&quot;;  </span><br><span class="line">//出现下面说明 生效</span><br><span class="line">&gt; Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">//执行 把权限缓存到 内存中 </span><br><span class="line">flush privileges</span><br><span class="line"></span><br><span class="line">//再查询一下</span><br><span class="line">select user,password,host from user;</span><br><span class="line">+------+-------------------------------------------+-----------+</span><br><span class="line">| user | password                                  | host      |</span><br><span class="line">+------+-------------------------------------------+-----------+</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | localhost |</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | 127.0.0.1 |</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | ::1       |</span><br><span class="line">|      |                                           | localhost |</span><br><span class="line">| pma  | *7723D1540A6840E272E047B564098468B7DB9BD8 | localhost |</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | %         |</span><br><span class="line">+------+-------------------------------------------+-----------+</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//上面中的“%”就意味着任何主机都被允许连接数据库</span><br><span class="line"></span><br><span class="line">如果远程还链接不上，请关闭防火墙</span><br><span class="line"></span><br><span class="line">sudo systemctl stop firewalld.service &amp;&amp; sudo systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>
+<h4 id="目录说明"><a href="#目录说明" class="headerlink" title="目录说明"></a>目录说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/opt/lampp/bin/	XAMPP 命令库。例如 /opt/lampp/bin/mysql 可执行 MySQL 监视器。</span><br><span class="line">/opt/lampp/htdocs/	Apache 文档根目录。</span><br><span class="line">/opt/lampp/etc/httpd.conf	Apache 配置文件。</span><br><span class="line">/opt/lampp/etc/my.cnf	MySQL 配置文件。</span><br><span class="line">/opt/lampp/etc/php.ini	PHP 配置文件。</span><br><span class="line">/opt/lampp/etc/proftpd.conf	ProFTPD 配置文件。（从 0.9.5 版开始）</span><br><span class="line">/opt/lampp/phpmyadmin/config.inc.php phpMyAdmin 配制文件。</span><br></pre></td></tr></table></figure>
+<h2 id="eoLinker-安装"><a href="#eoLinker-安装" class="headerlink" title="eoLinker 安装"></a>eoLinker 安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">打开 文档目录</span><br><span class="line">cd /opt/lampp/htdocs/</span><br><span class="line"></span><br><span class="line">创建目录</span><br><span class="line">mkdir eolinker</span><br><span class="line"></span><br><span class="line">进入</span><br><span class="line">cd eolinker</span><br><span class="line"></span><br><span class="line">从git下载eoLinker 安装包 </span><br><span class="line">wget https://github.com/eolinker/eoLinker-API-Management-System-OS-3.X/raw/master/release%5B%E6%AD%A3%E5%BC%8F%E5%AE%89%E8%A3%85%E5%8C%85%5D/eolinker_os_3.2.1.zip</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">解压：如果没有 unzip 命令 请安装 yum install -y unzip zip</span><br><span class="line">unzip eolinker_os_3.2.1.zip</span><br><span class="line"></span><br><span class="line">赋权限</span><br><span class="line">cd ../</span><br><span class="line">chmod 777 -R  eolinker/</span><br><span class="line">或者</span><br><span class="line">chmod 777 server/RTP/config/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">创建数据库</span><br><span class="line">cd /opt/lampp/bin/	</span><br><span class="line"></span><br><span class="line">./mysql -u root -p</span><br><span class="line">然后 输入数据库密码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">然后进入 mysql，在 mysql 环境下 创建数据库 eolinker_os 命令</span><br><span class="line">create database eolinker_os;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">然后访问页面  配置和安装</span><br></pre></td></tr></table></figure>
+<p>由于服务器设置了xampp不允许远程访问，所以远程不能访问需要修改conf文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /opt/lampp/etc/extra/httpd-xampp.conf</span><br></pre></td></tr></table></figure>
+<p>将<code>Require local</code>改成<code>Require all granted</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/opt/lampp/lampp restart </span><br><span class="line">重启xampp</span><br></pre></td></tr></table></figure>
+<p>到此xampp安装完成</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://blog.xueshanshan.com">xuess</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://blog.xueshanshan.com/2017/07/05/linux-php/">http://blog.xueshanshan.com/2017/07/05/linux-php/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/07/25/setup-firekylin-blogs/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">linux安装node-firekylin博客系统</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/06/11/html5-flex/">
+        <span class="next-text nav-default">flex布局</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xuess" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://weibo.com/test5433" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/shan-xue-74/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xuess</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xueshanshan.com/2017/07/05/linux-php/';
+        this.page.identifier = '2017/07/05/linux-php/';
+        this.page.title = 'linux php环境安装与配置以及eoLinker安装';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//xueshanshan-com.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

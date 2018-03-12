@@ -169,13 +169,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          <a class="post-link" href="/2018/03/11/My-New-Post/">My New Post</a>
+          <a class="post-link" href="/2018/03/12/node-npm-pm2/">node pm2使用</a>
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2018-03-11
+          2018-03-12
         </span>
         
         
@@ -191,7 +191,481 @@
         
 
         
-          
+          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>PM2 是一个带有负载均衡功能的 Node 应用的进程管理器。</p>
+<p>当你要把你的独立代码利用全部的服务器上的所有 CPU，并保证进程永远都活着，0 秒的重载， PM2 是完美的。它非常适合 IaaS 结构，但不要把它用于 PaaS 方案（随后将开发 Paas 的解决方案）。</p>
+<h3 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性"></a>主要特性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">内建负载均衡（使用 Node cluster 集群模块）</span><br><span class="line">后台运行</span><br><span class="line">0 秒停机重载，我理解大概意思是维护升级的时候不需要停机.</span><br><span class="line">具有 Ubuntu 和 CentOS 的启动脚本</span><br><span class="line">停止不稳定的进程（避免无限循环）</span><br><span class="line">控制台检测</span><br><span class="line">提供 HTTP API</span><br><span class="line">远程控制和实时的接口 API ( Nodejs 模块，允许和 PM2 进程管理器交互 )</span><br></pre></td></tr></table></figure>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g pm2</span><br></pre></td></tr></table></figure>
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ npm install pm2 -g     # 命令行安装 pm2 </span><br><span class="line">$ pm2 start app.js -i 4  # 后台运行pm2，启动4个app.js </span><br><span class="line">                         # 也可以把&apos;max&apos; 参数传递给 start</span><br><span class="line">                         # 正确的进程数目依赖于Cpu的核心数目</span><br><span class="line">$ pm2 start app.js --name my-api # 命名进程</span><br><span class="line">$ pm2 list               # 显示所有进程状态</span><br><span class="line">$ pm2 monit              # 监视所有进程</span><br><span class="line">$ pm2 logs               # 显示所有进程日志</span><br><span class="line">$ pm2 stop all           # 停止所有进程</span><br><span class="line">$ pm2 restart all        # 重启所有进程</span><br><span class="line">$ pm2 reload all         # 0 秒停机重载进程 (用于 NETWORKED 进程)</span><br><span class="line">$ pm2 stop 0             # 停止指定的进程</span><br><span class="line">$ pm2 restart 0          # 重启指定的进程</span><br><span class="line">$ pm2 startup            # 产生 init 脚本 保持进程活着</span><br><span class="line">$ pm2 web                # 运行健壮的 computer API endpoint (http://localhost:9615)</span><br><span class="line">$ pm2 delete 0           # 杀死指定的进程</span><br><span class="line">$ pm2 delete all         # 杀死全部进程</span><br></pre></td></tr></table></figure>
+<h4 id="运行进程的不同方式"><a href="#运行进程的不同方式" class="headerlink" title="运行进程的不同方式"></a>运行进程的不同方式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 start app.js -i max    # 根据有效CPU数目启动最大进程数目</span><br><span class="line">$ pm2 start app.js -i 3      # 启动3个进程</span><br><span class="line">$ pm2 start app.js -x        #用fork模式启动 app.js 而不是使用 cluster</span><br><span class="line">$ pm2 start app.js -x -- -a 23   # 用fork模式启动 app.js 并且传递参数 (-a 23)</span><br><span class="line">$ pm2 start app.js --name serverone  # 启动一个进程并把它命名为 serverone</span><br><span class="line">$ pm2 stop serverone       # 停止 serverone 进程</span><br><span class="line">$ pm2 start app.json        # 启动进程, 在 app.json里设置选项</span><br><span class="line">$ pm2 start app.js -i max -- -a 23                   #在--之后给 app.js 传递参数</span><br><span class="line">$ pm2 start app.js -i max -e err.log -o out.log  # 启动 并 生成一个配置文件</span><br><span class="line">你也可以执行用其他语言编写的app  ( fork 模式):</span><br><span class="line">$ pm2 start my-bash-script.sh    -x --interpreter bash</span><br><span class="line">$ pm2 start my-python-script.py -x --interpreter python</span><br></pre></td></tr></table></figure>
+<p>0 秒停机重载：这项功能允许你重新载入代码而不用失去请求连接。</p>
+<p>运行于 cluster 模式（默认模式）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 reload all</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/01/08/api-showdoc-php/">linux 安装 showdoc 项目</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-08
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h3 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h3><p>使用 yum 安装 Nginx：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx</span><br></pre></td></tr></table></figure>
+<p>修改 <code>/etc/nginx/nginx.conf</code> 文件为如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">user nginx;</span><br><span class="line">worker_processes auto;</span><br><span class="line">error_log /var/log/nginx/error.log;</span><br><span class="line">pid /run/nginx.pid;</span><br><span class="line"></span><br><span class="line">include /usr/share/nginx/modules/*.conf;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">                      &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">                      &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile            on;</span><br><span class="line">    tcp_nopush          on;</span><br><span class="line">    tcp_nodelay         on;</span><br><span class="line">    keepalive_timeout   65;</span><br><span class="line">    types_hash_max_size 2048;</span><br><span class="line"></span><br><span class="line">    include             /etc/nginx/mime.types;</span><br><span class="line">    default_type        application/octet-stream;</span><br><span class="line">    include /etc/nginx/conf.d/*.conf;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  127.0.0.1;</span><br><span class="line">        root         /var/www/html;</span><br><span class="line">        index index.php index.html</span><br><span class="line">        error_page  404              /404.html;</span><br><span class="line">        location = /40x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        location ~ .php$ &#123;</span><br><span class="line">            root           /var/www/html;</span><br><span class="line">            fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">            fastcgi_index  index.php;</span><br><span class="line">            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">            include        fastcgi_params;</span><br><span class="line">        &#125;</span><br><span class="line">        location ~ /.ht &#123;</span><br><span class="line">            deny  all;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>启动 Nginx 并设置为开机启动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service nginx start</span><br><span class="line">chkconfig nginx on</span><br></pre></td></tr></table></figure>
+<h3 id="安装-PHP"><a href="#安装-PHP" class="headerlink" title="安装 PHP"></a>安装 PHP</h3><p>使用 yum 安装 <code>php-fpm</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php php-gd php-fpm php-mcrypt php-mbstring php-mysql php-pdo</span><br></pre></td></tr></table></figure>
+<p>启动 <code>php-fpm</code> 并设置为开机启动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service php-fpm start</span><br><span class="line">chkconfig php-fpm on</span><br></pre></td></tr></table></figure>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>下载安装 Composer<br>Composer 是 PHP 的一个依赖管理工具，推荐使用 Composer 创建 ShowDoc 项目。</p>
+<p>执行如下命令[安装 Composer]：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -sS https://getcomposer.org/installer | php</span><br><span class="line">mv composer.phar /usr/local/bin/composer</span><br></pre></td></tr></table></figure>
+<p>安装过程可能需要耗费几分钟</p>
+<p>设置 Composer 使用国内镜像<br>执行命令[设置 Composer 使用国内镜像]：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer config -g repo.packagist composer https://packagist.phpcomposer.com</span><br></pre></td></tr></table></figure>
+<p>为了避免访问国外网络导致的延迟，推荐使用国内镜像源</p>
+<p>使用 Composer 创建项目</p>
+<p>执行命令创建项目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www/html/ &amp;&amp; composer create-project  showdoc/showdoc</span><br></pre></td></tr></table></figure>
+<p>设置 showdoc 目录写权限</p>
+<p>执行命令赋予 showdoc 下部分目录的写权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">chmod a+w showdoc/install</span><br><span class="line">chmod a+w showdoc/Sqlite</span><br><span class="line">chmod a+w showdoc/Sqlite/showdoc.db.php</span><br><span class="line">chmod a+w showdoc/Public/Uploads/</span><br><span class="line">chmod a+w showdoc/Application/Runtime</span><br><span class="line">chmod a+w showdoc/server/Application/Runtime</span><br><span class="line">chmod a+w showdoc/Application/Common/Conf/config.php</span><br><span class="line">chmod a+w showdoc/Application/Home/Conf/config.php</span><br></pre></td></tr></table></figure>
+<h3 id="创建完毕，您现在可以通过浏览器访问"><a href="#创建完毕，您现在可以通过浏览器访问" class="headerlink" title="创建完毕，您现在可以通过浏览器访问"></a>创建完毕，您现在可以通过浏览器访问</h3><p>http://&lt;您的IP地址&gt;/showdoc/install/ ，进行语言的选择以后即可通过 </p>
+<p>http://&lt;您的IP地址&gt;/showdoc</p>
+<p>查看站点效果。</p>
+<p>通过IP地址查看：http://&lt;您的IP地址&gt;/showdoc</p>
+<p>通过域名查看：<a href="http://www.yourdomain.com/showdoc" target="_blank" rel="noopener">http://www.yourdomain.com/showdoc</a></p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/01/05/linux-vps-ssr/">vps SSR安装教程</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-05
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="SSR一键安装"><a href="#SSR一键安装" class="headerlink" title="SSR一键安装"></a>SSR一键安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">wget –no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh</span><br><span class="line"></span><br><span class="line">chmod +x shadowsocksR.sh</span><br><span class="line"></span><br><span class="line">./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">密码：password 端口：9527</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Welcome to visit:https://shadowsocks.be/9.html</span><br><span class="line">Enjoy it!</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh</span><br><span class="line"></span><br><span class="line">chmod +x shadowsocksR.sh</span><br><span class="line"></span><br><span class="line">./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log</span><br><span class="line"></span><br><span class="line">Congratulations, ShadowsocksR server install completed!</span><br><span class="line">Your Server IP        :  45.76.54.***</span><br><span class="line">Your Server Port      :  9527</span><br><span class="line">Your Password         :  password</span><br><span class="line">Your Protocol         :  origin</span><br><span class="line">Your obfs             :  plain</span><br><span class="line">Your Encryption Method:  aes-256-cfb</span><br><span class="line"></span><br><span class="line">Welcome to visit:https://shadowsocks.be/9.html</span><br><span class="line">Enjoy it!</span><br></pre></td></tr></table></figure>
+<h2 id="一键加速VPS服务器"><a href="#一键加速VPS服务器" class="headerlink" title="一键加速VPS服务器"></a>一键加速VPS服务器</h2><p>此加速教程为谷歌BBR加速 ，vultr的服务器可以装谷歌bbr。</p>
+<p>按照第二步的步骤，重新连接服务器ip，登录成功后，在命令栏里粘贴以下代码：</p>
+<p>【谷歌BBR加速教程】</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br><span class="line"></span><br><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</span><br><span class="line"></span><br><span class="line">chmod +x bbr.sh</span><br><span class="line"></span><br><span class="line">./bbr.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">卸载 SSR：./shadowsocksR.sh uninstall</span><br><span class="line"></span><br><span class="line">SSR 一些常用的命令</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">启动：/etc/init.d/shadowsocks start</span><br><span class="line">停止：/etc/init.d/shadowsocks stop</span><br><span class="line">重启：/etc/init.d/shadowsocks restart</span><br><span class="line">状态：/etc/init.d/shadowsocks status</span><br><span class="line">日志路径</span><br><span class="line"></span><br><span class="line">配置文件路径：/etc/shadowsocks.json</span><br><span class="line">日志文件路径：/var/log/shadowsocksr.log</span><br><span class="line">代码安装目录：/usr/local/shadowsocks</span><br><span class="line">如果后面想修改 SSR 的一些配置可以直接修改 shadowsocks.json ，然后重启 SSR 即可。</span><br></pre></td></tr></table></figure>
+<h2 id="开启加速：net-speeder"><a href="#开启加速：net-speeder" class="headerlink" title="开启加速：net_speeder"></a>开启加速：net_speeder</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://gist.github.com/LazyZhu/dc3f2f84c336a08fd6a5/raw/d8aa4bcf955409e28a262ccf52921a65fe49da99/net_speeder_lazyinstall.sh</span><br><span class="line"></span><br><span class="line">sh net_speeder_lazyinstall.sh</span><br><span class="line"></span><br><span class="line">或者：</span><br><span class="line"></span><br><span class="line">wget https://github.com/snooda/net-speeder/archive/master.zip</span><br><span class="line">unzip master.zip</span><br><span class="line">cd net-speeder-master</span><br><span class="line">chmod +x build.sh</span><br><span class="line">./build.sh</span><br><span class="line"></span><br><span class="line">把文件移动位置</span><br><span class="line">mkdir /usr/local/net_speeder/</span><br><span class="line">cp net_speeder /usr/local/net_speeder/net_speeder</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">开启加速</span><br><span class="line">nohup /usr/local/net_speeder/net_speeder eth0 &quot;ip&quot; &gt;/dev/null 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">基本命令</span><br><span class="line"></span><br><span class="line">查看net-speeder是否运行：ps aux|grep net_speeder|grep -v grep</span><br><span class="line">停止net-speeder：killall net_speeder</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/12/19/vps-problem/">vps问题整理</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-19
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="为什么VPS能ping通，但是通过域名打不开？"><a href="#为什么VPS能ping通，但是通过域名打不开？" class="headerlink" title="为什么VPS能ping通，但是通过域名打不开？"></a>为什么VPS能ping通，但是通过域名打不开？</h2><p>首先，确定您的VPS上的iptables是否屏蔽了80端口。如果iptables屏蔽了80端口（HTTP服务默认端口）的话，是无法访问您在VPS上创建的网站的。在Centos上，请使用如下命令关闭iptables试试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables stop</span><br></pre></td></tr></table></figure>
+<p>还有另一种可能是你使用的PC的DNS被污染了，请将您的PC上的DNS服务器更换为OpenDNS或者使用Google DNS(8.8.8.8,8.8.4.4)。为了能更好的使您的VPS被国内用户访问，最好把在Godaddy或者其他国外域名提供商那里购买域名的DNS的nameserve更换为dnspod，这样你的域名更容易被国内用户访问了，因为这些域名提供商的nameserver经常在国内无法正常访问。</p>
+<p>对内存在256MB以下的VPS,也极有可能发生可以ping通，但是网站无法访问的情况。大多数是因为httpd负载太高而内存不足导致Apache挂掉，请升级VPS的内存或优化系统负载情况。</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/12/09/linux-vps-net-speeder/">CENTOS7 安装 NET-SPEEDER 提升 VPS 网络性能</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="1、安装依赖库"><a href="#1、安装依赖库" class="headerlink" title="1、安装依赖库"></a>1、安装依赖库</h2><p>先安装epel源 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm</span><br><span class="line"></span><br><span class="line">（这里 epel-release-7-8.noarch.rpm 版本可能更新，可以去到 http://dl.fedoraproject.org/pub/epel/7/x86_64/e 搜索查看当前有的版本）</span><br></pre></td></tr></table></figure>
+<h2 id="2、然后即可使用yum安装："><a href="#2、然后即可使用yum安装：" class="headerlink" title="2、然后即可使用yum安装："></a>2、然后即可使用yum安装：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install libnet libpcap libnet-devel libpcap-devel gcc</span><br></pre></td></tr></table></figure>
+<h2 id="3、然后获取net-speeder"><a href="#3、然后获取net-speeder" class="headerlink" title="3、然后获取net-speeder"></a>3、然后获取net-speeder</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/snooda/net-speeder/archive/master.zip</span><br><span class="line">unzip master.zip</span><br><span class="line"><span class="built_in">cd</span> net-speeder-master （这里注意查看下目录名称，可能会变）</span><br><span class="line">chmod +x build.sh</span><br><span class="line">./build.sh</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>编译完成，当前目录下会多出 net_speeder 文件</p>
+</blockquote>
+<h2 id="4、运行-net-speeder"><a href="#4、运行-net-speeder" class="headerlink" title="4、运行 net-speeder"></a>4、运行 net-speeder</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">参数：./net_speeder 网卡名 加速规则（bpf规则） </span><br><span class="line">最简单用法：./net_speeder venet0 <span class="string">"ip"</span>  加速所有ip协议数据</span><br><span class="line"></span><br><span class="line">./net_speeder eth0 <span class="string">"ip"</span> &amp;  网卡一般为 eth0，可以使用 ifconfig 查看。（然而 CentOS7 没有内置 ifconfig 命令，使用 yum install net-tools.x86_64 安装即可）</span><br></pre></td></tr></table></figure>
+<h2 id="5、然后复制到-usr-local-目录并设置开机自启动："><a href="#5、然后复制到-usr-local-目录并设置开机自启动：" class="headerlink" title="5、然后复制到/usr/local/目录并设置开机自启动："></a>5、然后复制到/usr/local/目录并设置开机自启动：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/<span class="built_in">local</span>/net_speeder/    创建 net_speeder 目录</span><br><span class="line"></span><br><span class="line">cp net_speeder</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/net_speeder/net_speeder    复制 net_speeder</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'nohup /usr/local/net_speeder/net_speeder eth0 "ip" &gt;/dev/null 2&gt;&amp;1 &amp;'</span> &gt;&gt; /etc/rc.local    创建开机启动</span><br></pre></td></tr></table></figure>
+<h3 id="6、其它"><a href="#6、其它" class="headerlink" title="6、其它"></a>6、其它</h3><p>可以使用 ps -e 来查看进程中是否有 net_speeder 来确认是否运行。</p>
+<p>控制台偶尔会自动跳出 libnet_write_raw_ipv4(): -1 bytes written (Message too long) 错误提示，目前得到的信息是正常情况。</p>
+<p>基本命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查看net-speeder是否运行：ps aux|grep net_speeder|grep -v grep</span><br><span class="line">停止net-speeder：killall net_speeder</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/12/06/nodejs-koa-mongodb/">node+koa+mongodb导航管理系统项目说明</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-06
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="项目说明"><a href="#项目说明" class="headerlink" title="项目说明"></a>项目说明</h1><p>基于node 实现简单的导航管理系统</p>
+<blockquote>
+<p>server端：使用node， koa + mongodb</p>
+<p>client端：vue + vue-router</p>
+</blockquote>
+<p><strong>安装与启动</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.安装 依赖</span><br><span class="line"></span><br><span class="line">npm i</span><br><span class="line"></span><br><span class="line">2.启动项目</span><br><span class="line">npm run dev_server</span><br><span class="line"></span><br><span class="line">默认端口开启2333</span><br><span class="line">本地访问 http://localhost:2333/</span><br></pre></td></tr></table></figure>
+<p>生产环境可以使用 pm2发布</p>
+<p>全局安装pm2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g pm2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>记得修改 pm2.json 中的pwd属性为当前项目地址</p>
+<p>pm2具体使用方法自行百度</p>
+</blockquote>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/11/28/linux-vps-close-firewall/">linux vps关闭防火墙</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-28
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="vps-web-如果想让本地访问，需要关闭防火墙"><a href="#vps-web-如果想让本地访问，需要关闭防火墙" class="headerlink" title="vps web 如果想让本地访问，需要关闭防火墙"></a>vps web 如果想让本地访问，需要关闭防火墙</h2><p>关闭防火墙：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop firewalld.service &amp;&amp; sudo systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>
+<p>centos从7开始默认用的是firewalld，这个是基于iptables的，虽然有iptables的核心，但是iptables的服务是没安装的。所以你只要停止firewalld服务即可：<br>sudo systemctl stop firewalld.service &amp;&amp; sudo systemctl disable firewalld.service</p>
+<p>如果你要改用iptables的话，需要安装iptables服务：<br>sudo yum install iptables-services<br>sudo systemctl enable iptables &amp;&amp; sudo systemctl enable ip6tables<br>sudo systemctl start iptables &amp;&amp; sudo systemctl start ip6tables</p>
+<p>或者 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables stop</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/11/19/linux-ezhttp/">linux 一键安装环境ezhttp</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-19
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate centos.bz/ezhttp.zip?time=$(date +%s) -O ezhttp.zip</span><br><span class="line">unzip ezhttp.zip</span><br><span class="line"><span class="built_in">cd</span> ezhttp-master</span><br><span class="line">chmod +x start.sh</span><br></pre></td></tr></table></figure>
+<p>交互安装: (自己选择)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure>
+<h2 id="交互安装"><a href="#交互安装" class="headerlink" title="交互安装"></a>交互安装</h2><h3 id="1-选择安装lnmp"><a href="#1-选择安装lnmp" class="headerlink" title="1.选择安装lnmp"></a>1.选择安装lnmp</h3><p>1） 输入1回车进入<code>Installation of stack</code>.<br>2） 输入1回车选择<code>LNMP(Nginx MySQL PHP)</code>安装.</p>
+<h3 id="2-nginx安装设置"><a href="#2-nginx安装设置" class="headerlink" title="2.nginx安装设置"></a>2.nginx安装设置</h3><p>1）首先是nginx版本选择。<br>这里有5个选项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1) nginx-1.8.0</span><br><span class="line">2) tengine-2.1.0</span><br><span class="line">3) openresty-1.9.7.3</span><br><span class="line">4) custom_version</span><br><span class="line">5) do_not_install</span><br></pre></td></tr></table></figure>
+<p>输入一个1-5的数字或直接回车，直接回车默认选择5。<br>第1-3个选项是选择指定nginx，包含nginx官方版本,淘宝的tengine和整合nginx luajit的openresty。<br>第4个选项是指定版本号，输入的规则为nginx-1.4.1 tengine-1.4.6 ngx_openresty-1.2.8.3。<br>第5个选择是<br>这里我们选择nginx-1.8.0。<br>2）然后是输入安装路径<br>直接回车默认是/usr/local/nginx。我们可以更改其安装路径，如输入/opt/nginx。 这里我们直接回车使用默认值。<br>3）接着将会显示安装nginx使用的编译参数<br>且提示是否更改编译参数，直接回车默认是不更改。输入y是更改参数，n为不更改参数。这里我们直接回车，即不更改。<br>4）最后是提示是否安装nginx模块<br>默认为不安装，即n。输入y则安装，n为不安装。我们这里输入y，安装模块。接着将显示可安装的nginx模块，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1) lua-nginx-module-0.10.0</span><br><span class="line">2) nginx-http-concat-1.2.2</span><br><span class="line">3) nginx-upload-module-2.2</span><br><span class="line">4) ngx_http_substitutions_filter_module-0.6.4</span><br><span class="line">5) do_not_install</span><br></pre></td></tr></table></figure>
+<p>输入对应的数字选择安装的模块或输入5不安装。这里我们输入2安装<code>nginx-http-concat-1.2.2</code>模块。</p>
+<h3 id="3-mysql安装配置"><a href="#3-mysql安装配置" class="headerlink" title="3.mysql安装配置"></a>3.mysql安装配置</h3><p>1) 选择安装的mysql版本<br>1-4选项为mysql5.1,mysql5.5,mysql5.6,mysql5.7版本，5为libmysqlclient18，6为自定义版本，格式为mysql-5.1.71 mysql-5.5.32 mysql-5.6.12 mysql-5.7.9。这里我们输入3安装mysql5.6。<br>2）输入mysql安装路径<br>直接回车默认路径为/usr/local/mysql，可以输入其它安装路径。这里我们直接回车选择默认的/usr/local/mysql。<br>3) 输入mysql数据目录<br>直接回车为默认的{上面设置的mysql安装路径}/data。可以输入其它的，如/data/mysql。我们直接回车选择默认的/usr/local/mysql/data。<br>4) 输入mysql端口<br>直接回车默认使用3306端口。可以输入任意一个有效的端口，如3307。我们直接回车选择默认的3306端口。<br>5) 设置mysql root用户密码<br>直接回车默认设置密码为root。可以输入任意字符串的密码，这里我们输入mysqlpwd。<br>6）设置mysql编译参数<br>直接回车默认不更改。可以输入y进行更改或n不更改。</p>
+<h3 id="4-php安装配置"><a href="#4-php安装配置" class="headerlink" title="4.php安装配置"></a>4.php安装配置</h3><p>1) 选择安装的php版本<br>支持php5.2,php5.3,php5.4,php5.5,php5.6,php7.1的版本。输入对应的数字安装对应的版本。也可以选择custom_version自定义版本。这里输入5安装php5.6版本。<br>2) 设置安装路径<br>直接回车默认选择/usr/local/php路径，可以输入其它的路径，如/opt/php。这里直接驾车。<br>3) 更改编译参数<br>直接回车选择不更改。<br>4）安装php模块<br>将会列表可安装的php模块，安装多个模块输入以空格分隔的数字，如1 2 3。这里输入2 4安装memcache和redis模块。</p>
+<h3 id="5-其它软件安装"><a href="#5-其它软件安装" class="headerlink" title="5.其它软件安装"></a>5.其它软件安装</h3><p>将会列出可安装的软件，安装多个软件输入以空格分隔的多个数字，如1 2 3。这里输入1 4安装memcached和redis。<br>然后接着要求输入各自的安装路径，这里我们直接回车使用默认值。</p>
+<h3 id="6-检查设置"><a href="#6-检查设置" class="headerlink" title="6.检查设置"></a>6.检查设置</h3><p>最后将列出以上的所有设置。直接回车和输入y开始安装或输入n返回重新设置。</p>
+<h2 id="非交互安装"><a href="#非交互安装" class="headerlink" title="非交互安装"></a>非交互安装</h2><p>非交互安装即不需要手动选择或输入各种配置进行安装，可需要一个命令就行。</p>
+<p>可以执行<code>./start.sh</code> <code>-h</code>查看帮助。以上的lnmp配置参数可以使用如下命令进行非交互安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh --stack=lnmp --package=nginx,php5.6,mysql5.6,memcached,redis --nginx-module=nginx-http-concat --mysql-root-pwd=mysqlpwd --redis-maxmem=2g</span><br></pre></td></tr></table></figure>
+<h3 id="ez命令介绍"><a href="#ez命令介绍" class="headerlink" title="ez命令介绍"></a><code>ez</code>命令介绍</h3><p>`ezhttp提供了一个ez命令来对环境进行操作。用法如下：</p>
+<p>虚拟主机管理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ez vhost add：创建虚拟主机</span><br><span class="line">ez vhost list:	列出所有虚拟主机</span><br><span class="line">ez vhost del：	删除虚拟主机</span><br></pre></td></tr></table></figure>
+<p>mysql管理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ez mysql reset：重置mysql root用户密码</span><br><span class="line">ez mysql add：创建mysql用户</span><br><span class="line">ez mysql mod：更新mysql用户</span><br><span class="line">ez mysql del：删除mysql用户</span><br></pre></td></tr></table></figure>
+<p>ftp管理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ez ftp add：添加ftp用户</span><br><span class="line">ez ftp list：列出所有ftp用户</span><br><span class="line">ez ftp del：删除ftp用户</span><br><span class="line">ez ftp mod：更改ftp用户</span><br></pre></td></tr></table></figure>
+<p>进程管理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nginx：/etc/init.d/nginx (start|stop|restart)</span><br><span class="line">apache：/etc/init.d/httpd (start|stop|restart)</span><br><span class="line">php-fpm：/etc/init.d/php-fpm (start|stop|restart)</span><br><span class="line">mysql：/etc/init.d/mysqld (start|stop|restart)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br></pre></td><td class="code"><pre><span class="line">#############################################################################</span><br><span class="line"></span><br><span class="line">You are welcome to use this script to deploy your linux,hope you like.</span><br><span class="line">The script is written by Zhu Maohai.</span><br><span class="line">If you have any question.</span><br><span class="line">please visit http://www.centos.bz/ezhttp/ and submit your issue.thank you.</span><br><span class="line"></span><br><span class="line">############################################################################</span><br><span class="line"></span><br><span class="line">1) Installation of stack.</span><br><span class="line">2) Some Useful Tools.</span><br><span class="line">3) Upgrade Software</span><br><span class="line">4) Exit.</span><br><span class="line"></span><br><span class="line">please select: 1</span><br><span class="line">you select Installation of stack.</span><br><span class="line">1) LNMP(Nginx MySQL PHP)</span><br><span class="line">2) LAMP(Apache MySQL PHP)</span><br><span class="line">3) LNAMP(Nginx Apache MySQL PHP)</span><br><span class="line">4) back to main menu</span><br><span class="line"></span><br><span class="line">please input the package you like to install: 3</span><br><span class="line">#################### nginx setting ####################</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1) nginx-1.10.3</span><br><span class="line">2) tengine-2.1.0</span><br><span class="line">3) openresty-1.11.2.2</span><br><span class="line">4) custom_version</span><br><span class="line">5) do_not_install</span><br><span class="line"></span><br><span class="line">which nginx you&apos;d select(default do_not_install): 1</span><br><span class="line">your selection: nginx-1.10.3</span><br><span class="line">nginx-1.10.3 install location(default:/usr/local/nginx,leave blank for default):</span><br><span class="line">nginx-1.10.3 install location: /usr/local/nginx</span><br><span class="line">the nginx-1.10.3 configure parameter is:</span><br><span class="line">--prefix=/usr/local/nginx --with-http_ssl_module --with-openssl=/root/ezhttp-master/soft/openssl-1.0.2h  --with-http_sub_module --with-http_stub_status_module --with-pcre-jit --with-pcre --with-pcre=/root/ezhttp-master/soft/pcre-8.33 --with-zlib=/root/ezhttp-master/soft/zlib-1.2.8 --with-http_secure_link_module</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Would you like to change it?[N/y](default n):</span><br><span class="line">you select no,configure parameter will not be changed.</span><br><span class="line"></span><br><span class="line">Do you need to install nginx module?[N/y](default n): y</span><br><span class="line">#################### nginx_modules install ####################</span><br><span class="line"></span><br><span class="line">1) lua-nginx-module-0.10.7</span><br><span class="line">2) nginx-http-concat-1.2.2</span><br><span class="line">3) nginx-upload-module-2.2</span><br><span class="line">4) ngx_http_substitutions_filter_module-0.6.4</span><br><span class="line">5) ngx_stream_core_module</span><br><span class="line">6) nginx_upstream_check_module-master</span><br><span class="line">7) nginx-stream-upsync-module-master</span><br><span class="line">8) do_not_install</span><br><span class="line"></span><br><span class="line">please input one or more number between 1 and 8(default do_not_install)(ie.1 2 3): 2 3</span><br><span class="line">your selection nginx-http-concat-1.2.2 nginx-upload-module-2.2</span><br><span class="line">#################### apache setting ####################</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1) httpd-2.2.31</span><br><span class="line">2) httpd-2.4.25</span><br><span class="line">3) custom_version</span><br><span class="line">4) do_not_install</span><br><span class="line"></span><br><span class="line">which apache you&apos;d select(default do_not_install): 1</span><br><span class="line">your selection: httpd-2.2.31</span><br><span class="line">httpd-2.2.31 install location(default:/usr/local/apache,leave blank for default):</span><br><span class="line">httpd-2.2.31 install location: /usr/local/apache</span><br><span class="line">the httpd-2.2.31 configure parameter is:</span><br><span class="line">--prefix=/usr/local/apache --with-included-apr --enable-so --enable-deflate=shared --enable-expires=shared  --enable-ssl=shared --enable-headers=shared --enable-rewrite=shared --enable-static-support</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Would you like to change it?[N/y](default n):</span><br><span class="line">you select no,configure parameter will not be changed.</span><br><span class="line">#################### mysql setting ####################</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1) mysql-5.1.73</span><br><span class="line">2) mysql-5.5.54</span><br><span class="line">3) mysql-5.6.35</span><br><span class="line">4) mysql-5.7.17 (need about 2GB RAM when building,try mysql-5.6 if failed)</span><br><span class="line">5) libmysqlclient18</span><br><span class="line">6) custom_version</span><br><span class="line">7) do_not_install</span><br><span class="line"></span><br><span class="line">which mysql you&apos;d select(default do_not_install): 3</span><br><span class="line">your selection: mysql-5.6.35</span><br><span class="line">mysql-5.6.35 install location(default:/usr/local/mysql,leave blank for default):</span><br><span class="line">mysql-5.6.35 install location: /usr/local/mysql</span><br><span class="line">mysql data location(default:/usr/local/mysql/data,leave blank for default):</span><br><span class="line">mysql-5.6.35 data location: /usr/local/mysql/data</span><br><span class="line">mysql port number(default:3306,leave blank for default):</span><br><span class="line">mysql port number: 3306</span><br><span class="line">mysql server root password (default:root,leave blank for default): c5bMaVD818</span><br><span class="line">mysql-5.6.35 root password: c5bMaVD818</span><br><span class="line">the mysql-5.6.35 configure parameter is:</span><br><span class="line">-DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DSYSCONFDIR=/usr/local/mysql/etc -DMYSQL_UNIX_ADDR=/usr/local/mysql/data/mysql.sock -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_EXTRA_CHARSETS=complex -DENABLED_LOCAL_INFILE=1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Would you like to change it?[N/y](default n):</span><br><span class="line">you select no,configure parameter will not be changed.</span><br><span class="line">#################### php setting ####################</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1) php-5.2.17</span><br><span class="line">2) php-5.3.29</span><br><span class="line">3) php-5.4.43</span><br><span class="line">4) php-5.5.27</span><br><span class="line">5) php-5.6.15</span><br><span class="line">6) php-7.1.0</span><br><span class="line">7) custom_version</span><br><span class="line">8) do_not_install</span><br><span class="line"></span><br><span class="line">which php you&apos;d select(default do_not_install): 5</span><br><span class="line">your selection: php-5.6.15</span><br><span class="line">php-5.6.15 install location(default:/usr/local/php,leave blank for default):</span><br><span class="line">php-5.6.15 install location: /usr/local/php</span><br><span class="line">the php-5.6.15 configure parameter is:</span><br><span class="line">--prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --with-apxs2=/usr/local/apache/bin/apxs --enable-bcmath=shared --with-pdo_sqlite --with-gettext=shared --with-iconv --enable-ftp=shared --with-sqlite --with-sqlite3 --enable-mbstring=shared --enable-sockets=shared --enable-zip --enable-soap=shared --with-openssl --with-zlib --with-curl=shared --with-gd=shared --with-jpeg-dir --with-png-dir --with-freetype-dir --with-mcrypt=shared,/opt/ezhttp/libmcrypt-2.5.8 --with-mhash=shared,/opt/ezhttp/mhash-0.9.9.9 --enable-opcache --with-mysql=mysqlnd --with-mysqli=shared,mysqlnd --with-pdo-mysql=shared,mysqlnd --without-pear --with-libdir=lib64 --disable-fileinfo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Would you like to change it?[N/y](default n):</span><br><span class="line">you select no,configure parameter will not be changed.</span><br><span class="line">#################### PHP modules install ####################</span><br><span class="line">php-5.6.15 version available modules:</span><br><span class="line"></span><br><span class="line">#################### php_modules install ####################</span><br><span class="line"></span><br><span class="line">1) php-imagick-3.1.2</span><br><span class="line">2) php-memcache-3.0.8</span><br><span class="line">3) php-memcached-2.2.0 (Support Aliyun OCS)</span><br><span class="line">4) php-redis-2.2.7</span><br><span class="line">5) php-mongo-legacy-1.6.11</span><br><span class="line">6) xdebug-2.2.2</span><br><span class="line">7) mssql</span><br><span class="line">8) fileinfo</span><br><span class="line">9) php-gmp</span><br><span class="line">10) php-swoole-1.7.20</span><br><span class="line">11) do_not_install</span><br><span class="line"></span><br><span class="line">please input one or more number between 1 and 11(default do_not_install)(ie.1 2 3):</span><br><span class="line">your selection do_not_install</span><br><span class="line">#################### other_soft install ####################</span><br><span class="line"></span><br><span class="line">1) memcached-1.4.24</span><br><span class="line">2) pure-ftpd-1.0.41</span><br><span class="line">3) phpMyAdmin-4.4.12-all-languages</span><br><span class="line">4) redis-3.0.3</span><br><span class="line">5) mongodb-linux-x86_64-2.4.9</span><br><span class="line">6) phpRedisAdmin-1.1.0</span><br><span class="line">7) memadmin-1.0.12</span><br><span class="line">8) rockmongo-1.1.6-fix-auth</span><br><span class="line">9) jdk1.7.0_79</span><br><span class="line">10) jdk1.8.0_66</span><br><span class="line">11) apache-tomcat-7.0.68</span><br><span class="line">12) apache-tomcat-8.0.39</span><br><span class="line">13) do_not_install</span><br><span class="line"></span><br><span class="line">please input one or more number between 1 and 13(default do_not_install)(ie.1 2 3): 4 5</span><br><span class="line">your selection redis-3.0.3 mongodb-linux-x86_64-2.4.9</span><br><span class="line">input redis-3.0.3 location(default:/usr/local/redis):</span><br><span class="line">redis location: /usr/local/redis</span><br><span class="line">please input the max memory allowed for redis(ie.128M,512m,2G,4g):</span><br><span class="line">input errors,please input ie.128M,512m,2G,4g</span><br><span class="line">please input the max memory allowed for redis(ie.128M,512m,2G,4g): 128M</span><br><span class="line">128M</span><br><span class="line">input mongodb-linux-x86_64-2.4.9 location(default:/usr/local/mongodb):</span><br><span class="line">mongodb location: /usr/local/mongodb</span><br><span class="line">input mongodb-linux-x86_64-2.4.9 data location(default:/usr/local/mongodb/data/):</span><br><span class="line">mongodb data location: /usr/local/mongodb/data/</span><br><span class="line">#################### your choice overview ####################</span><br><span class="line"></span><br><span class="line">Package: lnamp</span><br><span class="line"></span><br><span class="line">*****Nginx Setting*****</span><br><span class="line">Nginx: nginx-1.10.3</span><br><span class="line">Nginx Location: /usr/local/nginx</span><br><span class="line">Nginx Configure Parameter: --prefix=/usr/local/nginx --with-http_ssl_module --with-openssl=/root/ezhttp-master/soft/openssl-1.0.2h  --with-http_sub_module --with-http_stub_status_module --with-pcre-jit --with-pcre --with-pcre=/root/ezhttp-master/soft/pcre-8.33 --with-zlib=/root/ezhttp-master/soft/zlib-1.2.8 --with-http_secure_link_module --add-module=/root/ezhttp-master/soft/nginx-http-concat-1.2.2 --add-module=/root/ezhttp-master/soft/nginx-upload-module-2.2</span><br><span class="line">Nginx Modules:  nginx-http-concat-1.2.2 nginx-upload-module-2.2</span><br><span class="line"></span><br><span class="line">*****Apache Setting*****</span><br><span class="line">Apache: httpd-2.2.31</span><br><span class="line">Apache Location: /usr/local/apache</span><br><span class="line">Apache Configure Parameter: --prefix=/usr/local/apache --with-included-apr --enable-so --enable-deflate=shared --enable-expires=shared  --enable-ssl=shared --enable-headers=shared --enable-rewrite=shared --enable-static-support</span><br><span class="line"></span><br><span class="line">*****MySQL Setting*****</span><br><span class="line">MySQL Server: mysql-5.6.35</span><br><span class="line">MySQL Location: /usr/local/mysql</span><br><span class="line">MySQL Data Location: /usr/local/mysql/data</span><br><span class="line">MySQL Port Number: 3306</span><br><span class="line">MySQL Root Password: c5bMaVD818</span><br><span class="line">MySQL Configure Parameter: -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DSYSCONFDIR=/usr/local/mysql/etc -DMYSQL_UNIX_ADDR=/usr/local/mysql/data/mysql.sock -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_EXTRA_CHARSETS=complex -DENABLED_LOCAL_INFILE=1</span><br><span class="line"></span><br><span class="line">*****PHP Setting*****</span><br><span class="line">PHP: php-5.6.15</span><br><span class="line">PHP Location: /usr/local/php</span><br><span class="line">PHP Configure Parameter: --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --with-apxs2=/usr/local/apache/bin/apxs --enable-bcmath=shared --with-pdo_sqlite --with-gettext=shared --with-iconv --enable-ftp=shared --with-sqlite --with-sqlite3 --enable-mbstring=shared --enable-sockets=shared --enable-zip --enable-soap=shared --with-openssl --with-zlib --with-curl=shared --with-gd=shared --with-jpeg-dir --with-png-dir --with-freetype-dir --with-mcrypt=shared,/opt/ezhttp/libmcrypt-2.5.8 --with-mhash=shared,/opt/ezhttp/mhash-0.9.9.9 --enable-opcache --with-mysql=mysqlnd --with-mysqli=shared,mysqlnd --with-pdo-mysql=shared,mysqlnd --without-pear --with-libdir=lib64 --disable-fileinfo</span><br><span class="line"></span><br><span class="line">*****Other Software Setting*****</span><br><span class="line">Other Software:  redis-3.0.3 mongodb-linux-x86_64-2.4.9</span><br><span class="line">redis_location: /usr/local/redis</span><br><span class="line">mongodb_location: /usr/local/mongodb</span><br><span class="line"></span><br><span class="line">##############################################################</span><br><span class="line"></span><br><span class="line">Are you ready to configure your Linux?[Y/n](default y):</span><br></pre></td></tr></table></figure>
+<p>apache 文件目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/apache/htdocs</span><br></pre></td></tr></table></figure>
+<p>初始化<br>安装 unzip zip 命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y unzip zip</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/11/19/setup-eolinker-api-document/">安装api测试管理工具eolinker</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-19
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <blockquote>
+<p>此项目简介，可以到 <code>https://www.eolinker.com</code> 查看<br>安装前需要准备好php运行环境，推荐<code>ezhttp</code>工具</p>
+</blockquote>
+<p>到php项目目录 然后执行下面代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir eolinker</span><br><span class="line"><span class="built_in">cd</span> eolinker</span><br><span class="line">wget https://github.com/eolinker/eoLinker-API-Management-System-OS-3.X/raw/master/release%5B%E6%AD%A3%E5%BC%8F%E5%AE%89%E8%A3%85%E5%8C%85%5D/eolinker_os_3.2.1.zip</span><br><span class="line">unzip eolinker_os_3.2.1.zip</span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line">chmod 777 -R  eolinker/</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/11/04/linux-close-firewall/">linux vps 访问不了注意事项</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-04
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="vps-web-如果想让本地访问，需要关闭防火墙"><a href="#vps-web-如果想让本地访问，需要关闭防火墙" class="headerlink" title="vps web 如果想让本地访问，需要关闭防火墙"></a>vps web 如果想让本地访问，需要关闭防火墙</h2><p>关闭防火墙：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop firewalld.service &amp;&amp; sudo systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>
+<p>centos从7开始默认用的是firewalld，这个是基于iptables的，虽然有iptables的核心，但是iptables的服务是没安装的。所以你只要停止firewalld服务即可：<br>sudo systemctl stop firewalld.service &amp;&amp; sudo systemctl disable firewalld.service</p>
+<p>如果你要改用iptables的话，需要安装iptables服务：<br>sudo yum install iptables-services<br>sudo systemctl enable iptables &amp;&amp; sudo systemctl enable ip6tables<br>sudo systemctl start iptables &amp;&amp; sudo systemctl start ip6tables</p>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables stop</span><br></pre></td></tr></table></figure></p>
+<h2 id="为什么VPS能ping通，但是通过域名打不开？"><a href="#为什么VPS能ping通，但是通过域名打不开？" class="headerlink" title="为什么VPS能ping通，但是通过域名打不开？"></a>为什么VPS能ping通，但是通过域名打不开？</h2><p>首先，确定您的VPS上的iptables是否屏蔽了80端口。如果iptables屏蔽了80端口（HTTP服务默认端口）的话，是无法访问您在VPS上创建的网站的。在Centos上，请使用如下命令关闭iptables试试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables stop</span><br></pre></td></tr></table></figure>
+<p>还有另一种可能是你使用的PC的DNS被污染了，请将您的PC上的DNS服务器更换为OpenDNS或者使用Google DNS(8.8.8.8,8.8.4.4)。为了能更好的使您的VPS被国内用户访问，最好把在Godaddy或者其他国外域名提供商那里购买域名的DNS的nameserve更换为dnspod，这样你的域名更容易被国内用户访问了，因为这些域名提供商的nameserver经常在国内无法正常访问。</p>
+<p>对内存在256MB以下的VPS,也极有可能发生可以ping通，但是网站无法访问的情况。大多数是因为httpd负载太高而内存不足导致Apache挂掉，请升级VPS的内存或优化系统负载情况。</p>
+
         
       
     </div>
@@ -208,6 +682,11 @@
   
   <nav class="pagination">
     
+    
+      <a class="next" href="/page/2/">
+        <span class="next-text">下一页</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 

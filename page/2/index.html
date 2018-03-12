@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="薛山山在 Github 上的个人博客，主要从事web前端开发，移动端为主。此博客持续更新，欢迎大家关注。"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="午休随笔">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://blog.xueshanshan.com/page/2/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 午休随笔 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">午休随笔</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">午休随笔</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts">
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/10/30/linux-php-mysql/">php+mysql等常用工具环境搭建</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-30
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h3 id="1使用yum命令，安装所需的程序库"><a href="#1使用yum命令，安装所需的程序库" class="headerlink" title="1使用yum命令，安装所需的程序库"></a>1使用yum命令，安装所需的程序库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel krb5 krb5-devel libidn libidn-devel openssl openssl-devel openldap openldap-devel nss_ldap openldap-clients openldap-servers</span><br></pre></td></tr></table></figure>
+<h3 id="2安装-nginx"><a href="#2安装-nginx" class="headerlink" title="2安装 nginx"></a>2安装 nginx</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//安装命令</span><br><span class="line"> yum install -y nginx </span><br><span class="line"> </span><br><span class="line">//验证启动</span><br><span class="line">service nginx start</span><br><span class="line"></span><br><span class="line">//查看状态</span><br><span class="line">service nginx status</span><br></pre></td></tr></table></figure>
+<h3 id="3安装PHP及若干扩展"><a href="#3安装PHP及若干扩展" class="headerlink" title="3安装PHP及若干扩展"></a>3安装PHP及若干扩展</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y php php-mysql php-gd libjpeg* php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-mcrypt php-bcmath php-mhash libmcrypt libmcrypt-devel php-fpm</span><br></pre></td></tr></table></figure>
+<h3 id="4启动php-fpm"><a href="#4启动php-fpm" class="headerlink" title="4启动php-fpm"></a>4启动php-fpm</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/rc.d/init.d/php-fpm start</span><br></pre></td></tr></table></figure>
+<h3 id="5设置开机启动项"><a href="#5设置开机启动项" class="headerlink" title="5设置开机启动项"></a>5设置开机启动项</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig php-fpm on</span><br></pre></td></tr></table></figure>
+<h3 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">rpm -ivh mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">yum install mysql-community-server -y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">启动 MySQL 服务：</span><br><span class="line">service mysqld restart</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">设置 MySQL 账户 [root 密码]：</span><br><span class="line">/usr/bin/mysqladmin -u root password &apos;Password4eoLinker&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="安装node使用npm工具"><a href="#安装node使用npm工具" class="headerlink" title="安装node使用npm工具"></a>安装node使用npm工具</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -</span><br><span class="line"></span><br><span class="line">yum -y install nodejs</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/09/18/linux-nginx/">nginx 搭建静态网站</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-18
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="搭建Http静态服务器环境"><a href="#搭建Http静态服务器环境" class="headerlink" title="搭建Http静态服务器环境"></a>搭建Http静态服务器环境</h2><p>搭建静态网站，首先需要部署环境。下面的步骤，将告诉大家如何在服务器上通过 Nginx 部署 HTTP 静态服务。</p>
+<h3 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h3><p>在 CentOS 上，可直接使用 <code>yum</code> 来安装 Nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx -y</span><br></pre></td></tr></table></figure>
+<p>安装完成后，使用 <code>nginx</code> 命令启动 Nginx：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure>
+<p>此时，访问 测试地址 可以看到 Nginx 的测试页面</p>
+<blockquote>
+<bubble for="help"><br>如果无法访问，请重试用 <code>nginx -s reload</code> 命令重启 Nginx<br></bubble>
+</blockquote>
+<blockquote>
+<checker type="output-contains" command="ls /usr/sbin/" hint="Nginx 未安装"><br>    <keyword regex="nginx"><br></keyword></checker>
+</blockquote>
+<blockquote>
+<checker type="output-contains" command="netstat -nltp" hint="Nginx 未启动"><br>    <keyword regex="nginx"><br>    <keyword regex="80"><br></keyword></keyword></checker>
+</blockquote>
+<h3 id="配置静态服务器访问路径"><a href="#配置静态服务器访问路径" class="headerlink" title="配置静态服务器访问路径"></a>配置静态服务器访问路径</h3><p>外网用户访问服务器的 Web 服务由 Nginx 提供，Nginx 需要配置静态资源的路径信息才能通过 url 正确访问到服务器上的静态资源。</p>
+<p>打开 Nginx 的默认配置文件 [/etc/nginx/nginx.conf] ，修改 Nginx 配置，将默认的 <code>root /usr/share/nginx/html;</code> 修改为: <code>root /data/www;</code>，如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;example verb="edit" file="/etc/nginx/nginx.conf" /&gt;</span><br><span class="line"><span class="attribute">user</span> nginx;</span><br><span class="line"><span class="attribute">worker_processes</span> auto;</span><br><span class="line"><span class="attribute">error_log</span> /var/log/nginx/error.log;</span><br><span class="line"><span class="attribute">pid</span> /run/nginx.pid;</span><br><span class="line"></span><br><span class="line"><span class="attribute">include</span> /usr/share/nginx/modules/<span class="regexp">*.conf</span>;</span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span> <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">log_format</span>  main  <span class="string">'<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] "<span class="variable">$request</span>" '</span></span><br><span class="line">                      <span class="string">'<span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> "<span class="variable">$http_referer</span>" '</span></span><br><span class="line">                      <span class="string">'"<span class="variable">$http_user_agent</span>" "<span class="variable">$http_x_forwarded_for</span>"'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span>  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">sendfile</span>            <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">tcp_nopush</span>          <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">tcp_nodelay</span>         <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">keepalive_timeout</span>   <span class="number">65</span>;</span><br><span class="line">    <span class="attribute">types_hash_max_size</span> <span class="number">2048</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">include</span>             /etc/nginx/mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>        application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">include</span> /etc/nginx/conf.d/<span class="regexp">*.conf</span>;</span><br><span class="line"></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">80</span> default_server;</span><br><span class="line">        <span class="attribute">listen</span>       [::]:<span class="number">80</span> default_server;</span><br><span class="line">        <span class="attribute">server_name</span>  _;</span><br><span class="line">        <span class="attribute">root</span>         /data/www;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">include</span> /etc/nginx/default.d/<span class="regexp">*.conf</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">error_page</span> <span class="number">404</span> /<span class="number">404</span>.html;</span><br><span class="line">            <span class="attribute">location</span> = /40x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">error_page</span> <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span> /50x.html;</span><br><span class="line">            <span class="attribute">location</span> = /50x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置文件将 [/data/www/static][data-www-static-path] 作为所有静态资源请求的根路径，如访问: <code>http://xxx.xxx.xxx.xxx/static/index.js</code>，将会去 [/data/www/static/][data-www-static-path] 目录下去查找 <code>index.js</code>。现在我们需要重启 Nginx 让新的配置生效，如：</p>
+<blockquote>
+<locate for="data-www-static-path" path="/data/www/static" hint="这里是所有静态资源请求的根路径">
+</locate></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+<p>重启后，现在我们应该已经可以使用我们的静态服务器了，现在让我们新建一个静态文件，查看服务是否运行正常。</p>
+<p>首先让我们在 [/data][data-path] 目录 下创建 <code>www</code> 目录，如：</p>
+<blockquote>
+<locate for="data" path="/data/www" hint="该目录作为服务器的根目录使用">
+</locate></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /data/www</span><br></pre></td></tr></table></figure>
+<blockquote>
+<locate for="1" path="/etc/nginx/nginx.conf" hint="编辑默认服务器配置，修改网站的根路径">
+</locate></blockquote>
+<blockquote>
+<checker type="output-contains" command="ls /data/ -la" hint="在 `/data`目录 下创建 `/www`目录"><br>    <keyword regex="www"><br></keyword></checker>
+</blockquote>
+<h3 id="创建第一个静态文件"><a href="#创建第一个静态文件" class="headerlink" title="创建第一个静态文件"></a>创建第一个静态文件</h3><p>在 [/data/www] 目录下创建我们的第一个静态文件 [index.html]</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/// <span class="tag">&lt;<span class="name">example</span> <span class="attr">verb</span>=<span class="string">"edit"</span> <span class="attr">file</span>=<span class="string">"/data/www/index.html"</span> /&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>第一个静态文件<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">Hello world！</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>现在访问 [<a href="http://xxx.xxx.xxx.xxx/index.html]" target="_blank" rel="noopener">http://xxx.xxx.xxx.xxx/index.html]</a> 应该可以看到页面输出 [Hello world!][indicate-hello-world] </p>
+<p>到此，一个基于 Nginx 的静态服务器就搭建完成了，现在所有放在 [/data/www] 目录下的的静态资源都可以直接通过域名访问。</p>
+<blockquote>
+<locate for="data-www-path" path="/data/www" hint="/data/www 是服务器的根目录">
+</locate></blockquote>
+<blockquote>
+<locate for="1" path="/data/www" hint="添加 index.html 文件">
+</locate></blockquote>
+<blockquote>
+<bubble for="indicate-hello-world"><br>如果无显示，请刷新浏览器页面<br></bubble>
+</blockquote>
+<blockquote>
+<checker type="output-contains" command="curl -I --silent http://xxx.xxx.xxx.xxx" hint="配置 Nginx 静态服务根路径"><br>    <keyword regex="HTTP/1.1 200 OK"><br></keyword></checker>
+</blockquote>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/09/18/facebook-immutable-js/">facebook immutable.js 意义何在</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-18
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性做一些事情，但是，在复杂的开发中它的副作用远比好处大的多。于是才有了浅copy和深copy，就是为了解决这个问题。</p>
+<p>举个常见例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var  defaultConfig = &#123; /* 默认值 */&#125;;</span><br><span class="line">var config = $.extend(&#123;&#125;, defaultConfig,initConfig); </span><br><span class="line">// jQuery用法。initConfig是自定义值</span><br><span class="line">var config = $.extend(true, &#123;&#125;, defaultConfig, initConfig); </span><br><span class="line">//如果对象是多层的，就用到deep-copy</span><br></pre></td></tr></table></figure>
+<p>了<code>ES6</code>出现原生的<code>assign</code>方法，但它相当于是<code>浅copy</code>。如果有了不可变的数据结构就省心了，<code>ES5.1</code>中对象有了<code>freeze</code>方法，也是<code>浅copy</code>，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a=Object.freeze(&#123;a:1&#125;); </span><br><span class="line">b=a; b.a=10;</span><br><span class="line"></span><br><span class="line">a.a还是1。在实际开发中浅copy通常不够。</span><br></pre></td></tr></table></figure>
+<p>如果用immutableJS:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var  defaultConfig = Immutable.fromJS(&#123; /* 默认值 */&#125;); </span><br><span class="line">var config = defaultConfig.merge(initConfig); </span><br><span class="line">// defaultConfig不会改变，返回新值给config</span><br><span class="line">var config = defaultConfig.mergeDeep(initConfig);//深层merge</span><br></pre></td></tr></table></figure>
+<p>上述用deep-copy也可以做到，差别在于性能。每次<code>deep-copy</code>都要把整个对象递归的复制一份。而<code>immutable</code>的实现有些像<code>链表</code>，添加一个新结点把旧结点的父子关系转移到新结点上，性能提升很多，想深挖原理请看这里：</p>
+<p><a href="https://en.wikipedia.org/wiki/Persistent_data_structure" target="_blank" rel="noopener">Persistent data structure</a>。</p>
+<p>ImmutableJS给的远不止这些，它提供了7种不可变的数据结构：<code>List</code>, <code>Stack</code>, <code>Map</code>, <code>OrderedMap</code>, <code>Set</code>, <code>OrderedSet</code>, <code>Record</code> （详见文档<a href="http://facebook.github.io/immutable-js/docs/#/" target="_blank" rel="noopener">Immutable.js</a>，文档很geek，打开console试吧）。</p>
+<p>immutableJS ＋ 原生Javascript等于真正的函数式编程。遍历对象不再用<code>for-in</code>，可以这样:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Immutable.fromJS(&#123;a:1, b:2, c:3&#125;).map(function(value, key) &#123; /* do some thing */&#125;);</span><br><span class="line">实现一个map-reduce:</span><br><span class="line">var o = Immutable.fromJS(&#123;a:&#123;a:1&#125;, b:&#123;a:2&#125;, c:&#123;a:3&#125;&#125;);</span><br><span class="line">o.map(function(e)&#123; return e.get(&apos;a&apos;); &#125;).reduce(function(e1, e2)&#123; return e1 + e2; &#125;, 0);</span><br><span class="line">修改藏在深处的值，可以这样：</span><br><span class="line">var o = Immutable.fromJS(&#123;a:[&#123;a1:1&#125;, &#123;b:[&#123;t:1&#125;]&#125;, &#123;c1:2&#125;], b:2, c:3&#125;);</span><br><span class="line">o = o.setIn([&apos;a&apos;, 1, &apos;b&apos;, 0, &apos;t&apos;], 100);  </span><br><span class="line">// t赋值o = o.updateIn([&apos;a&apos;, 1, &apos;b&apos;, 0, &apos;t&apos;], function(e)&#123; return e * 100; &#125;); // t * 100</span><br><span class="line"></span><br><span class="line">比较两个对象是否完全相等:</span><br><span class="line">o1.equals(o2)</span><br></pre></td></tr></table></figure>
+<p>远不止这些，<code>immutableJS</code>提供了强大的api自己去看吧。由于是不可变的，可以放心的对对象进行任意操作。在<code>React</code>开发中，频繁操作state对象或是store，配合immutableJS快、安全、方便。</p>
+<blockquote>
+<p>form链接：<a href="https://www.zhihu.com/question/28016223/answer/50154351" target="_blank" rel="noopener">https://www.zhihu.com/question/28016223/answer/50154351</a></p>
+</blockquote>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/08/08/h5-video/">html5视频方案</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-08-08
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="方案1：播放本地视频源（-mp4文件）"><a href="#方案1：播放本地视频源（-mp4文件）" class="headerlink" title="方案1：播放本地视频源（.mp4文件）"></a>方案1：播放本地视频源（<code>.mp4</code>文件）</h2><blockquote>
+<p>说明：</p>
+<p>由于 <code>h5</code> 的<code>video</code>标签，使用的是浏览器内置的播放器，播放器的样式与平台的不同各式各样。为了统一视频展现形式，建议放一个带播放按钮样式的视频的截图，然后把图片盖在视频区域上，点击图片，通过js调用的形式，视频播放。</p>
+<p>把实例代码拷贝到<code>.html</code>文件中运行，最好在手机上查看效果。pc上播放基本相同，手机上播放不大相同。</p>
+</blockquote>
+<p>这个是带播放按钮的视频截图</p>
+<p><img src="http://img.haihu.com/0116110390a5c6ef42f14e6fac5fdf75fef3d2e0.png" alt="image"></p>
+<p>实例代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;H5 视频播放 mp4&lt;/title&gt;</span><br><span class="line">		&lt;script src=&quot;https://g.alicdn.com/mtb/??lib-flexible/0.3.2/flexible_css.js,lib-flexible/0.3.2/flexible.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">			* &#123;</span><br><span class="line">				padding: 0;</span><br><span class="line">				margin: 0;</span><br><span class="line">			&#125;</span><br><span class="line">			html,</span><br><span class="line">			body &#123;</span><br><span class="line">				width: 100%;</span><br><span class="line">			&#125;</span><br><span class="line">			body &#123;</span><br><span class="line">				width: 10rem;</span><br><span class="line">				margin: 0 auto;</span><br><span class="line">			&#125;</span><br><span class="line">			div,</span><br><span class="line">			p,</span><br><span class="line">			img &#123;</span><br><span class="line">				box-sizing: content-box;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			.content &#123;</span><br><span class="line">				width: 10rem;</span><br><span class="line">			&#125;</span><br><span class="line">			.mp4 &#123;</span><br><span class="line">				height: 5.78125rem;</span><br><span class="line">				width: 100%;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			video &#123;</span><br><span class="line">				position: absolute;</span><br><span class="line">				z-index: 1;</span><br><span class="line">				width: 100%;</span><br><span class="line">				height: 5.78125rem;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			.video-play &#123;</span><br><span class="line">				z-index: 2;</span><br><span class="line">				position: absolute;</span><br><span class="line">				width: 100%;</span><br><span class="line">				height: 5.78125rem;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			p &#123;</span><br><span class="line">				text-align: center;</span><br><span class="line">			&#125;</span><br><span class="line">		&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">		&lt;div class=&quot;content&quot;&gt;</span><br><span class="line">			&lt;p&gt;这里是内容&lt;/p&gt;</span><br><span class="line">			&lt;p&gt;这里是内容&lt;/p&gt;</span><br><span class="line">			&lt;p&gt;这里是内容&lt;/p&gt;</span><br><span class="line">			&lt;div class=&quot;mp4&quot;&gt;</span><br><span class="line">				&lt;video id=&quot;szjVideo&quot; preload=&quot;auto&quot; x-webkit-airplay=&quot;true&quot; webkit-playsinline=&quot;true&quot; controls=&quot;controls&quot;&gt;</span><br><span class="line">					&lt;source type=&quot;video/mp4&quot; src=&quot;http://img.haihu.com/01161102914fb7f5262d4f898ad3a6cfc1db35cc.mp4&quot;&gt;</span><br><span class="line">				&lt;/video&gt;</span><br><span class="line">				&lt;img class=&quot;video-play&quot; id=&quot;play&quot; src=&quot;http://img.haihu.com/0116110390a5c6ef42f14e6fac5fdf75fef3d2e0.png&quot; /&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">			&lt;p&gt;这里是内容&lt;/p&gt;</span><br><span class="line">			&lt;p&gt;这里是内容&lt;/p&gt;</span><br><span class="line">			&lt;p&gt;这里是内容&lt;/p&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">		&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">			//图片播放按钮</span><br><span class="line">			var videoImgPlay = document.getElementById(&quot;play&quot;);</span><br><span class="line">			//点击图片播放</span><br><span class="line">			videoImgPlay.onclick = function() &#123;</span><br><span class="line">				var videoPlay = true;</span><br><span class="line">				var video = document.getElementById(&quot;szjVideo&quot;);</span><br><span class="line">				if(videoPlay) &#123;</span><br><span class="line">					videoPlay = false;</span><br><span class="line">					videoImgPlay.style.display = &apos;none&apos;;</span><br><span class="line">					video.play();</span><br><span class="line">				&#125; else &#123;</span><br><span class="line">					videoImgPlay.style.display = &apos;block&apos;;</span><br><span class="line">					videoPlay = true;</span><br><span class="line">					video.pause();</span><br><span class="line">				&#125;</span><br><span class="line">				//监听视频播放完成</span><br><span class="line">				video.addEventListener(&apos;ended&apos;, function() &#123;</span><br><span class="line">					console.log(&quot;end&quot;);</span><br><span class="line">					videoPlay = true;</span><br><span class="line">					videoImgPlay.style.display = &apos;block&apos;;</span><br><span class="line">				&#125;);</span><br><span class="line">			&#125;</span><br><span class="line">		&lt;/script&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://img.alicdn.com/imgextra/i3/2296013456/TB2JbF3aC.EF1JjSZPcXXaxaFXa_!!2296013456.jpg" alt="image"></p>
+<h2 id="方案2：播放外部视频资源（优酷为例）"><a href="#方案2：播放外部视频资源（优酷为例）" class="headerlink" title="方案2：播放外部视频资源（优酷为例）"></a>方案2：播放外部视频资源（优酷为例）</h2><p>外部链接视频 以<code>优酷</code>为例，去优酷播放页面找到下面<code>iframe</code>链接，放到html指定区域中</p>
+<p><img src="https://img.alicdn.com/imgextra/i3/2296013456/TB29c5xap6.F1JjSZFpXXcZjXXa_!!2296013456.png" alt="image"></p>
+<blockquote>
+<p>由于是外部资源，而且是<code>iframe</code>导入的页面，所以<code>js</code>、<code>css</code>没办法对其做操作，他们的样式、交互、展示内容<strong>没办法控制</strong>。</p>
+</blockquote>
+<p>实例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;H5外链 优酷视频 播放&lt;/title&gt;</span><br><span class="line">		&lt;script src=&quot;https://g.alicdn.com/mtb/??lib-flexible/0.3.2/flexible_css.js,lib-flexible/0.3.2/flexible.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">			* &#123;</span><br><span class="line">				padding: 0;</span><br><span class="line">				margin: 0;</span><br><span class="line">			&#125;</span><br><span class="line">			html,</span><br><span class="line">			body &#123;</span><br><span class="line">				width: 100%;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			body &#123;</span><br><span class="line">				width: 10rem;</span><br><span class="line">				margin: 0 auto;</span><br><span class="line">			&#125;</span><br><span class="line">			p &#123;</span><br><span class="line">				text-align: center;</span><br><span class="line">			&#125;</span><br><span class="line">		&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">		&lt;p&gt;</span><br><span class="line">			这里是内容</span><br><span class="line">		&lt;/p&gt;</span><br><span class="line">		&lt;p&gt;</span><br><span class="line">			这里是内容</span><br><span class="line">		&lt;/p&gt;</span><br><span class="line">		&lt;iframe style=&quot;height: 6.25rem;width: 10rem;&quot; src=&apos;http://player.youku.com/embed/XMjk1MDIzMTY0OA==&apos; frameborder=0 &apos;allowfullscreen&apos;&gt;&lt;/iframe&gt;</span><br><span class="line">		&lt;p&gt;</span><br><span class="line">			这里是内容</span><br><span class="line">		&lt;/p&gt;</span><br><span class="line">		&lt;p&gt;</span><br><span class="line">			这里是内容</span><br><span class="line">		&lt;/p&gt;</span><br><span class="line">		&lt;p&gt;</span><br><span class="line">			这里是内容</span><br><span class="line">		&lt;/p&gt;</span><br><span class="line">		&lt;p&gt;</span><br><span class="line">			这里是内容</span><br><span class="line">		&lt;/p&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="https://img.alicdn.com/imgextra/i3/2296013456/TB2elmDaxr9F1JjSZPfXXawbFXa_!!2296013456.jpg" alt="image"></p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/08/07/centos7-initialization/">linux centos7 初始化安装软件运行环境</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-08-07
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="centos-7-安装-nginx，配置https-以及注意事项"><a href="#centos-7-安装-nginx，配置https-以及注意事项" class="headerlink" title="centos 7 安装 nginx，配置https 以及注意事项"></a>centos 7 安装 nginx，配置https 以及注意事项</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y nginx</span><br></pre></td></tr></table></figure>
+<p>却发现一直提示<code>No package nginx available</code></p>
+<p>尝试安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y epel-release</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 首先进入/yum.repos.d目录</span></span><br><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后编辑epel.repo文件</span></span><br><span class="line">vi epel.repo</span><br><span class="line"></span><br><span class="line">[epel]</span><br><span class="line">name=Extra Packages <span class="keyword">for</span> Enterprise Linux 7 - <span class="variable">$basearch</span></span><br><span class="line"><span class="comment">#baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch</span></span><br><span class="line">mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-7&amp;arch=<span class="variable">$basearch</span></span><br><span class="line">failovermethod=priority</span><br><span class="line">enabled=0</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7</span><br><span class="line"></span><br><span class="line">[epel-debuginfo]</span><br><span class="line">name=Extra Packages <span class="keyword">for</span> Enterprise Linux 7 - <span class="variable">$basearch</span> - Debug</span><br><span class="line"><span class="comment">#baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch/debug</span></span><br><span class="line">mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-7&amp;arch=<span class="variable">$basearch</span></span><br><span class="line">failovermethod=priority</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7</span><br><span class="line">gpgcheck=1</span><br><span class="line"></span><br><span class="line">[epel-source]</span><br><span class="line">name=Extra Packages <span class="keyword">for</span> Enterprise Linux 7 - <span class="variable">$basearch</span> - Source</span><br><span class="line"><span class="comment">#baseurl=http://download.fedoraproject.org/pub/epel/7/SRPMS</span></span><br><span class="line">mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-source-7&amp;arch=<span class="variable">$basearch</span></span><br><span class="line">failovermethod=priority</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7</span><br><span class="line">gpgcheck=1</span><br></pre></td></tr></table></figure>
+<p>可以看到，<code>[epel]</code>和<code>[epel-source]</code>里面的enabled都是<code>0</code>，解决办法就在这里，只要把<code>0</code>改成<code>1</code>，保存退出后即可。</p>
+<p>现在我们重新运行<code>yum repolist</code>，会发现<code>epel</code>源已经被加上了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">源标识                          源名称                                                                      状态</span><br><span class="line">base/7/x86_64                   CentOS-7 - Base                                                             9,590+1</span><br><span class="line">elrepo-kernel                   ELRepo.org Community Enterprise Linux Kernel Repository - el7                    37</span><br><span class="line">epel/x86_64                     Extra Packages for Enterprise Linux 7 - x86_64                               12,277</span><br><span class="line">epel-source/x86_64              Extra Packages for Enterprise Linux 7 - x86_64 - Source                           0</span><br><span class="line">extras/7/x86_64                 CentOS-7 - Extras                                                               388</span><br><span class="line">nodesource/x86_64               Node.js Packages for Enterprise Linux 7 - x86_64                                 22</span><br><span class="line">updates/7/x86_64                CentOS-7 - Updates                                                          1,922+7</span><br><span class="line">repolist: 24,236</span><br></pre></td></tr></table></figure>
+<p>再执行<code>yum install -y nginx</code>，发现终于能够成功安装了！</p>
+<p>启动nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">service nginx statrt #启动</span><br><span class="line">service nginx stop</span><br><span class="line">service nginx restart</span><br><span class="line">service nginx status</span><br></pre></td></tr></table></figure>
+<h2 id="使用HTTPS"><a href="#使用HTTPS" class="headerlink" title="使用HTTPS"></a>使用HTTPS</h2><p>首先通过yum下载安装certbot：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install certbot</span><br></pre></td></tr></table></figure>
+<p>进入<code>/etc/nginx</code>，然后编辑<code>nginx.conf</code>，在<code>server</code>里面添加下列两个<code>location</code>规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">location ^~ /.well-known/acme-challenge/ &#123;</span><br><span class="line">   default_type &quot;text/plain&quot;;</span><br><span class="line">   root     /usr/share/nginx/html;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location = /.well-known/acme-challenge/ &#123;</span><br><span class="line">   return 404;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，上面的root我是指向了<code>/usr/share/nginx/html</code>，这个目录是可以随便指定的，我这么写完全是为了偷懒。</p>
+<p>nginx配置好了以后，就可以使用<code>certbot</code>生成证书了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># certbot certonly --webroot -w &lt;root url&gt; -d &lt;hostname&gt;</span><br><span class="line"></span><br><span class="line">certbot certonly --webroot -w /usr/share/nginx/html/ -d xueshanshan.com</span><br></pre></td></tr></table></figure>
+<p>如果看到下列的输出，就证明证书已经生成成功了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">IMPORTANT NOTES:</span><br><span class="line"> - Congratulations! Your certificate and chain have been saved at</span><br><span class="line">   /etc/letsencrypt/live/xueshanshan.com/fullchain.pem. Your cert</span><br><span class="line">   will expire on 20XX-09-23. To obtain a new or tweaked version of</span><br><span class="line">   this certificate in the future, simply run certbot again. To</span><br><span class="line">   non-interactively renew *all* of your certificates, run &quot;certbot</span><br><span class="line">   renew&quot;</span><br><span class="line"> - If you like Certbot, please consider supporting our work by:</span><br><span class="line"></span><br><span class="line">   Donating to ISRG / Let&apos;s Encrypt:   https://letsencrypt.org/donate</span><br><span class="line">   Donating to EFF:                    https://eff.org/donate-le</span><br></pre></td></tr></table></figure>
+<p>证书已经准备好了，我们还需要<code>nginx</code>的支持。重新打开<code>/etc/nginx/nginx.conf</code>，然后把注释掉的<code>https server</code>给[注释]回来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       443 ssl http2 default_server;</span><br><span class="line">    listen       [::]:443 ssl http2 default_server;</span><br><span class="line">    server_name  xueshanshan.com;</span><br><span class="line">    root         /home/www;</span><br><span class="line"></span><br><span class="line">    ssl_certificate &quot;/etc/letsencrypt/live/xueshanshan.com/fullchain.pem&quot;;</span><br><span class="line">    ssl_certificate_key &quot;/etc/letsencrypt/live/xueshanshan.com/privkey.pem&quot;;</span><br><span class="line">    ssl_trusted_certificate /etc/letsencrypt/live/xueshanshan.com/chain.pem;</span><br><span class="line"></span><br><span class="line">    # Load configuration files for the default server block.</span><br><span class="line">    include /etc/nginx/default.d/*.conf;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page 404 /404.html;</span><br><span class="line">        location = /40x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page 500 502 503 504 /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ps: 上面的root我给配置了<code>/home/www</code>目录，意味着以后只要是放在该目录下的静态资源文件夹，我都可以通过<code>https://xxx.com/文件夹名</code>直接进行访问，更多关于<code>nginx</code>的配置请参考官方文档。</p>
+<p>最后重启一下<code>nginx</code>，就可以检验我们的页面是否已经打上小绿标了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service nginx restart</span><br></pre></td></tr></table></figure>
+<p>由于<code>certbot</code>所使用的<code>letsencrypt</code>证书只有<code>90天</code>的有效期，所以我们需要对它定期<code>自动更新</code></p>
+<p>首先模拟更新：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo certbot renew --dry-run</span><br><span class="line"></span><br><span class="line"># 看到如下输出证明模拟更新成功</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">Processing /etc/letsencrypt/renewal/your.domain.com.conf</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">** DRY RUN: simulating &apos;certbot renew&apos; close to cert expiry</span><br><span class="line">**          (The test certificates below have not been saved.)</span><br><span class="line"></span><br><span class="line">Congratulations, all renewals succeeded. The following certs have been renewed:</span><br><span class="line">  /etc/letsencrypt/live/xueshanshan.com/fullchain.pem (success)</span><br><span class="line">** DRY RUN: simulating &apos;certbot renew&apos; close to cert expiry</span><br><span class="line">**          (The test certificates above have not been saved.)</span><br></pre></td></tr></table></figure>
+<p>然后就可以使用<code>crontab -e</code>命令来实现自动化了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo crontab -e</span><br><span class="line"></span><br><span class="line">#添加配置，每周一半夜3点00分执行renew：</span><br><span class="line"></span><br><span class="line">00 3 * * 1 /usr/bin/certbot renew  &gt;&gt; /var/log/le-renew.log</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/07/25/setup-firekylin-blogs/">linux安装node-firekylin博客系统</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-25
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>在服务器上下载安装包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://firekylin.org/release/latest.tar.gz</span><br></pre></td></tr></table></figure>
+<p>解压安装包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zvxf latest.tar.gz</span><br></pre></td></tr></table></figure>
+<p>安装程序依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> firekylin</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>复制项目下的 <code>pm2_default.json</code> 文件生成新文件 <code>pm2.json</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp pm2_default.json pm2.json</span><br></pre></td></tr></table></figure>
+<p>修改 pm2.json 文件中的 <code>cwd</code> 配置值为项目的当前路径 <code>/root/firekylin</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"apps"</span>: [&#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"firekylin"</span>,</span><br><span class="line">    <span class="string">"script"</span>: <span class="string">"www/production.js"</span>,</span><br><span class="line">    <span class="string">"cwd"</span>: <span class="string">"/root/firekylin"</span>,</span><br><span class="line">    <span class="string">"exec_mode"</span>: <span class="string">"fork"</span>,</span><br><span class="line">    <span class="string">"max_memory_restart"</span>: <span class="string">"1G"</span>,</span><br><span class="line">    <span class="string">"autorestart"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"node_args"</span>: [],</span><br><span class="line">    <span class="string">"args"</span>: [],</span><br><span class="line">    <span class="string">"env"</span>: &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后通过以下命令启动项目</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 startOrReload pm2.json</span><br></pre></td></tr></table></figure>
+<p>访问: http://【ip地址】:8360/</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/07/05/linux-php/">linux php环境安装与配置以及eoLinker安装</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-05
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="安装-XAMPP"><a href="#安装-XAMPP" class="headerlink" title="安装 XAMPP"></a>安装 XAMPP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">下载包</span><br><span class="line">wget https://www.apachefriends.org/xampp-files/7.2.0/xampp-linux-x64-7.2.0-0-installer.run</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">写权限</span><br><span class="line">chmod 755 xampp-linux-*-installer.run</span><br><span class="line"></span><br><span class="line">安装</span><br><span class="line">sudo ./xampp-linux-*-installer.run</span><br></pre></td></tr></table></figure>
+<h4 id="start-XAMPP"><a href="#start-XAMPP" class="headerlink" title="start XAMPP"></a>start XAMPP</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /opt/lampp/lampp start</span><br></pre></td></tr></table></figure>
+<p>如果如下报错 请安装 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">XAMPP: Starting Apache...already running.</span><br><span class="line">XAMPP: Starting MySQL.../opt/lampp/share/xampp/xampplib:行22: netstat: 未找到命令</span><br><span class="line">ok.</span><br><span class="line">XAMPP: Starting ProFTPD.../opt/lampp/share/xampp/xampplib:行22: netstat: 未找到命令</span><br><span class="line">ok.</span><br></pre></td></tr></table></figure>
+<p>请安装 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install net-tools</span><br></pre></td></tr></table></figure>
+<h3 id="You-should-now-see-something-like-this-on-your-screen"><a href="#You-should-now-see-something-like-this-on-your-screen" class="headerlink" title="You should now see something like this on your screen:"></a>You should now see something like this on your screen:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Starting XAMPP 1.8.2...</span><br><span class="line"></span><br><span class="line">LAMPP: Starting Apache...</span><br><span class="line"></span><br><span class="line">LAMPP: Starting MySQL...</span><br><span class="line"></span><br><span class="line">LAMPP started.</span><br><span class="line"></span><br><span class="line">Ready. Apache and MySQL are running.</span><br></pre></td></tr></table></figure>
+<h4 id="stop-XAMPP"><a href="#stop-XAMPP" class="headerlink" title="stop XAMPP"></a>stop XAMPP</h4><p>To stop XAMPP simply call this command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /opt/lampp/lampp stop</span><br></pre></td></tr></table></figure>
+<p>You should now see something like this on your screen:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Stopping XAMPP 1.8.2...</span><br><span class="line"></span><br><span class="line">LAMPP: Stopping Apache...</span><br><span class="line"></span><br><span class="line">LAMPP: Stopping MySQL...</span><br><span class="line"></span><br><span class="line">LAMPP stopped.</span><br></pre></td></tr></table></figure>
+<h3 id="初始化-密码："><a href="#初始化-密码：" class="headerlink" title="初始化 密码："></a>初始化 密码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/lampp/lampp security</span><br></pre></td></tr></table></figure>
+<p>下面是过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># /opt/lampp/lampp security</span><br><span class="line">XAMPP:  Quick security check...</span><br><span class="line">XAMPP:  MySQL is accessable via network.</span><br><span class="line">XAMPP: Normaly that&apos;s not recommended. Do you want me to turn it off? [yes]</span><br><span class="line">XAMPP:  Turned off.</span><br><span class="line">XAMPP: Stopping MySQL...ok.</span><br><span class="line">XAMPP: Starting MySQL...ok.</span><br><span class="line">XAMPP:  The MySQL/phpMyAdmin user pma has no password set!!!</span><br><span class="line">XAMPP: Do you want to set a password? [yes]</span><br><span class="line">XAMPP: Password:</span><br><span class="line">XAMPP: Password (again):</span><br><span class="line">XAMPP:  Setting new MySQL pma password.</span><br><span class="line">XAMPP:  Setting phpMyAdmin&apos;s pma password to the new one.</span><br><span class="line">XAMPP:  MySQL has no root passwort set!!!</span><br><span class="line">XAMPP: Do you want to set a password? [yes]</span><br><span class="line">XAMPP:  Write the password somewhere down to make sure you won&apos;t forget it!!!</span><br><span class="line">XAMPP: Password:</span><br><span class="line">XAMPP: Password (again):</span><br><span class="line">XAMPP:  Setting new MySQL root password.</span><br><span class="line">XAMPP:  Change phpMyAdmin&apos;s authentication method.</span><br><span class="line">XAMPP:  The FTP password for user &apos;daemon&apos; is still set to &apos;xampp&apos;.</span><br><span class="line">XAMPP: Do you want to change the password? [yes]</span><br><span class="line">XAMPP: Password:</span><br><span class="line">XAMPP: Password (again):</span><br><span class="line">XAMPP: Reload ProFTPD...ok.</span><br><span class="line">XAMPP:  Done.</span><br></pre></td></tr></table></figure>
+<h4 id="修改数据库密码"><a href="#修改数据库密码" class="headerlink" title="修改数据库密码"></a>修改数据库密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/lampp/bin/mysqladmin --user=root password &quot;ECMA(root2018).&quot;</span><br></pre></td></tr></table></figure>
+<p>允许数据库 远程登录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//链接数据库 //新安装的数据库是没有密码的，这里直接按下回车就行 如果有密码则输入密码</span><br><span class="line">mysql -u root -p</span><br><span class="line">//设置密码 设置过了 略过</span><br><span class="line">set password for &apos;root&apos;@&apos;localhost&apos; = password(&apos;xuess&apos;); </span><br><span class="line"></span><br><span class="line">//为其他主机远程连接数据库开放访问权限，重新登入数据库：</span><br><span class="line">//选择mysql数据库进行操作</span><br><span class="line">use mysql; </span><br><span class="line"> </span><br><span class="line">//查看user,password,host这三个字段的权限分配情况</span><br><span class="line">select user,password,host from user;  </span><br><span class="line"></span><br><span class="line">+------+-------------------------------------------+-----------+</span><br><span class="line">| user | password                                  | host      |</span><br><span class="line">+------+-------------------------------------------+-----------+</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | localhost |</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | 127.0.0.1 |</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | ::1       |</span><br><span class="line">|      |                                           | localhost |</span><br><span class="line">| pma  | *7723D1540A6840E272E047B564098468B7DB9BD8 | localhost |</span><br><span class="line">+------+-------------------------------------------+-----------+</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//通过以上输出可以看出数据库默认只允许用户root在本地服务器（localhost）上登录，不允许其他主机远程连接。</span><br><span class="line"></span><br><span class="line">//修改root 链接权限 *xuess* 是设置好的密码</span><br><span class="line">//这条语句将允许用户root使用密码(xuess)在任何主机上连接该数据库，并赋予该用户所有权限。</span><br><span class="line">MariaDB [mysql]&gt; grant all privileges on *.* to root@&quot;%&quot; identified by &quot;xuess&quot;;  </span><br><span class="line">//出现下面说明 生效</span><br><span class="line">&gt; Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">//执行 把权限缓存到 内存中 </span><br><span class="line">flush privileges</span><br><span class="line"></span><br><span class="line">//再查询一下</span><br><span class="line">select user,password,host from user;</span><br><span class="line">+------+-------------------------------------------+-----------+</span><br><span class="line">| user | password                                  | host      |</span><br><span class="line">+------+-------------------------------------------+-----------+</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | localhost |</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | 127.0.0.1 |</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | ::1       |</span><br><span class="line">|      |                                           | localhost |</span><br><span class="line">| pma  | *7723D1540A6840E272E047B564098468B7DB9BD8 | localhost |</span><br><span class="line">| root | *7723D1540A6840E272E047B564098468B7DB9BD8 | %         |</span><br><span class="line">+------+-------------------------------------------+-----------+</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//上面中的“%”就意味着任何主机都被允许连接数据库</span><br><span class="line"></span><br><span class="line">如果远程还链接不上，请关闭防火墙</span><br><span class="line"></span><br><span class="line">sudo systemctl stop firewalld.service &amp;&amp; sudo systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>
+<h4 id="目录说明"><a href="#目录说明" class="headerlink" title="目录说明"></a>目录说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/opt/lampp/bin/	XAMPP 命令库。例如 /opt/lampp/bin/mysql 可执行 MySQL 监视器。</span><br><span class="line">/opt/lampp/htdocs/	Apache 文档根目录。</span><br><span class="line">/opt/lampp/etc/httpd.conf	Apache 配置文件。</span><br><span class="line">/opt/lampp/etc/my.cnf	MySQL 配置文件。</span><br><span class="line">/opt/lampp/etc/php.ini	PHP 配置文件。</span><br><span class="line">/opt/lampp/etc/proftpd.conf	ProFTPD 配置文件。（从 0.9.5 版开始）</span><br><span class="line">/opt/lampp/phpmyadmin/config.inc.php phpMyAdmin 配制文件。</span><br></pre></td></tr></table></figure>
+<h2 id="eoLinker-安装"><a href="#eoLinker-安装" class="headerlink" title="eoLinker 安装"></a>eoLinker 安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">打开 文档目录</span><br><span class="line">cd /opt/lampp/htdocs/</span><br><span class="line"></span><br><span class="line">创建目录</span><br><span class="line">mkdir eolinker</span><br><span class="line"></span><br><span class="line">进入</span><br><span class="line">cd eolinker</span><br><span class="line"></span><br><span class="line">从git下载eoLinker 安装包 </span><br><span class="line">wget https://github.com/eolinker/eoLinker-API-Management-System-OS-3.X/raw/master/release%5B%E6%AD%A3%E5%BC%8F%E5%AE%89%E8%A3%85%E5%8C%85%5D/eolinker_os_3.2.1.zip</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">解压：如果没有 unzip 命令 请安装 yum install -y unzip zip</span><br><span class="line">unzip eolinker_os_3.2.1.zip</span><br><span class="line"></span><br><span class="line">赋权限</span><br><span class="line">cd ../</span><br><span class="line">chmod 777 -R  eolinker/</span><br><span class="line">或者</span><br><span class="line">chmod 777 server/RTP/config/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">创建数据库</span><br><span class="line">cd /opt/lampp/bin/	</span><br><span class="line"></span><br><span class="line">./mysql -u root -p</span><br><span class="line">然后 输入数据库密码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">然后进入 mysql，在 mysql 环境下 创建数据库 eolinker_os 命令</span><br><span class="line">create database eolinker_os;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">然后访问页面  配置和安装</span><br></pre></td></tr></table></figure>
+<p>由于服务器设置了xampp不允许远程访问，所以远程不能访问需要修改conf文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /opt/lampp/etc/extra/httpd-xampp.conf</span><br></pre></td></tr></table></figure>
+<p>将<code>Require local</code>改成<code>Require all granted</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/opt/lampp/lampp restart </span><br><span class="line">重启xampp</span><br></pre></td></tr></table></figure>
+<p>到此xampp安装完成</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/06/11/html5-flex/">flex布局</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-06-11
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h3 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h3><p>Flex 布局，可以简便、完整、响应式地实现各种页面布局。</p>
+<p>Flex 是 <code>Flexible Box</code> 的缩写，意为”<code>弹性布局</code>“，用来为盒状模型提供最大的灵活性。</p>
+<p>任何一个容器都可以指定为 Flex 布局。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>行内元素也可以使用 Flex 布局。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Webkit 内核的浏览器，必须加上-webkit前缀。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex; <span class="comment">/* Safari */</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，设为 <code>Flex</code> 布局以后，子元素的<code>float</code>、<code>clear</code>和<code>vertical-align</code>属性将失效。</p>
+</blockquote>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称”项目”。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071004.png" alt="image"></p>
+<p>容器默认存在两根轴：水平的主轴（<code>main axis</code>）和垂直的交叉轴（<code>cross axis</code>）。主轴的开始位置（与边框的交叉点）叫做<code>main start</code>，结束位置叫做<code>main end</code>；交叉轴的开始位置叫做<code>cross start</code>，结束位置叫做<code>cross end</code>。</p>
+<p>项目默认沿主轴排列。单个项目占据的主轴空间叫做<code>main size</code>，占据的交叉轴空间叫做<code>cross size</code>。</p>
+<h3 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h3><p>以下6个属性设置在容器上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">flex-direction</span><br><span class="line">flex-wrap</span><br><span class="line">flex-flow</span><br><span class="line">justify-content</span><br><span class="line">align-items</span><br><span class="line">align-content</span><br></pre></td></tr></table></figure>
+<h4 id="1-flex-direction属性"><a href="#1-flex-direction属性" class="headerlink" title="1.flex-direction属性"></a>1.flex-direction属性</h4><p><code>flex-direction</code>属性决定主轴的方向（即项目的排列方向）。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row | row-reverse | column | column-reverse;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">row</span>（默认值）：主轴为水平方向，起点在左端。</span><br><span class="line"><span class="selector-tag">row-reverse</span>：主轴为水平方向，起点在右端。</span><br><span class="line"><span class="selector-tag">column</span>：主轴为垂直方向，起点在上沿。</span><br><span class="line"><span class="selector-tag">column-reverse</span>：主轴为垂直方向，起点在下沿。</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071005.png" alt="image"></p>
+<h4 id="2-flex-wrap属性"><a href="#2-flex-wrap属性" class="headerlink" title="2.flex-wrap属性"></a>2.flex-wrap属性</h4><p>默认情况下，项目都排在一条线（又称”轴线”）上。<code>flex-wrap</code>属性定义，如果一条轴线排不下，如何换行。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071006.png" alt="image"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap | wrap | wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>nowrap</code>（默认）：不换行。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071007.png" alt="image"></p>
+<p><code>wrap</code>：换行，第一行在上方。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071008.jpg" alt="image"></p>
+<p><code>wrap-reverse</code>：换行，第一行在下方。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071009.jpg" alt="image"></p>
+<h4 id="3-flex-flow属性"><a href="#3-flex-flow属性" class="headerlink" title="3.flex-flow属性"></a>3.flex-flow属性</h4><p><code>flex-flow</code>属性是<code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式，默认值为<code>row nowrap</code>。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-flow</span>: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-justify-content属性"><a href="#4-justify-content属性" class="headerlink" title="4.justify-content属性"></a>4.justify-content属性</h4><p><code>justify-content</code>属性定义了项目在<code>主轴</code>上的对齐方式。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071010.png" alt="image"></p>
+<p>它可能取5个值，具体对齐方式与轴的方向有关。下面假设主轴为从左到右。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flex-start（默认值）：左对齐</span><br><span class="line">flex-end：右对齐</span><br><span class="line">center： 居中</span><br><span class="line">space-between：两端对齐，项目之间的间隔都相等。</span><br><span class="line">space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</span><br></pre></td></tr></table></figure>
+<h4 id="5-align-items属性"><a href="#5-align-items属性" class="headerlink" title="5.align-items属性"></a>5.align-items属性</h4><p><code>align-items</code>属性定义项目在<code>交叉轴</code>上如何对齐。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png" alt="image"></p>
+<p>它可能取5个值。具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flex-start：交叉轴的起点对齐。</span><br><span class="line">flex-end：交叉轴的终点对齐。</span><br><span class="line">center：交叉轴的中点对齐。</span><br><span class="line">baseline: 项目的第一行文字的基线对齐。</span><br><span class="line">stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</span><br></pre></td></tr></table></figure>
+<h4 id="6-align-content属性"><a href="#6-align-content属性" class="headerlink" title="6.align-content属性"></a>6.align-content属性</h4><p><code>align-content</code>属性定义了多根轴线的对齐方式。如果项目只有<code>一根轴线</code>，该属性<code>不起作用</code>。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071012.png" alt="image"></p>
+<p>该属性可能取6个值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">flex-start：与交叉轴的起点对齐。</span><br><span class="line">flex-end：与交叉轴的终点对齐。</span><br><span class="line">center：与交叉轴的中点对齐。</span><br><span class="line">space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</span><br><span class="line">space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</span><br><span class="line">stretch（默认值）：轴线占满整个交叉轴。</span><br></pre></td></tr></table></figure>
+<h3 id="项目的属性-是上面容器内的项目属性"><a href="#项目的属性-是上面容器内的项目属性" class="headerlink" title="项目的属性(是上面容器内的项目属性)"></a>项目的属性(是上面<code>容器内</code>的项目属性)</h3><p>以下6个属性设置在项目上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">order</span><br><span class="line">flex-grow</span><br><span class="line">flex-shrink</span><br><span class="line">flex-basis</span><br><span class="line">flex</span><br><span class="line">align-self</span><br></pre></td></tr></table></figure>
+<h4 id="1-order属性"><a href="#1-order属性" class="headerlink" title="1.order属性"></a>1.order属性</h4><p><code>order</code>属性定义项目的<code>排列顺序</code>。数值越小，排列越靠前，默认为<code>0</code>。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: &lt;integer&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071013.png" alt="image"></p>
+<h4 id="flex-grow属性"><a href="#flex-grow属性" class="headerlink" title="flex-grow属性"></a>flex-grow属性</h4><p><code>flex-grow</code>属性定义项目的<code>放大比例</code>，默认为<code>0</code>-&gt;即如果存在剩余空间，也不放大。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: &lt;number&gt;; <span class="comment">/* default 0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071014.png" alt="image"></p>
+<blockquote>
+<p>如果所有项目的<code>flex-grow</code>属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的<code>flex-grow</code>属性为<code>2</code>，其他项目都为<code>1</code>，则前者占据的剩余空间将比其他项多<code>一倍</code>。</p>
+</blockquote>
+<h4 id="flex-shrink属性"><a href="#flex-shrink属性" class="headerlink" title="flex-shrink属性"></a>flex-shrink属性</h4><p><code>flex-shrink</code>属性定义了项目的<code>缩小比例</code>，默认为<code>1</code>-&gt;即如果空间不足，该项目将缩小。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: &lt;number&gt;; <span class="comment">/* default 1 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071015.jpg" alt="image"></p>
+<blockquote>
+<p>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
+</blockquote>
+<blockquote>
+<p>负值对该属性无效。</p>
+</blockquote>
+<h4 id="4-flex-basis属性"><a href="#4-flex-basis属性" class="headerlink" title="4.flex-basis属性"></a>4.flex-basis属性</h4><p><code>flex-basis</code>属性定义了在分配多余空间之前，项目占据的主轴空间（<code>main size</code>）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为<code>auto</code>，即项目的本来大小。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-basis</span>: &lt;length&gt; | auto; <span class="comment">/* default auto */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它可以设为跟<code>width</code>或<code>height</code>属性一样的值（比如350px），则项目将占据固定空间。</p>
+<h4 id="flex属性"><a href="#flex属性" class="headerlink" title="flex属性"></a>flex属性</h4><p><code>flex</code>属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写，默认值为<code>0 1 auto</code>。后两个属性可选。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: none | [ &lt;<span class="string">'flex-grow'</span>&gt; &lt;<span class="string">'flex-shrink'</span>&gt;? || &lt;<span class="string">'flex-basis'</span>&gt; ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该属性有两个快捷值：<code>auto (1 1 auto)</code> 和 <code>none (0 0 auto)</code>。</p>
+<blockquote>
+<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+</blockquote>
+<h4 id="6-align-self属性"><a href="#6-align-self属性" class="headerlink" title="6.align-self属性"></a>6.align-self属性</h4><p><code>align-self</code>属性允许单个项目有与其他项目不一样的对齐方式，可覆盖<code>align-items</code>属性。默认值为<code>auto</code>，表示继承父元素的<code>align-items</code>属性，如果没有父元素，则等同于<code>stretch</code>。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071016.png" alt="image"></p>
+<blockquote>
+<p>该属性可能取6个值，除了<code>auto</code>，其他都与<code>align-items</code>属性完全一致。</p>
+</blockquote>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/05/24/react-redux/">react redux</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-05-24
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>解答这个问题并不困难：唯一的要求是你熟悉React。不要光听别人描述名词，理解起来是很困难的。从需求出发，看看使用React需要什么：</p>
+<ol>
+<li>React有props和state: props意味着父级分发下来的属性，state意味着组件内部可以自行管理的状态，并且整个React没有数据向上回溯的能力，也就是说数据只能单向向下分发，或者自行内部消化。理解这个是理解React和Redux的前提。</li>
+</ol>
+<ol>
+<li>一般构建的React组件内部可能是一个完整的应用，它自己工作良好，你可以通过属性作为API控制它。但是更多的时候发现React根本无法让两个组件互相交流，使用对方的数据。然后这时候不通过DOM沟通（也就是React体制内）解决的唯一办法就是提升state，将state放到共有的父组件中来管理，再作为props分发回子组件。</li>
+</ol>
+<ol>
+<li>子组件改变父组件state的办法只能是通过onClick触发父组件声明好的回调，也就是父组件提前声明好函数或方法作为契约描述自己的state将如何变化，再将它同样作为属性交给子组件使用。这样就出现了一个模式：数据总是单向从顶层向下分发的，但是只有子组件回调在概念上可以回到state顶层影响数据。这样state一定程度上是响应式的。</li>
+</ol>
+<ol>
+<li>为了面临所有可能的扩展问题，最容易想到的办法就是把所有state集中放到所有组件顶层，然后分发给所有组件。</li>
+</ol>
+<ol>
+<li>为了有更好的state管理，就需要一个库来作为更专业的顶层state分发给所有React应用，这就是Redux。让我们回来看看重现上面结构的需求：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">a. 需要回调通知state (等同于回调参数) -&gt; action</span><br><span class="line">b. 需要根据回调处理 (等同于父级方法) -&gt; reducer</span><br><span class="line">c. 需要state (等同于总状态) -&gt;store</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">对Redux来说只有这三个要素：</span><br><span class="line">a. action是纯声明式的数据结构，只提供事件的所有要素，不提供逻辑。</span><br><span class="line">b. reducer是一个匹配函数，action的发送是全局的：所有的reducer都可以捕捉到并匹配与自己相关与否，相关就拿走action中的要素进行逻辑处理，修改store中的状态，不相关就不对state做处理原样返回。</span><br><span class="line">c. store负责存储状态并可以被react api回调，发布action.当然一般不会直接把两个库拿来用，还有一个binding叫react-redux, 提供一个Provider和connect。很多人其实看懂了redux卡在这里。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a. Provider是一个普通组件，可以作为顶层app的分发点，它只需要store属性就可以了。它会将state分发给所有被connect的组件，不管它在哪里，被嵌套多少层。</span><br><span class="line">b. connect是真正的重点，它是一个科里化函数，意思是先接受两个参数（数据绑定mapStateToProps和事件绑定mapDispatchToProps），再接受一个参数（将要绑定的组件本身）：mapStateToProps：构建好Redux系统的时候，它会被自动初始化，但是你的React组件并不知道它的存在，因此你需要分拣出你需要的Redux状态，所以你需要绑定一个函数，它的参数是state，简单返回你关心的几个值。mapDispatchToProps：声明好的action作为回调，也可以被注入到组件里，就是通过这个函数，它的参数是dispatch，通过redux的辅助方法bindActionCreator绑定所有action以及参数的dispatch，就可以作为属性在组件里面作为函数简单使用了，不需要手动dispatch。这个mapDispatchToProps是可选的，如果不传这个参数redux会简单把dispatch作为属性注入给组件，可以手动当做store.dispatch使用。这也是为什么要科里化的原因。</span><br><span class="line">做好以上流程Redux和React就可以工作了。</span><br><span class="line"></span><br><span class="line">简单地说就是：</span><br><span class="line">1.顶层分发状态，让React组件被动地渲染。</span><br><span class="line">2.监听事件，事件有权利回到所有状态顶层影响状态。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>from:<a href="https://www.zhihu.com/question/41312576/answer/90782136" target="_blank" rel="noopener">https://www.zhihu.com/question/41312576/answer/90782136</a></p>
+</blockquote>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/05/22/es6-for-of-for-in/">forEach、for-in与for-of的区别</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-05-22
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="forEach介绍"><a href="#forEach介绍" class="headerlink" title="forEach介绍"></a>forEach介绍</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objArr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>foreach</code> 方法没办法使用 <code>break</code> 语句跳出循环，或者使用<code>return</code>从函数体内返回</p>
+</blockquote>
+<h2 id="for-in介绍"><a href="#for-in介绍" class="headerlink" title="for-in介绍"></a>for-in介绍</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> index <span class="keyword">in</span> objArr)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(objArr[index])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码会出现的问题：<br>1.<code>index</code> 值 会是字符串（<code>String</code>）类型<br>2.循环不仅会遍历数组元素，还会遍历任意其他自定义添加的属性，如，<code>objArr</code>上面包含自定义属性，<code>objArr.name</code>，那这次循环中也会出现此<code>name</code>属性<br>3.某些情况下，上述代码会以随机顺序循环数组</p>
+<blockquote>
+<p><code>for-in</code>循环设计之初，是给普通以字符串的值为key的对象使用的。而非数组。</p>
+</blockquote>
+<h2 id="for-of介绍"><a href="#for-of介绍" class="headerlink" title="for-of介绍"></a>for-of介绍</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> value <span class="keyword">of</span> objArr)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1.可以避免所有 <code>for-in</code> 循环的陷阱<br>2.不同于 <code>forEach()</code>，可以使用 <code>break</code>, <code>continue</code> 和 <code>return</code><br>3.<code>for-of</code> 循环不仅仅支持数组的遍历。同样适用于很多类似数组的对象<br>4.它也支持<code>字符串</code>的遍历<br>5.for-of 并不适用于处理原有的原生对象</p>
+<h3 id="for-of-遍历-Set"><a href="#for-of-遍历-Set" class="headerlink" title="for-of 遍历 Set"></a>for-of 遍历 Set</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uniqueWords = <span class="keyword">new</span> <span class="built_in">Set</span>(words);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> word <span class="keyword">of</span> uniqueWords) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="for-of-遍历-Map"><a href="#for-of-遍历-Map" class="headerlink" title="for-of 遍历 Map"></a>for-of 遍历 Map</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> [key, value] <span class="keyword">of</span> phoneBookMap) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key + <span class="string">"'s phone number is: "</span> + value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>Map</code>是键值对组成，需要用到 Es6新特性<code>解构</code></p>
+</blockquote>
+<h3 id="for-of-遍历原生对象"><a href="#for-of-遍历原生对象" class="headerlink" title="for-of 遍历原生对象"></a>for-of 遍历原生对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出对象自身可以枚举的值</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(someObject)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key + <span class="string">": "</span> + someObject[key]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    
+      <a class="prev" href="/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">上一页</span>
+      </a>
+    
+    
+      <a class="next" href="/page/3/">
+        <span class="next-text">下一页</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xuess" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://weibo.com/test5433" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/shan-xue-74/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xuess</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

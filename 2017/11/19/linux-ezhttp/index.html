@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="linux 一键安装环境ezhttp"/>
+
+
+
+
+  <meta name="keywords" content="linux,vps, 午休随笔" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="午休随笔">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://blog.xueshanshan.com/2017/11/19/linux-ezhttp/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> linux 一键安装环境ezhttp - 午休随笔 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">午休随笔</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">午休随笔</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          linux 一键安装环境ezhttp
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-19
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#交互安装"><span class="toc-text">交互安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-选择安装lnmp"><span class="toc-text">1.选择安装lnmp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-nginx安装设置"><span class="toc-text">2.nginx安装设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-mysql安装配置"><span class="toc-text">3.mysql安装配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-php安装配置"><span class="toc-text">4.php安装配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-其它软件安装"><span class="toc-text">5.其它软件安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-检查设置"><span class="toc-text">6.检查设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非交互安装"><span class="toc-text">非交互安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ez命令介绍"><span class="toc-text">ez命令介绍</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate centos.bz/ezhttp.zip?time=$(date +%s) -O ezhttp.zip</span><br><span class="line">unzip ezhttp.zip</span><br><span class="line"><span class="built_in">cd</span> ezhttp-master</span><br><span class="line">chmod +x start.sh</span><br></pre></td></tr></table></figure>
+<p>交互安装: (自己选择)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure>
+<h2 id="交互安装"><a href="#交互安装" class="headerlink" title="交互安装"></a>交互安装</h2><h3 id="1-选择安装lnmp"><a href="#1-选择安装lnmp" class="headerlink" title="1.选择安装lnmp"></a>1.选择安装lnmp</h3><p>1） 输入1回车进入<code>Installation of stack</code>.<br>2） 输入1回车选择<code>LNMP(Nginx MySQL PHP)</code>安装.</p>
+<h3 id="2-nginx安装设置"><a href="#2-nginx安装设置" class="headerlink" title="2.nginx安装设置"></a>2.nginx安装设置</h3><p>1）首先是nginx版本选择。<br>这里有5个选项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1) nginx-1.8.0</span><br><span class="line">2) tengine-2.1.0</span><br><span class="line">3) openresty-1.9.7.3</span><br><span class="line">4) custom_version</span><br><span class="line">5) do_not_install</span><br></pre></td></tr></table></figure>
+<p>输入一个1-5的数字或直接回车，直接回车默认选择5。<br>第1-3个选项是选择指定nginx，包含nginx官方版本,淘宝的tengine和整合nginx luajit的openresty。<br>第4个选项是指定版本号，输入的规则为nginx-1.4.1 tengine-1.4.6 ngx_openresty-1.2.8.3。<br>第5个选择是<br>这里我们选择nginx-1.8.0。<br>2）然后是输入安装路径<br>直接回车默认是/usr/local/nginx。我们可以更改其安装路径，如输入/opt/nginx。 这里我们直接回车使用默认值。<br>3）接着将会显示安装nginx使用的编译参数<br>且提示是否更改编译参数，直接回车默认是不更改。输入y是更改参数，n为不更改参数。这里我们直接回车，即不更改。<br>4）最后是提示是否安装nginx模块<br>默认为不安装，即n。输入y则安装，n为不安装。我们这里输入y，安装模块。接着将显示可安装的nginx模块，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1) lua-nginx-module-0.10.0</span><br><span class="line">2) nginx-http-concat-1.2.2</span><br><span class="line">3) nginx-upload-module-2.2</span><br><span class="line">4) ngx_http_substitutions_filter_module-0.6.4</span><br><span class="line">5) do_not_install</span><br></pre></td></tr></table></figure>
+<p>输入对应的数字选择安装的模块或输入5不安装。这里我们输入2安装<code>nginx-http-concat-1.2.2</code>模块。</p>
+<h3 id="3-mysql安装配置"><a href="#3-mysql安装配置" class="headerlink" title="3.mysql安装配置"></a>3.mysql安装配置</h3><p>1) 选择安装的mysql版本<br>1-4选项为mysql5.1,mysql5.5,mysql5.6,mysql5.7版本，5为libmysqlclient18，6为自定义版本，格式为mysql-5.1.71 mysql-5.5.32 mysql-5.6.12 mysql-5.7.9。这里我们输入3安装mysql5.6。<br>2）输入mysql安装路径<br>直接回车默认路径为/usr/local/mysql，可以输入其它安装路径。这里我们直接回车选择默认的/usr/local/mysql。<br>3) 输入mysql数据目录<br>直接回车为默认的{上面设置的mysql安装路径}/data。可以输入其它的，如/data/mysql。我们直接回车选择默认的/usr/local/mysql/data。<br>4) 输入mysql端口<br>直接回车默认使用3306端口。可以输入任意一个有效的端口，如3307。我们直接回车选择默认的3306端口。<br>5) 设置mysql root用户密码<br>直接回车默认设置密码为root。可以输入任意字符串的密码，这里我们输入mysqlpwd。<br>6）设置mysql编译参数<br>直接回车默认不更改。可以输入y进行更改或n不更改。</p>
+<h3 id="4-php安装配置"><a href="#4-php安装配置" class="headerlink" title="4.php安装配置"></a>4.php安装配置</h3><p>1) 选择安装的php版本<br>支持php5.2,php5.3,php5.4,php5.5,php5.6,php7.1的版本。输入对应的数字安装对应的版本。也可以选择custom_version自定义版本。这里输入5安装php5.6版本。<br>2) 设置安装路径<br>直接回车默认选择/usr/local/php路径，可以输入其它的路径，如/opt/php。这里直接驾车。<br>3) 更改编译参数<br>直接回车选择不更改。<br>4）安装php模块<br>将会列表可安装的php模块，安装多个模块输入以空格分隔的数字，如1 2 3。这里输入2 4安装memcache和redis模块。</p>
+<h3 id="5-其它软件安装"><a href="#5-其它软件安装" class="headerlink" title="5.其它软件安装"></a>5.其它软件安装</h3><p>将会列出可安装的软件，安装多个软件输入以空格分隔的多个数字，如1 2 3。这里输入1 4安装memcached和redis。<br>然后接着要求输入各自的安装路径，这里我们直接回车使用默认值。</p>
+<h3 id="6-检查设置"><a href="#6-检查设置" class="headerlink" title="6.检查设置"></a>6.检查设置</h3><p>最后将列出以上的所有设置。直接回车和输入y开始安装或输入n返回重新设置。</p>
+<h2 id="非交互安装"><a href="#非交互安装" class="headerlink" title="非交互安装"></a>非交互安装</h2><p>非交互安装即不需要手动选择或输入各种配置进行安装，可需要一个命令就行。</p>
+<p>可以执行<code>./start.sh</code> <code>-h</code>查看帮助。以上的lnmp配置参数可以使用如下命令进行非交互安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh --stack=lnmp --package=nginx,php5.6,mysql5.6,memcached,redis --nginx-module=nginx-http-concat --mysql-root-pwd=mysqlpwd --redis-maxmem=2g</span><br></pre></td></tr></table></figure>
+<h3 id="ez命令介绍"><a href="#ez命令介绍" class="headerlink" title="ez命令介绍"></a><code>ez</code>命令介绍</h3><p>`ezhttp提供了一个ez命令来对环境进行操作。用法如下：</p>
+<p>虚拟主机管理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ez vhost add：创建虚拟主机</span><br><span class="line">ez vhost list:	列出所有虚拟主机</span><br><span class="line">ez vhost del：	删除虚拟主机</span><br></pre></td></tr></table></figure>
+<p>mysql管理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ez mysql reset：重置mysql root用户密码</span><br><span class="line">ez mysql add：创建mysql用户</span><br><span class="line">ez mysql mod：更新mysql用户</span><br><span class="line">ez mysql del：删除mysql用户</span><br></pre></td></tr></table></figure>
+<p>ftp管理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ez ftp add：添加ftp用户</span><br><span class="line">ez ftp list：列出所有ftp用户</span><br><span class="line">ez ftp del：删除ftp用户</span><br><span class="line">ez ftp mod：更改ftp用户</span><br></pre></td></tr></table></figure>
+<p>进程管理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nginx：/etc/init.d/nginx (start|stop|restart)</span><br><span class="line">apache：/etc/init.d/httpd (start|stop|restart)</span><br><span class="line">php-fpm：/etc/init.d/php-fpm (start|stop|restart)</span><br><span class="line">mysql：/etc/init.d/mysqld (start|stop|restart)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br></pre></td><td class="code"><pre><span class="line">#############################################################################</span><br><span class="line"></span><br><span class="line">You are welcome to use this script to deploy your linux,hope you like.</span><br><span class="line">The script is written by Zhu Maohai.</span><br><span class="line">If you have any question.</span><br><span class="line">please visit http://www.centos.bz/ezhttp/ and submit your issue.thank you.</span><br><span class="line"></span><br><span class="line">############################################################################</span><br><span class="line"></span><br><span class="line">1) Installation of stack.</span><br><span class="line">2) Some Useful Tools.</span><br><span class="line">3) Upgrade Software</span><br><span class="line">4) Exit.</span><br><span class="line"></span><br><span class="line">please select: 1</span><br><span class="line">you select Installation of stack.</span><br><span class="line">1) LNMP(Nginx MySQL PHP)</span><br><span class="line">2) LAMP(Apache MySQL PHP)</span><br><span class="line">3) LNAMP(Nginx Apache MySQL PHP)</span><br><span class="line">4) back to main menu</span><br><span class="line"></span><br><span class="line">please input the package you like to install: 3</span><br><span class="line">#################### nginx setting ####################</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1) nginx-1.10.3</span><br><span class="line">2) tengine-2.1.0</span><br><span class="line">3) openresty-1.11.2.2</span><br><span class="line">4) custom_version</span><br><span class="line">5) do_not_install</span><br><span class="line"></span><br><span class="line">which nginx you&apos;d select(default do_not_install): 1</span><br><span class="line">your selection: nginx-1.10.3</span><br><span class="line">nginx-1.10.3 install location(default:/usr/local/nginx,leave blank for default):</span><br><span class="line">nginx-1.10.3 install location: /usr/local/nginx</span><br><span class="line">the nginx-1.10.3 configure parameter is:</span><br><span class="line">--prefix=/usr/local/nginx --with-http_ssl_module --with-openssl=/root/ezhttp-master/soft/openssl-1.0.2h  --with-http_sub_module --with-http_stub_status_module --with-pcre-jit --with-pcre --with-pcre=/root/ezhttp-master/soft/pcre-8.33 --with-zlib=/root/ezhttp-master/soft/zlib-1.2.8 --with-http_secure_link_module</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Would you like to change it?[N/y](default n):</span><br><span class="line">you select no,configure parameter will not be changed.</span><br><span class="line"></span><br><span class="line">Do you need to install nginx module?[N/y](default n): y</span><br><span class="line">#################### nginx_modules install ####################</span><br><span class="line"></span><br><span class="line">1) lua-nginx-module-0.10.7</span><br><span class="line">2) nginx-http-concat-1.2.2</span><br><span class="line">3) nginx-upload-module-2.2</span><br><span class="line">4) ngx_http_substitutions_filter_module-0.6.4</span><br><span class="line">5) ngx_stream_core_module</span><br><span class="line">6) nginx_upstream_check_module-master</span><br><span class="line">7) nginx-stream-upsync-module-master</span><br><span class="line">8) do_not_install</span><br><span class="line"></span><br><span class="line">please input one or more number between 1 and 8(default do_not_install)(ie.1 2 3): 2 3</span><br><span class="line">your selection nginx-http-concat-1.2.2 nginx-upload-module-2.2</span><br><span class="line">#################### apache setting ####################</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1) httpd-2.2.31</span><br><span class="line">2) httpd-2.4.25</span><br><span class="line">3) custom_version</span><br><span class="line">4) do_not_install</span><br><span class="line"></span><br><span class="line">which apache you&apos;d select(default do_not_install): 1</span><br><span class="line">your selection: httpd-2.2.31</span><br><span class="line">httpd-2.2.31 install location(default:/usr/local/apache,leave blank for default):</span><br><span class="line">httpd-2.2.31 install location: /usr/local/apache</span><br><span class="line">the httpd-2.2.31 configure parameter is:</span><br><span class="line">--prefix=/usr/local/apache --with-included-apr --enable-so --enable-deflate=shared --enable-expires=shared  --enable-ssl=shared --enable-headers=shared --enable-rewrite=shared --enable-static-support</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Would you like to change it?[N/y](default n):</span><br><span class="line">you select no,configure parameter will not be changed.</span><br><span class="line">#################### mysql setting ####################</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1) mysql-5.1.73</span><br><span class="line">2) mysql-5.5.54</span><br><span class="line">3) mysql-5.6.35</span><br><span class="line">4) mysql-5.7.17 (need about 2GB RAM when building,try mysql-5.6 if failed)</span><br><span class="line">5) libmysqlclient18</span><br><span class="line">6) custom_version</span><br><span class="line">7) do_not_install</span><br><span class="line"></span><br><span class="line">which mysql you&apos;d select(default do_not_install): 3</span><br><span class="line">your selection: mysql-5.6.35</span><br><span class="line">mysql-5.6.35 install location(default:/usr/local/mysql,leave blank for default):</span><br><span class="line">mysql-5.6.35 install location: /usr/local/mysql</span><br><span class="line">mysql data location(default:/usr/local/mysql/data,leave blank for default):</span><br><span class="line">mysql-5.6.35 data location: /usr/local/mysql/data</span><br><span class="line">mysql port number(default:3306,leave blank for default):</span><br><span class="line">mysql port number: 3306</span><br><span class="line">mysql server root password (default:root,leave blank for default): c5bMaVD818</span><br><span class="line">mysql-5.6.35 root password: c5bMaVD818</span><br><span class="line">the mysql-5.6.35 configure parameter is:</span><br><span class="line">-DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DSYSCONFDIR=/usr/local/mysql/etc -DMYSQL_UNIX_ADDR=/usr/local/mysql/data/mysql.sock -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_EXTRA_CHARSETS=complex -DENABLED_LOCAL_INFILE=1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Would you like to change it?[N/y](default n):</span><br><span class="line">you select no,configure parameter will not be changed.</span><br><span class="line">#################### php setting ####################</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1) php-5.2.17</span><br><span class="line">2) php-5.3.29</span><br><span class="line">3) php-5.4.43</span><br><span class="line">4) php-5.5.27</span><br><span class="line">5) php-5.6.15</span><br><span class="line">6) php-7.1.0</span><br><span class="line">7) custom_version</span><br><span class="line">8) do_not_install</span><br><span class="line"></span><br><span class="line">which php you&apos;d select(default do_not_install): 5</span><br><span class="line">your selection: php-5.6.15</span><br><span class="line">php-5.6.15 install location(default:/usr/local/php,leave blank for default):</span><br><span class="line">php-5.6.15 install location: /usr/local/php</span><br><span class="line">the php-5.6.15 configure parameter is:</span><br><span class="line">--prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --with-apxs2=/usr/local/apache/bin/apxs --enable-bcmath=shared --with-pdo_sqlite --with-gettext=shared --with-iconv --enable-ftp=shared --with-sqlite --with-sqlite3 --enable-mbstring=shared --enable-sockets=shared --enable-zip --enable-soap=shared --with-openssl --with-zlib --with-curl=shared --with-gd=shared --with-jpeg-dir --with-png-dir --with-freetype-dir --with-mcrypt=shared,/opt/ezhttp/libmcrypt-2.5.8 --with-mhash=shared,/opt/ezhttp/mhash-0.9.9.9 --enable-opcache --with-mysql=mysqlnd --with-mysqli=shared,mysqlnd --with-pdo-mysql=shared,mysqlnd --without-pear --with-libdir=lib64 --disable-fileinfo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Would you like to change it?[N/y](default n):</span><br><span class="line">you select no,configure parameter will not be changed.</span><br><span class="line">#################### PHP modules install ####################</span><br><span class="line">php-5.6.15 version available modules:</span><br><span class="line"></span><br><span class="line">#################### php_modules install ####################</span><br><span class="line"></span><br><span class="line">1) php-imagick-3.1.2</span><br><span class="line">2) php-memcache-3.0.8</span><br><span class="line">3) php-memcached-2.2.0 (Support Aliyun OCS)</span><br><span class="line">4) php-redis-2.2.7</span><br><span class="line">5) php-mongo-legacy-1.6.11</span><br><span class="line">6) xdebug-2.2.2</span><br><span class="line">7) mssql</span><br><span class="line">8) fileinfo</span><br><span class="line">9) php-gmp</span><br><span class="line">10) php-swoole-1.7.20</span><br><span class="line">11) do_not_install</span><br><span class="line"></span><br><span class="line">please input one or more number between 1 and 11(default do_not_install)(ie.1 2 3):</span><br><span class="line">your selection do_not_install</span><br><span class="line">#################### other_soft install ####################</span><br><span class="line"></span><br><span class="line">1) memcached-1.4.24</span><br><span class="line">2) pure-ftpd-1.0.41</span><br><span class="line">3) phpMyAdmin-4.4.12-all-languages</span><br><span class="line">4) redis-3.0.3</span><br><span class="line">5) mongodb-linux-x86_64-2.4.9</span><br><span class="line">6) phpRedisAdmin-1.1.0</span><br><span class="line">7) memadmin-1.0.12</span><br><span class="line">8) rockmongo-1.1.6-fix-auth</span><br><span class="line">9) jdk1.7.0_79</span><br><span class="line">10) jdk1.8.0_66</span><br><span class="line">11) apache-tomcat-7.0.68</span><br><span class="line">12) apache-tomcat-8.0.39</span><br><span class="line">13) do_not_install</span><br><span class="line"></span><br><span class="line">please input one or more number between 1 and 13(default do_not_install)(ie.1 2 3): 4 5</span><br><span class="line">your selection redis-3.0.3 mongodb-linux-x86_64-2.4.9</span><br><span class="line">input redis-3.0.3 location(default:/usr/local/redis):</span><br><span class="line">redis location: /usr/local/redis</span><br><span class="line">please input the max memory allowed for redis(ie.128M,512m,2G,4g):</span><br><span class="line">input errors,please input ie.128M,512m,2G,4g</span><br><span class="line">please input the max memory allowed for redis(ie.128M,512m,2G,4g): 128M</span><br><span class="line">128M</span><br><span class="line">input mongodb-linux-x86_64-2.4.9 location(default:/usr/local/mongodb):</span><br><span class="line">mongodb location: /usr/local/mongodb</span><br><span class="line">input mongodb-linux-x86_64-2.4.9 data location(default:/usr/local/mongodb/data/):</span><br><span class="line">mongodb data location: /usr/local/mongodb/data/</span><br><span class="line">#################### your choice overview ####################</span><br><span class="line"></span><br><span class="line">Package: lnamp</span><br><span class="line"></span><br><span class="line">*****Nginx Setting*****</span><br><span class="line">Nginx: nginx-1.10.3</span><br><span class="line">Nginx Location: /usr/local/nginx</span><br><span class="line">Nginx Configure Parameter: --prefix=/usr/local/nginx --with-http_ssl_module --with-openssl=/root/ezhttp-master/soft/openssl-1.0.2h  --with-http_sub_module --with-http_stub_status_module --with-pcre-jit --with-pcre --with-pcre=/root/ezhttp-master/soft/pcre-8.33 --with-zlib=/root/ezhttp-master/soft/zlib-1.2.8 --with-http_secure_link_module --add-module=/root/ezhttp-master/soft/nginx-http-concat-1.2.2 --add-module=/root/ezhttp-master/soft/nginx-upload-module-2.2</span><br><span class="line">Nginx Modules:  nginx-http-concat-1.2.2 nginx-upload-module-2.2</span><br><span class="line"></span><br><span class="line">*****Apache Setting*****</span><br><span class="line">Apache: httpd-2.2.31</span><br><span class="line">Apache Location: /usr/local/apache</span><br><span class="line">Apache Configure Parameter: --prefix=/usr/local/apache --with-included-apr --enable-so --enable-deflate=shared --enable-expires=shared  --enable-ssl=shared --enable-headers=shared --enable-rewrite=shared --enable-static-support</span><br><span class="line"></span><br><span class="line">*****MySQL Setting*****</span><br><span class="line">MySQL Server: mysql-5.6.35</span><br><span class="line">MySQL Location: /usr/local/mysql</span><br><span class="line">MySQL Data Location: /usr/local/mysql/data</span><br><span class="line">MySQL Port Number: 3306</span><br><span class="line">MySQL Root Password: c5bMaVD818</span><br><span class="line">MySQL Configure Parameter: -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DSYSCONFDIR=/usr/local/mysql/etc -DMYSQL_UNIX_ADDR=/usr/local/mysql/data/mysql.sock -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_EXTRA_CHARSETS=complex -DENABLED_LOCAL_INFILE=1</span><br><span class="line"></span><br><span class="line">*****PHP Setting*****</span><br><span class="line">PHP: php-5.6.15</span><br><span class="line">PHP Location: /usr/local/php</span><br><span class="line">PHP Configure Parameter: --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --with-apxs2=/usr/local/apache/bin/apxs --enable-bcmath=shared --with-pdo_sqlite --with-gettext=shared --with-iconv --enable-ftp=shared --with-sqlite --with-sqlite3 --enable-mbstring=shared --enable-sockets=shared --enable-zip --enable-soap=shared --with-openssl --with-zlib --with-curl=shared --with-gd=shared --with-jpeg-dir --with-png-dir --with-freetype-dir --with-mcrypt=shared,/opt/ezhttp/libmcrypt-2.5.8 --with-mhash=shared,/opt/ezhttp/mhash-0.9.9.9 --enable-opcache --with-mysql=mysqlnd --with-mysqli=shared,mysqlnd --with-pdo-mysql=shared,mysqlnd --without-pear --with-libdir=lib64 --disable-fileinfo</span><br><span class="line"></span><br><span class="line">*****Other Software Setting*****</span><br><span class="line">Other Software:  redis-3.0.3 mongodb-linux-x86_64-2.4.9</span><br><span class="line">redis_location: /usr/local/redis</span><br><span class="line">mongodb_location: /usr/local/mongodb</span><br><span class="line"></span><br><span class="line">##############################################################</span><br><span class="line"></span><br><span class="line">Are you ready to configure your Linux?[Y/n](default y):</span><br></pre></td></tr></table></figure>
+<p>apache 文件目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/apache/htdocs</span><br></pre></td></tr></table></figure>
+<p>初始化<br>安装 unzip zip 命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y unzip zip</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://blog.xueshanshan.com">xuess</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://blog.xueshanshan.com/2017/11/19/linux-ezhttp/">http://blog.xueshanshan.com/2017/11/19/linux-ezhttp/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/linux-vps/">linux,vps</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/11/28/linux-vps-close-firewall/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">linux vps关闭防火墙</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/11/19/setup-eolinker-api-document/">
+        <span class="next-text nav-default">安装api测试管理工具eolinker</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xuess" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://weibo.com/test5433" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/shan-xue-74/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xuess</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xueshanshan.com/2017/11/19/linux-ezhttp/';
+        this.page.identifier = '2017/11/19/linux-ezhttp/';
+        this.page.title = 'linux 一键安装环境ezhttp';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//xueshanshan-com.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

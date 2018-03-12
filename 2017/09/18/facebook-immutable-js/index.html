@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="facebook immutable.js 意义何在"/>
+
+
+
+
+  <meta name="keywords" content="js, 午休随笔" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="午休随笔">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://blog.xueshanshan.com/2017/09/18/facebook-immutable-js/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> facebook immutable.js 意义何在 - 午休随笔 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">午休随笔</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">午休随笔</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          facebook immutable.js 意义何在
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-18
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        <p>Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性做一些事情，但是，在复杂的开发中它的副作用远比好处大的多。于是才有了浅copy和深copy，就是为了解决这个问题。</p>
+<p>举个常见例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var  defaultConfig = &#123; /* 默认值 */&#125;;</span><br><span class="line">var config = $.extend(&#123;&#125;, defaultConfig,initConfig); </span><br><span class="line">// jQuery用法。initConfig是自定义值</span><br><span class="line">var config = $.extend(true, &#123;&#125;, defaultConfig, initConfig); </span><br><span class="line">//如果对象是多层的，就用到deep-copy</span><br></pre></td></tr></table></figure>
+<p>了<code>ES6</code>出现原生的<code>assign</code>方法，但它相当于是<code>浅copy</code>。如果有了不可变的数据结构就省心了，<code>ES5.1</code>中对象有了<code>freeze</code>方法，也是<code>浅copy</code>，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a=Object.freeze(&#123;a:1&#125;); </span><br><span class="line">b=a; b.a=10;</span><br><span class="line"></span><br><span class="line">a.a还是1。在实际开发中浅copy通常不够。</span><br></pre></td></tr></table></figure>
+<p>如果用immutableJS:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var  defaultConfig = Immutable.fromJS(&#123; /* 默认值 */&#125;); </span><br><span class="line">var config = defaultConfig.merge(initConfig); </span><br><span class="line">// defaultConfig不会改变，返回新值给config</span><br><span class="line">var config = defaultConfig.mergeDeep(initConfig);//深层merge</span><br></pre></td></tr></table></figure>
+<p>上述用deep-copy也可以做到，差别在于性能。每次<code>deep-copy</code>都要把整个对象递归的复制一份。而<code>immutable</code>的实现有些像<code>链表</code>，添加一个新结点把旧结点的父子关系转移到新结点上，性能提升很多，想深挖原理请看这里：</p>
+<p><a href="https://en.wikipedia.org/wiki/Persistent_data_structure" target="_blank" rel="noopener">Persistent data structure</a>。</p>
+<p>ImmutableJS给的远不止这些，它提供了7种不可变的数据结构：<code>List</code>, <code>Stack</code>, <code>Map</code>, <code>OrderedMap</code>, <code>Set</code>, <code>OrderedSet</code>, <code>Record</code> （详见文档<a href="http://facebook.github.io/immutable-js/docs/#/" target="_blank" rel="noopener">Immutable.js</a>，文档很geek，打开console试吧）。</p>
+<p>immutableJS ＋ 原生Javascript等于真正的函数式编程。遍历对象不再用<code>for-in</code>，可以这样:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Immutable.fromJS(&#123;a:1, b:2, c:3&#125;).map(function(value, key) &#123; /* do some thing */&#125;);</span><br><span class="line">实现一个map-reduce:</span><br><span class="line">var o = Immutable.fromJS(&#123;a:&#123;a:1&#125;, b:&#123;a:2&#125;, c:&#123;a:3&#125;&#125;);</span><br><span class="line">o.map(function(e)&#123; return e.get(&apos;a&apos;); &#125;).reduce(function(e1, e2)&#123; return e1 + e2; &#125;, 0);</span><br><span class="line">修改藏在深处的值，可以这样：</span><br><span class="line">var o = Immutable.fromJS(&#123;a:[&#123;a1:1&#125;, &#123;b:[&#123;t:1&#125;]&#125;, &#123;c1:2&#125;], b:2, c:3&#125;);</span><br><span class="line">o = o.setIn([&apos;a&apos;, 1, &apos;b&apos;, 0, &apos;t&apos;], 100);  </span><br><span class="line">// t赋值o = o.updateIn([&apos;a&apos;, 1, &apos;b&apos;, 0, &apos;t&apos;], function(e)&#123; return e * 100; &#125;); // t * 100</span><br><span class="line"></span><br><span class="line">比较两个对象是否完全相等:</span><br><span class="line">o1.equals(o2)</span><br></pre></td></tr></table></figure>
+<p>远不止这些，<code>immutableJS</code>提供了强大的api自己去看吧。由于是不可变的，可以放心的对对象进行任意操作。在<code>React</code>开发中，频繁操作state对象或是store，配合immutableJS快、安全、方便。</p>
+<blockquote>
+<p>form链接：<a href="https://www.zhihu.com/question/28016223/answer/50154351" target="_blank" rel="noopener">https://www.zhihu.com/question/28016223/answer/50154351</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://blog.xueshanshan.com">xuess</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://blog.xueshanshan.com/2017/09/18/facebook-immutable-js/">http://blog.xueshanshan.com/2017/09/18/facebook-immutable-js/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/js/">js</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/09/18/linux-nginx/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">nginx 搭建静态网站</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/08/08/h5-video/">
+        <span class="next-text nav-default">html5视频方案</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xuess" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://weibo.com/test5433" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/shan-xue-74/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xuess</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xueshanshan.com/2017/09/18/facebook-immutable-js/';
+        this.page.identifier = '2017/09/18/facebook-immutable-js/';
+        this.page.title = 'facebook immutable.js 意义何在';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//xueshanshan-com.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="nodejs+express开发笔记"/>
+
+
+
+
+  <meta name="keywords" content="nodejs, 午休随笔" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="午休随笔">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://blog.xueshanshan.com/2016/11/08/nodejs-document/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> nodejs+express开发笔记 - 午休随笔 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">午休随笔</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">午休随笔</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          nodejs+express开发笔记
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-11-08
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#nodejs-开发笔记"><span class="toc-text">nodejs 开发笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#supervisor"><span class="toc-text">supervisor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由"><span class="toc-text">路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板引擎ejs"><span class="toc-text">模板引擎ejs</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#includes"><span class="toc-text">includes</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开发准备"><span class="toc-text">开发准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目录结构"><span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖模块"><span class="toc-text">安装依赖模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#config-lite"><span class="toc-text">config-lite</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#功能与路由设计"><span class="toc-text">功能与路由设计</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="nodejs-开发笔记"><a href="#nodejs-开发笔记" class="headerlink" title="nodejs 开发笔记"></a>nodejs 开发笔记</h1><h2 id="supervisor"><a href="#supervisor" class="headerlink" title="supervisor"></a>supervisor</h2><p>在开发过程中，每次修改代码保存后，我们都需要手动重启程序，才能查看改动的效果。使用 <code>supervisor</code> 可以解决这个繁琐的问题，全局安装 <code>supervisor</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g supervisor</span><br></pre></td></tr></table></figure>
+<p>运行 <code>supervisor --harmony index</code> 启动程序，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ supervisor --harmony index</span><br><span class="line"></span><br><span class="line">Running node-supervisor with</span><br><span class="line">  program &apos;--harmony index&apos;</span><br><span class="line">  --watch &apos;.&apos;</span><br><span class="line">  --extensions &apos;node,js&apos;</span><br><span class="line">  --exec &apos;node&apos;</span><br><span class="line"></span><br><span class="line">Starting child process with &apos;node --harmony index&apos;</span><br><span class="line">Watching directory &apos;/Users/shanshanxue/Documents/workspace/aym_admin_nav&apos; for changes.</span><br><span class="line">Press rs for restarting the process.</span><br></pre></td></tr></table></figure>
+<p>supervisor 会监听当前目录下 node 和 js 后缀的文件，当这些文件发生改动时，supervisor 会自动重启程序。</p>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">app.get(&apos;/&apos;, function(req, res) &#123;</span><br><span class="line">  res.send(&apos;hello, express&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(&apos;/users/:name&apos;, function(req, res) &#123;</span><br><span class="line">  res.send(&apos;hello, &apos; + req.params.name);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(3000);</span><br></pre></td></tr></table></figure>
+<p>以上代码的意思是：当访问根路径时，依然返回 <code>hello</code>, <code>express</code>，当访问如 <code>localhost:3000/users/nswbmw</code> 路径时，返回 <code>hello</code>, <code>nswbmw</code>。路径中 <code>:name</code> 起了占位符的作用，这个占位符的名字是 <code>name</code>，可以通过 <code>req.params.name</code> 取到实际的值。</p>
+<blockquote>
+<p>小提示：express 使用了 <code>path-to-regexp</code> 模块实现的路由匹配。</p>
+</blockquote>
+<p>不难看出：req 包含了请求来的相关信息，res 则用来返回该请求的响应，更多请查阅 express 官方文档。下面介绍几个常用的 req 的属性：</p>
+<ul>
+<li><code>req.query</code>: 解析后的 <code>url</code> 中的 <code>querystring</code>，如 <code>?name=haha</code>，<code>req.query</code> 的值为 <code>{name: &#39;haha&#39;}</code></li>
+<li><code>req.params</code>: 解析 <code>url</code> 中的占位符，如 <code>/:name</code>，访问 <code>/haha</code>，<code>req.params</code> 的值为 <code>{name: &#39;haha&#39;}</code></li>
+<li><code>req.body</code>: 解析后请求体，需使用相关的模块，如 <code>body-parser</code>，请求体为 <code>{&quot;name&quot;: &quot;haha&quot;}</code>，则 <code>req.body</code> 为 <code>{name: &#39;haha&#39;}</code></li>
+</ul>
+<h2 id="模板引擎ejs"><a href="#模板引擎ejs" class="headerlink" title="模板引擎ejs"></a>模板引擎ejs</h2><p>模板引擎有很多，<code>ejs</code> 是其中一种，因为它使用起来十分简单，而且与 <code>express</code> 集成良好，所以我们使用 <code>ejs</code>。安装 <code>ejs</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i ejs --save</span><br></pre></td></tr></table></figure>
+<p><strong>ejs文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">      body &#123;padding: 50px;font: 14px &quot;Lucida Grande&quot;, Helvetica, Arial, sans-serif;&#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;h1&gt;&lt;%= name.toUpperCase() %&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;hello, &lt;%= name %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>routes</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var router = express.Router();</span><br><span class="line"></span><br><span class="line">router.get(&apos;/:name&apos;, function(req, res) &#123;</span><br><span class="line">  res.render(&apos;users&apos;, &#123;</span><br><span class="line">    name: req.params.name</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">module.exports = router;</span><br></pre></td></tr></table></figure>
+<p>通过调用 <code>res.render</code> 函数渲染 <code>ejs</code> 模板，<code>res.render</code> 第一个参数是模板的名字，这里是 <code>users</code> 则会匹配 <code>views/users.ejs</code>，第二个参数是传给模板的数据，这里传入 <code>name</code>，则在 <code>ejs</code> 模板中可使用 <code>name</code>。<code>res.render</code> 的作用就是将模板和数据结合生成 <code>html</code>，同时设置响应头中的 <code>Content-Type: text/html</code>，告诉浏览器我返回的是 <code>html</code>，不是纯文本，要按 <code>html</code> 展示</p>
+<p>上面代码可以看到，我们在模板 <code>&lt;%= name.toUpperCase() %&gt;</code> 中使用了 <code>JavaScript</code> 的语法 <code>.toUpperCase()</code> 将名字转化为大写，那这个 <code>&lt;%= xxx %&gt;</code> 是什么东西呢？<code>ejs</code> 有 <code>3</code> 种常用标签：</p>
+<ol>
+<li><code>&lt;% code %&gt;</code>：运行 <code>JavaScript</code> 代码，不输出</li>
+<li><code>&lt;%= code %&gt;</code>：显示转义后的 <code>HTML</code> 内容</li>
+<li><code>&lt;%- code %&gt;</code>：显示原始 <code>HTML</code> 内容</li>
+</ol>
+<blockquote>
+<p>注意：<code>&lt;%= code %&gt;</code> 和 <code>&lt;%- code %&gt;</code> 都可以是 <code>JavaScript</code> 表达式生成的字符串，当变量 <code>code</code> 为普通字符串时，两者没有区别。当 <code>code</code> 比如为 <code>&lt;h1&gt;hello&lt;/h1&gt;</code> 这种字符串时，<code>&lt;%= code %&gt;</code> 会原样输出 <code>&lt;h1&gt;hello&lt;/h1&gt;</code>，而 <code>&lt;%- code %&gt;</code> 则会显示 <code>H1</code> 大的 <code>hello</code> 字符串。</p>
+</blockquote>
+<p>下面的例子解释了 <code>&lt;% code %&gt;</code> 的用法：</p>
+<p>Data</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">supplies: [&apos;mop&apos;, &apos;broom&apos;, &apos;duster&apos;]</span><br></pre></td></tr></table></figure>
+<p>Template</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;% for(var i=0; i&lt;supplies.length; i++) &#123;%&gt;</span><br><span class="line">   &lt;li&gt;&lt;%= supplies[i] %&gt;&lt;/li&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>Result</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;mop&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;broom&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;duster&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="includes"><a href="#includes" class="headerlink" title="includes"></a>includes</h4><p>我们使用模板引擎通常不是一个页面对应一个模板，这样就失去了模板的优势，而是把模板拆成可复用的模板片段组合使用，如在 views 下新建 header.ejs 和 footer.ejs，并修改 users.ejs：</p>
+<p><strong>views/header.ejs</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">      body &#123;padding: 50px;font: 14px &quot;Lucida Grande&quot;, Helvetica, Arial, sans-serif;&#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>views/footer.ejs</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>views/users.ejs</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- include(&apos;header&apos;) %&gt;</span><br><span class="line">  &lt;h1&gt;&lt;%= name.toUpperCase() %&gt;&lt;/h1&gt;</span><br><span class="line">  &lt;p&gt;hello, &lt;%= name %&gt;&lt;/p&gt;</span><br><span class="line">&lt;%- include(&apos;footer&apos;) %&gt;</span><br></pre></td></tr></table></figure>
+<p>我们将原来的 <code>users.ejs</code> 拆成出了 <code>header.ejs</code> 和 <code>footer.ejs</code>，并在 <code>users.ejs</code> 通过 <code>ejs</code> 内置的 <code>include</code> 方法引入，从而实现了跟以前一个模板文件相同的功能。</p>
+<blockquote>
+<p>小提示：拆分模板组件通常有两个好处：</p>
+<ol>
+<li><p>模板可复用，减少重复代码</p>
+</li>
+<li><p>主模板结构清晰</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>注意：要用 <code>&lt;%- include(&#39;header&#39;) %&gt;</code> 而不是 <code>&lt;%= include(&#39;header&#39;) %&gt;</code></p>
+</blockquote>
+<h2 id="开发准备"><a href="#开发准备" class="headerlink" title="开发准备"></a>开发准备</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>对应文件及文件夹的用处：</p>
+<ol>
+<li><code>models</code>: 存放操作数据库的文件</li>
+<li><code>public</code>: 存放静态文件，如样式、图片等</li>
+<li><code>routes</code>: 存放路由文件</li>
+<li><code>views</code>: 存放模板文件</li>
+<li><code>index.js</code>: 程序主文件</li>
+<li><code>package.json</code>: 存储项目名、描述、作者、依赖等等信息</li>
+</ol>
+<blockquote>
+<p>小提示：不知读者发现了没有，我们遵循了 <code>MVC</code>（模型(model)－视图(view)－控制器(controller/route)） 的开发模式。</p>
+</blockquote>
+<h3 id="安装依赖模块"><a href="#安装依赖模块" class="headerlink" title="安装依赖模块"></a>安装依赖模块</h3><p>运行以下命令安装所需的模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i config-lite connect-flash connect-mongo ejs express express-formidable express-session marked moment mongolass objectid-to-timestamp sha1 winston express-winston --save</span><br></pre></td></tr></table></figure>
+<p>对应模块的用处：</p>
+<ol>
+<li><code>express</code>: web 框架</li>
+<li><code>express-session</code>: session 中间件</li>
+<li><code>connect-mongo</code>: 将 session 存储于 mongodb，结合 express-session 使用</li>
+<li><code>connect-flash</code>: 页面通知提示的中间件，基于 session 实现</li>
+<li><code>ejs</code>: 模板</li>
+<li><code>express-formidable</code>: 接收表单及文件的上传中间件</li>
+<li><code>config-lite</code>: 读取配置文件</li>
+<li><code>marked</code>: markdown 解析</li>
+<li><code>moment</code>: 时间格式化</li>
+<li><code>mongolass</code>: mongodb 驱动</li>
+<li><code>objectid-to-timestamp</code>: 根据 ObjectId 生成时间戳</li>
+<li><code>sha1</code>: sha1 加密，用于密码加密</li>
+<li><code>winston</code>: 日志</li>
+<li><code>express-winston</code>: 基于 winston 的用于 express 的日志中间件</li>
+</ol>
+<h2 id="config-lite"><a href="#config-lite" class="headerlink" title="config-lite"></a>config-lite</h2><p>不管是小项目还是大项目，将配置与代码分离是一个非常好的做法。我们通常将配置写到一个配置文件里，如 <code>config.js</code> 或 <code>config.json</code> ，并放到项目的根目录下。但通常我们都会有许多环境，如本地开发环境、测试环境和线上环境等，不同的环境的配置不同，我们不可能每次部署时都要去修改引用 <code>config.test.js</code> 或者 <code>config.production.js</code>。<code>config-lite</code> 模块正是你需要的。</p>
+<p><code>config-lite</code> 是一个轻量的读取配置文件的模块。<code>config-lite</code> 会根据环境变量（<code>NODE_ENV</code>）的不同从当前执行进程目录下的 <code>config</code> 目录加载不同的配置文件。如果不设置 <code>NODE_ENV</code>，则读取默认的 <code>default</code> 配置文件，如果设置了 <code>NODE_ENV</code>，则会合并指定的配置文件和 <code>default</code> 配置文件作为配置，<code>config-lite</code> 支持 <code>.js</code>、<code>.json</code>、<code>.node</code>、<code>.yml</code>、<code>.yaml</code> 后缀的文件。</p>
+<p>如果程序以 <code>NODE_ENV=test node app</code> 启动，则 <code>config-lite</code> 会依次降级查找 <code>config/test.js</code>、<code>config/test.json</code>、<code>config/test.node</code>、<code>config/test.yml</code>、<code>config/test.yaml</code> 并合并 <code>default</code> 配置; 如果程序以 <code>NODE_ENV=production node app</code> 启动，则 <code>config-lite</code> 会依次降级查找 <code>config/production.js</code>、<code>config/production.json</code>、<code>config/production.node</code>、<code>config/production.yml</code>、<code>config/production.yaml</code> 并合并 <code>default</code> 配置。</p>
+<p>在 <code>myblog</code> 下新建 <code>config</code> 目录，在该目录下新建 <code>default.js</code>，添加如下代码：</p>
+<p><strong>config/default.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  port: 3000,</span><br><span class="line">  session: &#123;</span><br><span class="line">    secret: &apos;myblog&apos;,</span><br><span class="line">    key: &apos;myblog&apos;,</span><br><span class="line">    maxAge: 2592000000</span><br><span class="line">  &#125;,</span><br><span class="line">  mongodb: &apos;mongodb://localhost:27017/myblog&apos;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>配置释义：</p>
+<ol>
+<li><code>port</code>: 程序启动要监听的端口号</li>
+<li><code>session</code>: <code>express-session</code> 的配置信息，后面介绍</li>
+<li><code>mongodb</code>: <code>mongodb</code> 的地址，<code>myblog</code> 为 <code>db</code> 名</li>
+</ol>
+<h2 id="功能与路由设计"><a href="#功能与路由设计" class="headerlink" title="功能与路由设计"></a>功能与路由设计</h2><p>功能列表：<br>路由设计如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">注册 </span><br><span class="line">	* 注册页 ：GET /signup</span><br><span class="line">	* 注册方法： POST /signup</span><br><span class="line"></span><br><span class="line">登陆：</span><br><span class="line">	* 登陆页：GET /signin</span><br><span class="line">	* 登录：POST /signin</span><br><span class="line"></span><br><span class="line">登出：GET /signout</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">类目:</span><br><span class="line">查看类目 ： GET /category</span><br><span class="line">发表类目 ：</span><br><span class="line">   * 发表类目页面：GET /category/create</span><br><span class="line">   * 发表类目： POST /category</span><br><span class="line">修改类目： </span><br><span class="line">	修改类目页面： GET /category/:categoryId/edit</span><br><span class="line">	修改类目：POST /category/:categoryId/edit</span><br><span class="line">删除类目：GET /category/:categoryId/remove</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">NAV :</span><br><span class="line">查看nav</span><br><span class="line">	个人主页： GET /nav?user=xxx</span><br><span class="line">发表nav ：</span><br><span class="line">   * 发表nav页面：GET /nav/create</span><br><span class="line">   * 发表nav： POST /nav</span><br><span class="line">修改nav： </span><br><span class="line">	修改nav页面： GET /nav/:navId/edit</span><br><span class="line">	修改nav：POST /nav/:navId/edit</span><br><span class="line">删除nav：GET /nav/:navId/remove</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">用户与nav分类关联信息：</span><br><span class="line">user To Nav Category :</span><br><span class="line">添加分类页面： GET /userToCategory</span><br><span class="line">更新nav分类管理信息 ：POST /userToCategory/updata?userId=xxx&amp;categorys=1,2,3,4,4,5,6</span><br></pre></td></tr></table></figure>
+<p>用户表：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>id</td>
+</tr>
+<tr>
+<td>用户名</td>
+<td>name</td>
+</tr>
+<tr>
+<td>密码</td>
+<td>password</td>
+</tr>
+</tbody>
+</table>
+<p>nav表：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>id</td>
+</tr>
+<tr>
+<td>名称</td>
+<td>title</td>
+</tr>
+<tr>
+<td>内容</td>
+<td>content</td>
+</tr>
+<tr>
+<td>图片url</td>
+<td>imgUrl</td>
+</tr>
+<tr>
+<td>类别</td>
+<td>categoryId</td>
+</tr>
+<tr>
+<td>作者ID</td>
+<td>userId</td>
+</tr>
+<tr>
+<td>pv</td>
+<td>pv</td>
+</tr>
+</tbody>
+</table>
+<p>nav分类：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>id</td>
+</tr>
+<tr>
+<td>名称</td>
+<td>name</td>
+</tr>
+</tbody>
+</table>
+<p>用户个人分类表（根据此表展示当前用户选择的分类下的所有nav）：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>id</td>
+</tr>
+<tr>
+<td>用户id</td>
+<td>userId</td>
+</tr>
+<tr>
+<td>分类ID  （1，2，3，4，5）</td>
+<td>categoryId</td>
+</tr>
+</tbody>
+</table>
+<p>接口结果格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">success : true，</span><br><span class="line">msg : &apos;&apos;,</span><br><span class="line">code : &apos;200&apos;,</span><br><span class="line">obj : &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://blog.xueshanshan.com">xuess</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://blog.xueshanshan.com/2016/11/08/nodejs-document/">http://blog.xueshanshan.com/2016/11/08/nodejs-document/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/nodejs/">nodejs</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/01/25/es6-grammar/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">es6语法简介</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/09/04/h5-wipe-cache/">
+        <span class="next-text nav-default">设置清除html5页面缓存</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xuess" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://weibo.com/test5433" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/shan-xue-74/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xuess</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xueshanshan.com/2016/11/08/nodejs-document/';
+        this.page.identifier = '2016/11/08/nodejs-document/';
+        this.page.title = 'nodejs+express开发笔记';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//xueshanshan-com.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
