@@ -1,574 +1,330 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-<!-- Head tag -->
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="baidu-site-verification" content="sN4ehoVl1k" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="午休随笔,午休服务站,薛山山博客,web前端开发,技术博客">
-	<meta name="description" content="薛山山在 Github 上的个人博客，主要从事web前端开发，移动端为主。此博客持续更新，欢迎大家关注。">
-	<link rel="shortcut icon" href="/images/favicon.ico">
 
-	<title>
-		
-		午休随笔
-		
-	</title>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
-	<link rel="canonical" href="http://xueshanshan.com/">
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-	<!-- Bootstrap Core CSS -->
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
 
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="/css/blog-style.css">
 
-	<!-- Pygments Github CSS -->
-	<link rel="stylesheet" href="/css/syntax.css">
+  <meta name="description" content="薛山山在 Github 上的个人博客，主要从事web前端开发，移动端为主。此博客持续更新，欢迎大家关注。"/>
 
-	<!-- Custom Fonts -->
-	<link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	<script>
-		var _hmt = _hmt || [];
-		(function() {
-			var hm = document.createElement("script");
-			hm.src = "//hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
-			var s = document.getElementsByTagName("script")[0];
-			s.parentNode.insertBefore(hm, s);
-		})();
-	</script>
 
-	<!-- ga & ba script hoook -->
-	<script></script>
-</head>
-<style>
-    .intro-header{
-        background-image:url(
-        'null'
-        )
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="午休随笔">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://blog.xueshanshan.com/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6060b9d9c759548bc26bce7cb0612fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
     }
-</style>
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " data-ispost = "false" data-istags="false
-" data-ishome = "true" >
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">
-                <span class="brand-logo">
-                    午休随笔
-                </span>
-                's Blog
-            </a>
-        </div>
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <!-- /.navbar-collapse -->
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
 
-                    
 
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- /.container -->
+
+
+
+
+
+
+    <title> 午休随笔 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">午休随笔</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
 </nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-</script>
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">午休随笔</a>
+</div>
 
-    <!-- Main Content -->
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts">
     
-
-    <style>
-
-        .custom-haojen-container .post-preview:nth-of-type(1),
-        .custom-haojen-container .post-preview-poetry:nth-of-type(1){
-            text-align: center;
-            background-repeat: no-repeat;
-            border-radius: 3px;
-            background-size: cover;
-            padding:0;
-            height: 300px;
-            display: table;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.16);
-        }
-        /*去掉诗歌的背景图片*/
-        .custom-haojen-container .post-preview-poetry:nth-of-type(1){
-            background-image: none!important;
-            background-color: rgba(255, 248, 220, 0.5);
-        }
-
-        .custom-haojen-container .post-preview:nth-child(1) h2,
-        .custom-haojen-container .post-preview:nth-child(1) .post-meta,
-        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-            text-shadow: 0 0 40px rgba(0, 0, 0, 1);
-            letter-spacing: 1px;
-            color: #fff;
-            font-family: unset;
-            font-weight: 500;
-            margin-top: 0;
-            padding-left: 60px;
-            padding-right: 60px;
-        }
-
-        .custom-haojen-container .post-preview:nth-child(1) .post-meta{
-            font-size: .9em;
-            font-weight: 300;
-            margin-top: 0;
-        }
-        .custom-haojen-container .post-preview-poetry:nth-child(1) .post-subtitle{
-            letter-spacing: 6px;
-            font-size: 18px;
-            font-family: unset;
-            font-weight: 400;
-            color: rgba(0,0,0,.75)
-        }
-        /*不显示摘要*/
-        .custom-haojen-container .post-preview:nth-child(1) .post-content-preview{display: none}
-        /*只第一个显示背景图片*/
-        .custom-haojen-container .post-preview:not(:nth-child(1)){
-            background-image: none!important;
-        }
-        /*第一个分界线去掉*/
-        .custom-haojen-container hr:nth-of-type(1){
-            display: none;
-        }
-        /*主题*/
-        .custom-haojen-container .post-preview:nth-of-type(1)>a{
-            display: table-cell;
-            vertical-align: middle;
-        }
-        /*诗词标题*/
-        .custom-haojen-container .post-preview-poetry:nth-child(1) h2{
-            font-size: 35px;
-            font-family:  STKaiti;
-            color: rgba(0,0,0,.8);
-        }
-        .custom-haojen-container .post-preview-poetry:nth-of-type(1) .post-meta{
-            color: #0e2231;
-        }
-        @media (max-width: 768px)  {
-            .custom-haojen-container .post-preview:nth-child(1) {
-                height: 240px;
-            }
-            .custom-haojen-container .post-preview-poetry:nth-child(1) h2{
-                font-size: 28px!important;
-                margin-top: 0;
-            }
-            .custom-haojen-container .post-preview:nth-child(1) .post-subtitle{
-                font-size: 18px;
-                font-weight:400;
-                padding-left: 0;padding-right: 0;
-            }
-            .custom-haojen-container .post-preview:nth-of-type(1) > a{padding: 20px}
-        }
-
-        /*手机屏幕*/
-        @media (max-width: 400px){
-            .custom-haojen-container .post-preview:nth-child(1){
-                height: 195px;
-            }
-            .custom-haojen-container .post-preview-poetry:nth-child(1) h2{
-                font-size: 20px!important;
-            }
-            .custom-haojen-container .post-preview:nth-child(1) .post-subtitle{
-                font-size: 16px;
-            }
-            .custom-haojen-container .post-preview:nth-child(1) a{
-                padding: 30px 20px;
-            }
-        }
-    </style>
-
-<!-- Page Header -->
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="/images/head.jpeg" />
-                        <h5><a href="/about/">xuess</a></h5>
-                        <p>浮躁的人永远不是一个高手！</p>
-                    </div>
-                </div>
-            </div>
-        </header>
-    </div>
-    </div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
-
-
-
-
-<div class="post-preview "
-        style="background-image: url('/images/pc-bg.jpg')">
-        <a href="/2017/03/06/webpack-多页面支持/">
-        <h2 class="post-title">
-            webpack 多页面支持
-        </h2>
-        <p class="post-meta">
-            2017-03-06
-        </p>
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
-        <div class="post-content-preview">
-            <p>
-                环境安装安装webpack包
-npm install webpack -g
-
-//进入项目目录//确定已有package.json，没有就npm init 创建$ npm install webpack --save-dev//查看webpack 版本信息$ npm info webpack/...
-            </p>
-        </div>
-    </a>
-
-</div>
-<hr>
-
-
-<div class="post-preview "
-        style="background-image: url('/images/pc-bg.jpg')">
-        <a href="/2017/02/23/blogs/">
-        <h2 class="post-title">
-            blogs
-        </h2>
-        <p class="post-meta">
-            2017-02-23
-        </p>
+          <a class="post-link" href="/2018/03/11/My-New-Post/">My New Post</a>
         
-        <div class="post-content-preview">
-            <p>
-                你好
-你好。
+      </h1>
 
-
-            </p>
-        </div>
-    </a>
-
-</div>
-<hr>
-
-
-<div class="post-preview "
-        style="background-image: url('/images/pc-bg.jpg')">
-        <a href="/2017/02/23/vue/">
-        <h2 class="post-title">
-            vue
-        </h2>
-        <p class="post-meta">
-            2017-02-23
-        </p>
+      <div class="post-meta">
+        <span class="post-time">
+          2018-03-11
+        </span>
         
-        <div class="post-content-preview">
-            <p>
-                你好这个是测试语句块！！！
-            </p>
-        </div>
-    </a>
-
-</div>
-<hr>
-
-
-<div class="post-preview "
-        style="background-image: url('/images/pc-bg.jpg')">
-        <a href="/2016/06/03/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        <p class="post-meta">
-            2016-06-03
-        </p>
         
-        <div class="post-content-preview">
-            <p>
-                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer ...
-            </p>
-        </div>
-    </a>
+      </div>
+    </header>
 
-</div>
-<hr>
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
     
     
-</ul>
 
+    <div class="post-content">
+      
+        
+        
+
+        
+          
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    
+    
+  </nav>
+
+
+          </div>
+          
 
         </div>
-    <!-- Sidebar Container -->
-            <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+      </main>
 
-                <!-- About Me -->
-                <section class="visible-md visible-lg" style="padding: 0 18px">
-                    <div class="short-about">
-                        <!--侧边栏头像-->
-                        
-                            <img src="/images/head.jpeg " />
-                        
-                        <h5><a href="/about/">xuess</a></h5>
-                        
-                            <p>浮躁的人永远不是一个高手！</p>
-                        
-                        <hr>
-                        <!-- SNS Link 社交 -->
-                        <ul class="list-inline">
-                            
-                            
-                            
+      <footer id="footer" class="footer">
 
-                            
-                                <li>
-                                    <a target="_blank" href="http://weibo.com/test5433">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:wuniu2010@126.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xuess" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://weibo.com/test5433" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/shan-xue-74/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
 
-                            
 
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/xuess">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
 
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2018
 
-                            
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- Featured Tags  标签 -->
-                
-                <section>
-                    <div class="tags">
-                        
-                    </div>
-                </section>
-                
-
-            </div>
-    </div>
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xuess</span>
+  </span>
 </div>
 
+      </footer>
 
-    <!-- Footer -->
-    
-<!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="index.html" data-title="" data-url=""></div>
-<!-- 多说评论框 end -->
-
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-	var duoshuoQuery = { short_name: "xuess" };
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';
-		ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] ||
-			document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-</script>
-<!-- 多说公共JS代码 end -->
-
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                
-                
-                
-
-                
-                    <li>
-                        <a target="_blank" href="http://weibo.com/test5433">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank"  href="https://github.com/xuess">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                </ul>
-                <p class="copyright text-muted">
-                    Copyright &copy; 午休随笔 2017 
-                    <br>
-                    <!--Theme by <a href="https://github.com/Kaijun/">Kaijun</a>-->
-                    <!--<span style="display: inline-block; margin: 0 5px;">-->
-                        <!--<i class="fa fa-heart"></i>-->
-                    <!--</span> -->
-                    <!--Theme by <a href="http://ehazon.github.io/">Haojen Ma</a>-->
-                    <!--<iframe-->
-                        <!--style="margin-left: 2px; margin-bottom:-5px;"-->
-                        <!--frameborder="0" scrolling="0" width="91px" height="20px"-->
-                        <!--src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >-->
-                    <!--</iframe>-->
-                </p>
-            </div>
-        </div>
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
     </div>
-</footer>
 
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="/js/blog.js"></script>
+    
 
 
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-
-
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async("http://xueshanshan.com/js/jquery.tagcloud.js",function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
-
-<!--fastClick.js -->
-<script>
-    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-        var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
-    })
-</script>
-
-
-<!-- Google Analytics -->
+    
 
 
 
 
-<!-- Baidu Tongji -->
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
 
 
-<!-- Side Catalog -->
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
 
-
-    <!--wechat title img-->
-    <img class="wechat-title-img" src="/images/head.jpeg">
-</body>
-
+  </body>
 </html>
